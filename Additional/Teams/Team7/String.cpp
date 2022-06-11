@@ -142,6 +142,11 @@ size_t String::getSize() const {
 	return size;
 }
 
+String* String::clone() const
+{
+	return new String(*this);
+}
+
 void String::copy(const String& other)
 {
 	size = other.size;

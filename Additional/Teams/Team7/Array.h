@@ -67,7 +67,7 @@ void Array<T>::copy(const Array<T>& other) {
 	capacity = other.capacity;
 	data = new T(other.size);
 	for (int i = 0; i < other.size; i++)
-		data[i] = other[i].clone();
+		data[i] = other[i];
 }
 
 template <class T>

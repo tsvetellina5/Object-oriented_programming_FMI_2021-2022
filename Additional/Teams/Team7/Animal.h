@@ -16,7 +16,6 @@ protected:
 		HERBIVORE, CARNIVORE, OMNIVORE
 	}consumerType;
 
-private:
 	String name;
 	String sound;
 	Array<String*> facts;
@@ -28,7 +27,11 @@ public:
 	String getName() const;
 	String getSound() const;
 	Array<String*> getFacts() const;
+	String& getFact(const unsigned int&) const; //Niki
+	String& getFoodType() const;
+	double getFoodQuantity() const;
 
+	virtual bool setFacts() = 0;
 	virtual Animal* clone() const = 0;
 	virtual void makeSound() = 0;
 };
