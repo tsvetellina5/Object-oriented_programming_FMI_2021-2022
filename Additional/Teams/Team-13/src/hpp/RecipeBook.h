@@ -36,6 +36,7 @@ public:
     void printAllSteak() const;
     void printAllSandwiches() const;
     void printAllDesserts() const;
+    void printAll() const;
 
     void printDifficulty(unsigned short difficulty) const;
 

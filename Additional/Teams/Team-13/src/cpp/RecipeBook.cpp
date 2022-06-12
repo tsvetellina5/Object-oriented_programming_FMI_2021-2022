@@ -106,6 +106,12 @@ void RecipeBook::printType(const Type& type) const {
     }
 }
 
+void RecipeBook::printAll() const {
+    size_t size = recipes.getSize();
+    for (int i = 0; i < size; ++i)
+        recipes[i]->print();
+}
+
 void RecipeBook::printAllSoups() const {
     printType(Type::soup);
 }

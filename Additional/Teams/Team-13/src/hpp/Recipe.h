@@ -1,7 +1,7 @@
 #ifndef RECIPE_H
 #define RECIPE_H
 
-#include <time.h>
+#include <ctime>
 #include "src/hpp/String.h"
 #include "src/hpp/Vector.hpp"
 #include "src/hpp/Pair.hpp"
