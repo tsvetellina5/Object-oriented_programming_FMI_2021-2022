@@ -51,3 +51,8 @@ void Turtle::makeSound()
 {
 	std::cout << getSound();
 }
+
+void Turtle::print() const
+{
+	std::cout << "I'm a turtle called " << name << "! "<<sound;
+}

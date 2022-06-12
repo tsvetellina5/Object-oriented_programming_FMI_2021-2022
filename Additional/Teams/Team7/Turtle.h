@@ -12,4 +12,5 @@ public:
 	bool setFacts() override;
 	Turtle* clone() const override;
 	void makeSound() override;
+	void print() const override;
 };

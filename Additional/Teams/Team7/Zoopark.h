@@ -15,10 +15,13 @@ public:
 	void clean();
 	void feed();
 	void addAnimal();
-	// addHippopotamus
-	void addTurtle();
-	void addPenguin();
-	// addPenguin
+	void menu();
+	void printCommands() const;
 	void printFacts() const;
 	void removeAnimal();
+	void printAll();
+private:
+	void addTurtle();
+	void addPenguin();
+	// addHippopotamus
 };

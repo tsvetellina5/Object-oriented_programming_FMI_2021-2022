@@ -50,3 +50,8 @@ void Penguin::makeSound()
 {
 	std::cout << getSound();
 }
+
+void Penguin::print() const
+{
+	std::cout << "I'm a penguin called " << name << "! " << sound;
+}

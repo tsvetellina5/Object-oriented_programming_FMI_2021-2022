@@ -25,20 +25,20 @@ String Animal::getFacts() const
 	return facts;
 }
 
-String& Animal::getFoodType() const
+String Animal::getFoodType() const
 {
 	String foodType;
-	if (consumerType == 0) //herbivore
+	if (consumerType == HERBIVORE) //herbivore
 	{
 		foodType = "grass";
 	}
-	else if (consumerType == 1) //carnivore
+	else if (consumerType == CARNIVORE) //carnivore
 	{
-		foodType = "fresh meat";
+		foodType = "fresh meat/fish";
 	}
 	else // omnivore
 	{
-		foodType = "fresh meat and grass";
+		foodType = "fresh meat/fish and grass";
 	}
 
 	return foodType;

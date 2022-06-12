@@ -6,6 +6,5 @@ int main()
 {
 	Zoopark zoopark;
 
-	zoopark.addAnimal();
-	zoopark.printFacts();
+	zoopark.menu();
 }
