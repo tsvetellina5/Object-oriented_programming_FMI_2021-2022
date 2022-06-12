@@ -19,6 +19,7 @@ protected:
 	String name;
 	String sound;
 	String facts;
+	bool clean;
 
 public:
 
@@ -28,10 +29,13 @@ public:
 	String getSound() const;
 	String getFacts() const;
 	String getFoodType() const;
+	bool isClean() const;
 	double getFoodQuantity() const;
 
-	virtual void print() const=0;
+	void isClean(const bool);
+
 	virtual bool setFacts() = 0;
 	virtual Animal* clone() const = 0;
 	virtual void makeSound() = 0;
+	virtual void print() const = 0;
 };

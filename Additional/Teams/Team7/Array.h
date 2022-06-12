@@ -28,7 +28,6 @@ public:
 	void clear();
 	bool empty() const;
 	void popAt(unsigned int);
-	T* clone() const;
 private:
 	void copy(const Array<T>&);
 	void free();
@@ -67,8 +66,8 @@ void Array<T>::copy(const Array<T>& other) {
 	size = other.size;
 	capacity = other.capacity;
 	data = new T(other.size);
-	for (unsigned int i = 0; i < other.size; i++)
-		data[i] = other[i].clone();
+	for (int i = 0; i < other.size; i++)
+		data[i] = other[i];
 }
 
 template <class T>
@@ -201,10 +200,4 @@ void Array<T>::popAt(unsigned int n) {
 	size--;
 	if (empty())
 		clear();
-}
-
-template<class T>
-inline T* Array<T>::clone() const
-{
-	return new T(*this);
 }

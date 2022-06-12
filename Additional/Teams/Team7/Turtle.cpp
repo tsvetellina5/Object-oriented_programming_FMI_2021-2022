@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 
 #include "Turtle.h"
@@ -14,7 +14,7 @@ Turtle::Turtle()
 	setFacts();
 }
 
-Turtle::Turtle(const String& name)
+Turtle::Turtle(String name)
 {
 	weightType = MEDIUM;
 	consumerType = OMNIVORE;
@@ -54,5 +54,5 @@ void Turtle::makeSound()
 
 void Turtle::print() const
 {
-	std::cout << "I'm a turtle called " << name << "! "<<sound;
+	std::cout << "I'm a turtle called " << name << "! " << sound;
 }

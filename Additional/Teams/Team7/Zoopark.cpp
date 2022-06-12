@@ -9,23 +9,27 @@ const int BUFFER_SIZE = 1024;
 Zoopark::Zoopark()
 {
 	std::cout << "What is the name of the zoopark? ";
-	char* nameT = new char[1024];
-	std::cin.getline(nameT, 1024);
+	char* nameT = new char[BUFFER_SIZE];
+	std::cin.getline(nameT, BUFFER_SIZE);
 	name = nameT;
 	delete[] nameT;
-	cleaned = false;
 }
 
 void Zoopark::clean()
 {
-	if (cleaned)
+	bool dirtyCages = false;
+	for (size_t i = 0; i < animals.getSize(); i++)
 	{
-		std::cout << "Everything is already clean!" << std::endl;
+		if (!animals[i]->isClean())
+		{
+			dirtyCages = true;
+			std::cout << animals[i]->getName() << "'s cage was successfully cleaned!" << std::endl;
+			animals[i]->isClean(true);
+		}
 	}
-	else
+	if (!dirtyCages)
 	{
-		cleaned = true;
-		std::cout << "Zoopark cages were successfully cleaned!" << std::endl;
+		std::cout << "Everything is already clean!";
 	}
 }
 
@@ -38,8 +42,16 @@ bool Zoopark::feed()
 	{
 		if (animals[i]->getName() == input.getStr())
 		{
-			std::cout << animals[i]->getName() << " was successfully fed with "
-				<< animals[i]->getFoodQuantity() << " kg of " << animals[i]->getFoodType() << "!" << std::endl;
+			if (animals[i]->isClean())
+			{
+				std::cout << animals[i]->getName() << " was successfully fed with "
+					<< animals[i]->getFoodQuantity() << " kg of " << animals[i]->getFoodType() << "!" << std::endl;
+				animals[i]->isClean(false);
+			}
+			else
+			{
+				std::cout << "You can't feed " << animals[i]->getName() << " before cleaning its cage!" << std::endl;
+			}
 			found = true;
 			break;
 		}
@@ -74,6 +86,7 @@ void Zoopark::addTurtle()
 	String name; std::cin >> name;
 	Animal* animal = new Turtle(name);
 	animals.pushBack(animal->clone());
+	std::cout << "The animal was successfully added!" << std::endl;
 }
 
 void Zoopark::addPenguin()
@@ -82,7 +95,9 @@ void Zoopark::addPenguin()
 	String name; std::cin >> name;
 	Animal* animal = new Penguin(name);
 	animals.pushBack(animal->clone());
+	std::cout << "The animal was successfully added!" << std::endl;
 }
+
 
 void Zoopark::addHippopotamus()
 {
@@ -90,7 +105,9 @@ void Zoopark::addHippopotamus()
 	String name; std::cin >> name;
 	Animal* animal = new Hippopotamus(name);
 	animals.pushBack(animal->clone());
+	std::cout << "The animal was successfully added!" << std::endl;
 }
+
 
 void Zoopark::menu()
 {
@@ -127,7 +144,7 @@ void Zoopark::menu()
 		else if (cmd == "printFacts")
 		{
 			if (!printFacts())
-				std::cout<<"Could not find that animal!";
+				std::cout << "Could not find that animal!";
 			std::cout << std::endl;
 		}
 		else if (cmd == "printAll") {
@@ -175,7 +192,7 @@ bool Zoopark::printFacts() const
 
 bool Zoopark::removeAnimal()
 {
-	bool found=false;
+	bool found = false;
 
 	std::cout << "What animal do you want to remove? ";
 	String input;  std::cin >> input;
@@ -186,10 +203,10 @@ bool Zoopark::removeAnimal()
 		{
 			animals.popAt(i);
 			found = true;
+			std::cout << "The animal was successfully removed!" << std::endl;
 			break;
 		}
 	}
-	
 	return found;
 }
 

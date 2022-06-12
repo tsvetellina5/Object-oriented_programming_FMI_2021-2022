@@ -28,6 +28,7 @@ public:
 	friend std::istream& operator>>(std::istream&, String&);
 	friend std::ostream& operator<<(std::ostream&, const String&);
 	String* clone() const;
+
 private:
 	void copy(const String&);
 	void free();

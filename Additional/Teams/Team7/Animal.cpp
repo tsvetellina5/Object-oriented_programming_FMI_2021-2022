@@ -28,20 +28,25 @@ String Animal::getFacts() const
 String Animal::getFoodType() const
 {
 	String foodType;
-	if (consumerType == HERBIVORE) //herbivore
+	if (consumerType == 0) //herbivore
 	{
 		foodType = "grass";
 	}
-	else if (consumerType == CARNIVORE) //carnivore
+	else if (consumerType == 1) //carnivore
 	{
-		foodType = "fresh meat/fish";
+		foodType = "fresh meat";
 	}
 	else // omnivore
 	{
-		foodType = "fresh meat/fish and grass";
+		foodType = "fresh meat and grass";
 	}
 
 	return foodType;
+}
+
+bool Animal::isClean() const
+{
+	return clean;
 }
 
 double Animal::getFoodQuantity() const
@@ -61,4 +66,9 @@ double Animal::getFoodQuantity() const
 	}
 
 	return foodQuantity;
+}
+
+void Animal::isClean(const bool clean)
+{
+	this->clean = clean;
 }

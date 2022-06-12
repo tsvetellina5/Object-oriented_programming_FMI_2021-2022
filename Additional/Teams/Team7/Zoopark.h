@@ -8,7 +8,7 @@ private:
 	String name;
 	Array<Animal*> animals;
 	Array<String*> log;
-	bool cleaned;
+
 public:
 	Zoopark();
 
