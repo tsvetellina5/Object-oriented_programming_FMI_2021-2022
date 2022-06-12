@@ -1,10 +1,7 @@
-#include "src/hpp/HotMeal.h"
+#include "HotMeal.h"
 #include <iostream>
-
 const double SIZE_T_LIMIT = 1e3;
-HotMeal::HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime,
-                 const MyString& instructions, const size_t& kcal, const MyString& typeToConvert,
-                 const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances)
+HotMeal::HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances)
 	: Recipe(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert)
 {
 	setCookingTemperature(cookingTemperature);
@@ -17,7 +14,7 @@ void HotMeal::print() const
 {
 	Recipe::print();
 	std::cout << "Cooking time: " << cookingTime << " minutes" << std::endl;
-	std::cout << "Cooking temperature " << cookingTemperature << " degrees Celsius" << std::endl;
+	std::cout << "Cooking temperature: " << cookingTemperature << " degrees Celsius" << std::endl;
 	std::cout << "Necessary appliances: " << std::endl;
 	for (size_t i = 0; i < appliances.getSize(); ++i)
 		std::cout << "- " << appliances[i] << std::endl;
@@ -48,30 +45,23 @@ void HotMeal::setCookingTemperature(const size_t& cookingTemperature)
 		return;
 	}
 	throw "Invalid cooking temperature!";
-	/*this->cookingTemperature = 100;
-	std::cout << "Invalid cooking temperature (must range from 90 to 260 Celsius). Cooking temperature set to 100 by default.";*/
 }
 
-void HotMeal::setCookingTime(size_t cookingTime)
+void HotMeal::setCookingTime(const size_t& cookingTime)
 {
 	if (cookingTime < SIZE_T_LIMIT)
 	{
 		if (cookingTime >= getPreparationTime())
 		{
 			throw "Invalid cooking time!";
-			/*this->cookingTime = size_t(getPreparationTime() / 2);
-			std::cout << "Cooking time cannot exceed preparation time. Cooking time set to 50% of preparation time by default" << std::endl;
-			return;*/
 		}
 		this->cookingTime = cookingTime;
 		return;
 	}	
 	throw "Invalid cooking time!";
-	/*this->cookingTime = size_t(getPreparationTime() / 2);
-	std::cout << "Cooking time cannot exceed preparation time. Cooking time set to 50 % of preparation time by default" << std::endl;*/
 }
 
-void HotMeal::setAppliances(const Vector<MyString>& appliances)
+void HotMeal::setAppliances(const Vector<MyString> appliances)
 {
 	if (appliances.getSize() > 0 && appliances.getSize() < SIZE_T_LIMIT)
 	{
@@ -79,20 +69,19 @@ void HotMeal::setAppliances(const Vector<MyString>& appliances)
 		return;
 	}
 	throw "No appliances!";
-	//this->appliances.push_back("No appliances");
 }
 
-size_t HotMeal::getCookingTemperature() const
+const size_t HotMeal::getCookingTemperature() const
 {
 	return cookingTemperature;
 }
 
-size_t HotMeal::getCookingTime() const
+const size_t HotMeal::getCookingTime() const
 {
 	return cookingTime;
 }
 
-const Vector<MyString>& HotMeal::getAppliances() const
+const Vector<MyString> HotMeal::getAppliances() const
 {
 	return appliances;
 }
@@ -123,6 +112,5 @@ void inputAppliances(Vector<MyString>& appliances)
 		std::cin >> temp;
 		hasTyped = true;
 		appliances.push_back(temp);
-		//std::cin.clear();
 	}
 }

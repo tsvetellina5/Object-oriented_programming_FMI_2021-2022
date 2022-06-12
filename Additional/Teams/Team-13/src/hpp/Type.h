@@ -1,7 +1,7 @@
 #ifndef TYPE_H
 #define TYPE_H
 
-#include "src/hpp/String.h"
+#include "String.h"
 
 enum class Type
 {
@@ -10,7 +10,7 @@ enum class Type
 	pastry,
 	stew,
 	steak,
-	sandwich,
+	sandwitch,
 	dessert,
 	unknown
 };
