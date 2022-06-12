@@ -13,7 +13,7 @@ public:
 	Recipe* clone() const override;
 	void determineDifficulty() override;
 
-	void setStoringTemperature(const double& storingTemperature);
+	void setStoringTemperature(double storingTemperature);
 	const double getStoringTemperature() const;
 };
 

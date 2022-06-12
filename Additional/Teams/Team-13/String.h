@@ -1,5 +1,5 @@
-#ifndef KINDLE_STRING_H
-#define KINDLE_STRING_H
+#ifndef STRING_H
+#define STRING_H
 
 #include <iostream>
 #include <fstream>
@@ -52,4 +52,4 @@ bool operator<=(const MyString &, const MyString &);
 bool operator<(const MyString &, const MyString &);
 
 
-#endif //KINDLE_STRING_H
+#endif //STRING_H

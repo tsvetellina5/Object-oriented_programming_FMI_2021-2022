@@ -14,12 +14,12 @@ public:
 	Recipe* clone() const override;
 	void determineDifficulty() override;
 
-	void setCookingTemperature(const size_t& cookingTemperature);
-	void setCookingTime(const size_t& cookingTime);
+	void setCookingTemperature(size_t cookingTemperature);
+	void setCookingTime(size_t cookingTime);
 	void setAppliances(const Vector<MyString> appliances);
 
-	const size_t getCookingTemperature() const;
-	const size_t getCookingTime() const;
+	size_t getCookingTemperature() const;
+	size_t getCookingTime() const;
 	const Vector<MyString> getAppliances() const;
 
 };

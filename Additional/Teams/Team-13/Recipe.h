@@ -25,7 +25,6 @@ private:
 	size_t kcal;
 
 public:
-
 	Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert);
 	virtual ~Recipe() = default;
 	virtual void print() const;
@@ -34,7 +33,7 @@ public:
 
 	void setName(const MyString& name);
 	void setIngredients(const IngredientList& ingredients);
-	void setPreparationTime(const size_t& time);
+	void setPreparationTime(size_t time);
 	void setInstructions(const MyString& instructions);
 	void setID(const int& ID);
 	void setInitialRatingState();
@@ -43,7 +42,7 @@ public:
 	void setType(const MyString& typeToConvert);
 	void setDifficulty(const size_t& difficulty);
 
-	void addRating(const size_t& rating); // not supposed to be used in the initialization
+	void addRating(const unsigned short& rating); // not supposed to be used in the initialization
 
 	const MyString getName() const;
 	const IngredientList getIngredients() const;

@@ -1,5 +1,6 @@
 #include "HotMeal.h"
 #include <iostream>
+
 const double SIZE_T_LIMIT = 1e3;
 HotMeal::HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances)
 	: Recipe(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert)
@@ -49,7 +50,7 @@ void HotMeal::setCookingTemperature(const size_t& cookingTemperature)
 	std::cout << "Invalid cooking temperature (must range from 90 to 260 Celsius). Cooking temperature set to 100 by default.";*/
 }
 
-void HotMeal::setCookingTime(const size_t& cookingTime)
+void HotMeal::setCookingTime(size_t cookingTime)
 {
 	if (cookingTime < SIZE_T_LIMIT)
 	{
@@ -79,12 +80,12 @@ void HotMeal::setAppliances(const Vector<MyString> appliances)
 	//this->appliances.push_back("No appliances");
 }
 
-const size_t HotMeal::getCookingTemperature() const
+size_t HotMeal::getCookingTemperature() const
 {
 	return cookingTemperature;
 }
 
-const size_t HotMeal::getCookingTime() const
+size_t HotMeal::getCookingTime() const
 {
 	return cookingTime;
 }
