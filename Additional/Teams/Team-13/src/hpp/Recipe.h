@@ -1,11 +1,11 @@
 #ifndef RECIPE_H
 #define RECIPE_H
 
-#include <ctime>
-#include "src/hpp/String.h"
-#include "src/hpp/Vector.hpp"
-#include "src/hpp/Pair.hpp"
-#include "src/hpp/Type.h"
+#include <time.h>
+#include "String.h"
+#include "Vector.hpp"
+#include "Pair.hpp"
+#include "Type.h"
 
 typedef Vector<Pair<MyString, size_t>> IngredientList;
 
@@ -21,11 +21,12 @@ private:
 	int ID;
 
 	Type type;
-	unsigned short difficulty;
+	size_t difficulty;
 	size_t kcal;
 
 public:
-	Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString& typeToConvert);
+
+	Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert);
 	virtual ~Recipe() = default;
 	virtual void print() const;
 	virtual Recipe* clone() const = 0;
@@ -40,7 +41,7 @@ public:
 	void setInitialDifficultyState();
 	void setKcal(const size_t& kcal);
 	void setType(const MyString& typeToConvert);
-	void setDifficulty(const unsigned short& difficulty);
+	void setDifficulty(const size_t& difficulty);
 
 	void addRating(const unsigned short& rating); // not supposed to be used in the initialization
 

@@ -1,11 +1,11 @@
-#include "src/hpp/Recipe.h"
+#include "Recipe.h"
 
-const double SIZE_T_LIMIT = 1e4;
+const double SIZE_T_LIMIT = 1e3; 
 // limit for size_t validation (when the user input is a negative number,
 // it might transform into a large positive number, because its type is size_t (unsigned long long)...)
-// we don't need numbers bigger than 10000 in our project anyway, that's why we put such boundary
+// we don't need numbers bigger than 1000 in our project anyway, that's why we put such boundary
 
-Recipe::Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString& typeToConvert)
+Recipe::Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert)
 {
 	setName(name);
 	setIngredients(ingredients);
@@ -38,16 +38,15 @@ void Recipe::print() const
 }
 
 void Recipe::setName(const MyString& name)
-{
-	if (name.c_str() != nullptr && name.getSize() > 0)
+{//40 characters is the limit
+	if (name.c_str() != nullptr && name.getSize() > 0 && name.getSize() < 40)
 	{
 		this->name = name;
-		if ((this->name[0] < 'A' || this->name[0] > 'Z') && this->name[0] >= 'a' && this->name[0] <= 'z')
+		if (this->name[0] < 'A' || this->name[0] > 'Z' && this->name[0] >= 'a' && this->name[0] <= 'z')
 			this->name[0] -= 32;
 		return;
 	}
 	throw "Invalid name!";
-	//this->name = "Unknown";
 }
 
 void Recipe::setIngredients(const IngredientList& ingredients)
@@ -58,8 +57,6 @@ void Recipe::setIngredients(const IngredientList& ingredients)
 		return;
 	}
 	throw "Unknown ingredients!";
-	//Pair<MyString, size_t> temp("Unknown ingredients", 0);
-	//this->ingredients.push_back(temp);
 }
 
 void Recipe::setPreparationTime(const size_t& preparationTime)
@@ -70,8 +67,6 @@ void Recipe::setPreparationTime(const size_t& preparationTime)
 		return;
 	}
 	throw "Invalid preparation data!";
-	//this->preparationTime = 30;
-	//std::cout << "Invalid preparation time data! Preparation time set to 30 minutes by default." << std::endl;
 }
 
 void Recipe::setInstructions(const MyString& instructions)
@@ -82,7 +77,6 @@ void Recipe::setInstructions(const MyString& instructions)
 		return;
 	}
 	throw "No instructions!";
-	//this->instructions = "No instructions";
 }
 
 void Recipe::setID(const int& ID)
@@ -108,8 +102,6 @@ void Recipe::setKcal(const size_t& kcal)
 		return;
 	}
 	throw "Invalid energy value!";
-	//this->kcal = 400;
-	//std::cout << "Invalid energy value! Energy value set to 400 kcal by default." << std::endl;
 }
 
 void Recipe::setType(const MyString& typeToConvert)
@@ -117,7 +109,7 @@ void Recipe::setType(const MyString& typeToConvert)
 	type = stringToType(typeToConvert);
 }
 
-void Recipe::setDifficulty(const unsigned short& difficulty)
+void Recipe::setDifficulty(const size_t& difficulty)
 {//validation is being assured from another function
 	this->difficulty = difficulty;
 }
