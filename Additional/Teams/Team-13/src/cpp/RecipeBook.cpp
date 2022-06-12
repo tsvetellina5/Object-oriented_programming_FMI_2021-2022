@@ -59,7 +59,7 @@ int RecipeBook::generateID() const
     int id = 0;
     do {
         srand(time(NULL));
-        id = (rand() % 9999) + 1;
+        id = (rand() % 999) + 1;
     } while (findAtId(id) != -1);
 
     return id;
