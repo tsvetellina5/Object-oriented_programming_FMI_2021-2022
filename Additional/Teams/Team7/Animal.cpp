@@ -20,14 +20,9 @@ String Animal::getSound() const
 	return sound;
 }
 
-Array<String*> Animal::getFacts() const
+String Animal::getFacts() const
 {
 	return facts;
-}
-
-String& Animal::getFact(const unsigned int& index) const //Niki
-{
-	return *facts[index];
 }
 
 String& Animal::getFoodType() const

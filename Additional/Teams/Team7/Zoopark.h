@@ -17,7 +17,8 @@ public:
 	void addAnimal();
 	// addHippopotamus
 	void addTurtle();
+	void addPenguin();
 	// addPenguin
-	void printFacts();
+	void printFacts() const;
 	void removeAnimal();
 };

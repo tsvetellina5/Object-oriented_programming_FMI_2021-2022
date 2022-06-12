@@ -18,7 +18,7 @@ protected:
 
 	String name;
 	String sound;
-	Array<String*> facts;
+	String facts;
 
 public:
 
@@ -26,8 +26,7 @@ public:
 	Animal::Consumer getConsumer() const;
 	String getName() const;
 	String getSound() const;
-	Array<String*> getFacts() const;
-	String& getFact(const unsigned int&) const; //Niki
+	String getFacts() const;
 	String& getFoodType() const;
 	double getFoodQuantity() const;
 

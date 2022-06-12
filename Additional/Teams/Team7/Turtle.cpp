@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <fstream>
 
 #include "Turtle.h"
@@ -14,7 +14,7 @@ Turtle::Turtle()
 	setFacts();
 }
 
-Turtle::Turtle(String name)
+Turtle::Turtle(const String& name)
 {
 	weightType = MEDIUM;
 	consumerType = OMNIVORE;
@@ -34,8 +34,8 @@ bool Turtle::setFacts()
 	char temp[BUFFER_SIZE];
 	while (file.getline(temp, BUFFER_SIZE))
 	{
-		String* string = new String(temp);
-		facts.pushBack(string->clone());
+		facts += temp;
+		facts += "\n";
 	}
 	file.close();
 

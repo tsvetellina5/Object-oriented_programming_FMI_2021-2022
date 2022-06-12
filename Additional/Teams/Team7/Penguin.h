@@ -3,13 +3,13 @@
 #include "Animal.h"
 #include "String.h"
 
-class Turtle : public Animal
+class Penguin : public Animal
 {
 public:
-	Turtle();
-	Turtle(const String&);
+	Penguin();
+	Penguin(const String&);
 
 	bool setFacts() override;
-	Turtle* clone() const override;
+	Penguin* clone() const override;
 	void makeSound() override;
 };
