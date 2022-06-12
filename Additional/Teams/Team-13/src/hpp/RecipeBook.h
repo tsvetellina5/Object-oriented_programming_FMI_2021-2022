@@ -15,6 +15,7 @@ class RecipeBook {
 
 
 public:
+    RecipeBook() = default;
     RecipeBook(const RecipeBook& other);
     RecipeBook& operator=(const RecipeBook& other);
     ~RecipeBook();
@@ -32,6 +33,7 @@ public:
 
     void printAllSoups() const;
     void printAllSalads() const;
+    void printAllPastry() const;
     void printAllStew() const;
     void printAllSteak() const;
     void printAllSandwiches() const;

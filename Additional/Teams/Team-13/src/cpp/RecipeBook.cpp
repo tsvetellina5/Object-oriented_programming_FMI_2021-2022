@@ -118,6 +118,10 @@ void RecipeBook::printAllSoups() const {
 void RecipeBook::printAllSalads() const{
     printType(Type::salad);
 }
+
+void RecipeBook::printAllPastry() const {
+    printType(Type::pastry);
+}
 void RecipeBook::printAllStew() const {
     printType(Type::stew);
 }
