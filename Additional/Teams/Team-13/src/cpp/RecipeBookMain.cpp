@@ -280,8 +280,12 @@ void addRecipe() {
 		cout << "Used appliances: ";
 		Vector<MyString> appliances;
 		inputAppliances(appliances);
-
-		recipebook.addHotMeal(name, ingredients, preperationTime, instructions, calories, type, cookingTemperature, cookingTime, appliances);
+        try{
+            recipebook.addHotMeal(name, ingredients, preperationTime, instructions, calories, type, cookingTemperature, cookingTime, appliances);
+        }
+        catch (invalid_argument& e) {
+            cout << e.what() << endl;
+        }
 	}
 	else if (compare(command, "cold")) {
 		cout << "Let's get started then!" << endl;
@@ -305,8 +309,12 @@ void addRecipe() {
 		cout << "Storing temperature: ";
 		cin >> storingTemperature;
 
-
-		recipebook.addColdMeal(name, ingredients, preperationTime, instructions, calories, type, storingTemperature);
+		try{
+            recipebook.addColdMeal(name, ingredients, preperationTime, instructions, calories, type, storingTemperature);
+        }
+        catch (invalid_argument& e) {
+            cout << e.what() << endl;
+        }
 	}
 	else {
 		cout << "Not a valid input. Please try again." << endl;

@@ -1,4 +1,4 @@
-#include "Recipe.h"
+#include "src/hpp/Recipe.h"
 
 const double SIZE_T_LIMIT = 1e3; 
 // limit for size_t validation (when the user input is a negative number,
@@ -46,7 +46,7 @@ void Recipe::setName(const MyString& name)
 			this->name[0] -= 32;
 		return;
 	}
-	throw "Invalid name!";
+	throw std::invalid_argument("Invalid name!");
 }
 
 void Recipe::setIngredients(const IngredientList& ingredients)
@@ -56,7 +56,7 @@ void Recipe::setIngredients(const IngredientList& ingredients)
 		this->ingredients = ingredients;
 		return;
 	}
-	throw "Unknown ingredients!";
+	throw std::invalid_argument("Unknown ingredients!");
 }
 
 void Recipe::setPreparationTime(const size_t& preparationTime)
@@ -66,7 +66,7 @@ void Recipe::setPreparationTime(const size_t& preparationTime)
 		this->preparationTime = preparationTime;
 		return;
 	}
-	throw "Invalid preparation data!";
+	throw std::invalid_argument("Invalid preparation data!");
 }
 
 void Recipe::setInstructions(const MyString& instructions)
@@ -76,7 +76,7 @@ void Recipe::setInstructions(const MyString& instructions)
 		this->instructions = instructions;
 		return;
 	}
-	throw "No instructions!";
+	throw std::invalid_argument("No instructions!");
 }
 
 void Recipe::setID(const int& ID)
@@ -101,7 +101,7 @@ void Recipe::setKcal(const size_t& kcal)
 		this->kcal = kcal;
 		return;
 	}
-	throw "Invalid energy value!";
+	throw std::invalid_argument("Invalid energy value!");
 }
 
 void Recipe::setType(const MyString& typeToConvert)

@@ -1,4 +1,4 @@
-#include "HotMeal.h"
+#include "src/hpp/HotMeal.h"
 #include <iostream>
 const double SIZE_T_LIMIT = 1e3;
 HotMeal::HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances)
@@ -44,7 +44,7 @@ void HotMeal::setCookingTemperature(const size_t& cookingTemperature)
 		this->cookingTemperature = cookingTemperature;
 		return;
 	}
-	throw "Invalid cooking temperature!";
+	throw std::invalid_argument("Invalid cooking temperature!");
 }
 
 void HotMeal::setCookingTime(const size_t& cookingTime)
@@ -53,12 +53,12 @@ void HotMeal::setCookingTime(const size_t& cookingTime)
 	{
 		if (cookingTime >= getPreparationTime())
 		{
-			throw "Invalid cooking time!";
+			throw std::invalid_argument("Invalid cooking time!");
 		}
 		this->cookingTime = cookingTime;
 		return;
 	}	
-	throw "Invalid cooking time!";
+	throw std::invalid_argument("Invalid cooking time!");
 }
 
 void HotMeal::setAppliances(const Vector<MyString> appliances)
@@ -68,7 +68,7 @@ void HotMeal::setAppliances(const Vector<MyString> appliances)
 		this->appliances = appliances;
 		return;
 	}
-	throw "No appliances!";
+	throw std::invalid_argument("No appliances!");
 }
 
 const size_t HotMeal::getCookingTemperature() const

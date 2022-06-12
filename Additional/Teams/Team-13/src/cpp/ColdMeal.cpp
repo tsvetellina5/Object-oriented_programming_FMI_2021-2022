@@ -1,4 +1,4 @@
-#include "ColdMeal.h"
+#include "src/hpp/ColdMeal.h"
 #include <iostream>
 
 ColdMeal::ColdMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const double& storingTemperature)
@@ -36,7 +36,7 @@ void ColdMeal::setStoringTemperature(const double& storingTemperature)
 		this->storingTemperature = storingTemperature;
 		return;
 	}
-	throw "Invalid storing temperature!";
+	throw std::invalid_argument("Invalid storing temperature!");
 }
 
 const double ColdMeal::getStoringTemperature() const
