@@ -1,6 +1,6 @@
 #ifndef RECIPEBOOK_H
 #define RECIPEBOOK_H
-#include "Recipe.h"
+#include "src/hpp/Recipe.h"
 
 void swap(Recipe* lhs, Recipe* rhs);
 

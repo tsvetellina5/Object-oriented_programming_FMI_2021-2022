@@ -1,7 +1,7 @@
 #ifndef COLDMEAL_H
 #define COLDMEAL_H
 
-#include "Recipe.h"
+#include "src/hpp/Recipe.h"
 
 class ColdMeal : public Recipe
 {

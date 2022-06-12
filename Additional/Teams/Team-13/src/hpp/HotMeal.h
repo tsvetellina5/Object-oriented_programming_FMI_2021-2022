@@ -1,6 +1,6 @@
 #ifndef HOTMEAL_H
 #define HOTMEAL_H
-#include "Recipe.h"
+#include "src/hpp/Recipe.h"
 
 class HotMeal : public Recipe
 {

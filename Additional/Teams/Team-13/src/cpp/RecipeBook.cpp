@@ -1,6 +1,6 @@
-#include "RecipeBook.h"
-#include "HotMeal.h"
-#include "ColdMeal.h"
+#include "src/hpp/RecipeBook.h"
+#include "src/hpp/HotMeal.h"
+#include "src/hpp/ColdMeal.h"
 
 void RecipeBook::copyFrom(const RecipeBook& other) {
     size_t size = other.recipes.getSize();

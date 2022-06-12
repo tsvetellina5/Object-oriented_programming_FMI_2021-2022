@@ -1,7 +1,7 @@
 #ifndef TYPE_H
 #define TYPE_H
 
-#include "String.h"
+#include "src/hpp/String.h"
 
 enum class Type
 {

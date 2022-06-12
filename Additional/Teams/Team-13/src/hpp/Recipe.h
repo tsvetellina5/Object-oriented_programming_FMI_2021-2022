@@ -2,10 +2,10 @@
 #define RECIPE_H
 
 #include <time.h>
-#include "String.h"
-#include "Vector.hpp"
-#include "Pair.hpp"
-#include "Type.h"
+#include "src/hpp/String.h"
+#include "src/hpp/Vector.hpp"
+#include "src/hpp/Pair.hpp"
+#include "src/hpp/Type.h"
 
 typedef Vector<Pair<MyString, size_t>> IngredientList;
 

@@ -49,47 +49,47 @@ cmake_ninja_workdir = C$:/Users/plami/CLionProjects/Object-oriented_programming_
 
 build cmake_object_order_depends_target_Team_13: phony || CMakeFiles/Team_13.dir
 
-build CMakeFiles/Team_13.dir/ColdMeal.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/ColdMeal.cpp || cmake_object_order_depends_target_Team_13
-  DEP_FILE = CMakeFiles\Team_13.dir\ColdMeal.cpp.obj.d
+build CMakeFiles/Team_13.dir/src/cpp/ColdMeal.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/src/cpp/ColdMeal.cpp || cmake_object_order_depends_target_Team_13
+  DEP_FILE = CMakeFiles\Team_13.dir\src\cpp\ColdMeal.cpp.obj.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -IC:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/.
   OBJECT_DIR = CMakeFiles\Team_13.dir
-  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir
+  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir\src\cpp
 
-build CMakeFiles/Team_13.dir/HotMeal.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/HotMeal.cpp || cmake_object_order_depends_target_Team_13
-  DEP_FILE = CMakeFiles\Team_13.dir\HotMeal.cpp.obj.d
+build CMakeFiles/Team_13.dir/src/cpp/HotMeal.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/src/cpp/HotMeal.cpp || cmake_object_order_depends_target_Team_13
+  DEP_FILE = CMakeFiles\Team_13.dir\src\cpp\HotMeal.cpp.obj.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -IC:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/.
   OBJECT_DIR = CMakeFiles\Team_13.dir
-  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir
+  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir\src\cpp
 
-build CMakeFiles/Team_13.dir/Recipe.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/Recipe.cpp || cmake_object_order_depends_target_Team_13
-  DEP_FILE = CMakeFiles\Team_13.dir\Recipe.cpp.obj.d
+build CMakeFiles/Team_13.dir/src/cpp/Recipe.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/src/cpp/Recipe.cpp || cmake_object_order_depends_target_Team_13
+  DEP_FILE = CMakeFiles\Team_13.dir\src\cpp\Recipe.cpp.obj.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -IC:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/.
   OBJECT_DIR = CMakeFiles\Team_13.dir
-  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir
+  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir\src\cpp
 
-build CMakeFiles/Team_13.dir/String.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/String.cpp || cmake_object_order_depends_target_Team_13
-  DEP_FILE = CMakeFiles\Team_13.dir\String.cpp.obj.d
+build CMakeFiles/Team_13.dir/src/cpp/String.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/src/cpp/String.cpp || cmake_object_order_depends_target_Team_13
+  DEP_FILE = CMakeFiles\Team_13.dir\src\cpp\String.cpp.obj.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -IC:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/.
   OBJECT_DIR = CMakeFiles\Team_13.dir
-  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir
+  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir\src\cpp
 
-build CMakeFiles/Team_13.dir/RecipeBook.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/RecipeBook.cpp || cmake_object_order_depends_target_Team_13
-  DEP_FILE = CMakeFiles\Team_13.dir\RecipeBook.cpp.obj.d
+build CMakeFiles/Team_13.dir/src/cpp/RecipeBook.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/src/cpp/RecipeBook.cpp || cmake_object_order_depends_target_Team_13
+  DEP_FILE = CMakeFiles\Team_13.dir\src\cpp\RecipeBook.cpp.obj.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -IC:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/.
   OBJECT_DIR = CMakeFiles\Team_13.dir
-  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir
+  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir\src\cpp
 
-build CMakeFiles/Team_13.dir/Type.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/Type.cpp || cmake_object_order_depends_target_Team_13
-  DEP_FILE = CMakeFiles\Team_13.dir\Type.cpp.obj.d
+build CMakeFiles/Team_13.dir/src/cpp/Type.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/src/cpp/Type.cpp || cmake_object_order_depends_target_Team_13
+  DEP_FILE = CMakeFiles\Team_13.dir\src\cpp\Type.cpp.obj.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -IC:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/.
   OBJECT_DIR = CMakeFiles\Team_13.dir
-  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir
+  OBJECT_FILE_DIR = CMakeFiles\Team_13.dir\src\cpp
 
 
 # =============================================================================
@@ -99,7 +99,7 @@ build CMakeFiles/Team_13.dir/Type.cpp.obj: CXX_COMPILER__Team_13_Debug C$:/Users
 #############################################
 # Link the executable Team_13.exe
 
-build Team_13.exe: CXX_EXECUTABLE_LINKER__Team_13_Debug CMakeFiles/Team_13.dir/ColdMeal.cpp.obj CMakeFiles/Team_13.dir/HotMeal.cpp.obj CMakeFiles/Team_13.dir/Recipe.cpp.obj CMakeFiles/Team_13.dir/String.cpp.obj CMakeFiles/Team_13.dir/RecipeBook.cpp.obj CMakeFiles/Team_13.dir/Type.cpp.obj
+build Team_13.exe: CXX_EXECUTABLE_LINKER__Team_13_Debug CMakeFiles/Team_13.dir/src/cpp/ColdMeal.cpp.obj CMakeFiles/Team_13.dir/src/cpp/HotMeal.cpp.obj CMakeFiles/Team_13.dir/src/cpp/Recipe.cpp.obj CMakeFiles/Team_13.dir/src/cpp/String.cpp.obj CMakeFiles/Team_13.dir/src/cpp/RecipeBook.cpp.obj CMakeFiles/Team_13.dir/src/cpp/Type.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Team_13.dir

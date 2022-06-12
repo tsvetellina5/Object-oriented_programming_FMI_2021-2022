@@ -1,4 +1,4 @@
-#include "Type.h"
+#include "src/hpp/Type.h"
 
 Type stringToType(const MyString& other)
 {
@@ -34,8 +34,8 @@ MyString typeToString(const Type& other)
         return "stew";
     case Type::steak:
         return "steak";
-    case Type::sandwitch:
-        return "sandwitch";
+    case Type::sandwich:
+        return "sandwich";
     case Type::dessert:
         return "dessert";
     default:

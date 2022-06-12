@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "Vector.hpp"
+#include "src/hpp/Vector.hpp"
 
 class MyString {
     char *str;
