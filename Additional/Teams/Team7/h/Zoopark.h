@@ -20,6 +20,8 @@ public:
 	bool printFacts() const;
 	bool removeAnimal();
 	void printAll();
+	void listLog() const;
+	bool saveLogToFile();
 private:
 	void addTurtle();
 	void addPenguin();

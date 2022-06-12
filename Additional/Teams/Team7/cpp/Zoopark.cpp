@@ -47,6 +47,12 @@ bool Zoopark::feed()
 				std::cout << animals[i]->getName() << " was successfully fed with "
 					<< animals[i]->getFoodQuantity() << " kg of " << animals[i]->getFoodType() << "!" << std::endl;
 				animals[i]->isClean(false);
+
+				String* l = new String[1];
+				l[0].setCurrentTime();
+				l[0] += " successfully fed ";
+				l[0] += animals[i]->getName();
+				log.pushBack(l->clone());
 			}
 			else
 			{
@@ -63,20 +69,31 @@ bool Zoopark::addAnimal()
 {
 	std::cout << "What animal do you want to add? ";
 	String input;  std::cin >> input;
-
+	
+	String* l = new String[1];
+	l[0].setCurrentTime();
+	
 	if (input == "turtle")
 	{
 		addTurtle();
+	
+		l[0] += " added a new turtle named ";
 	}
 	else if (input == "penguin") {
 		addPenguin();
+		l[0] += " added a new penguin named ";
 	}
 	else if (input == "hippopotamus") {
 		addHippopotamus();
+		l[0] += " added a new hippopotamus named ";
 	}
 	else {
 		return false;
 	}
+
+	l[0] += animals[animals.getSize()-1]->getName();
+	log.pushBack(l->clone());
+	
 	return true;
 }
 
@@ -151,6 +168,15 @@ void Zoopark::menu()
 			printAll();
 			std::cout << std::endl;
 		}
+		else if (cmd == "listLog") {
+			listLog();
+			std::cout << std::endl;
+		}
+		else if (cmd == "save") {
+			if (!saveLogToFile())
+				std::cout << "File not opened!" << std::endl;
+			std::cout << std::endl;
+		}
 		else if (cmd == "exit") {
 			break;
 		}
@@ -169,6 +195,8 @@ void Zoopark::printCommands() const
 	std::cout << "\tremove - removes an animal" << std::endl;
 	std::cout << "\tprintFacts - prints facts about a certain animal's species" << std::endl;
 	std::cout << "\tprintAll - prints all animals in the zoo" << std::endl;
+	std::cout << "\tlistLog - lists the current log file" << std::endl;
+	std::cout << "\tsave - saves the loginto a .txt file" << std::endl;
 }
 
 bool Zoopark::printFacts() const
@@ -201,9 +229,16 @@ bool Zoopark::removeAnimal()
 	{
 		if (animals[i]->getName() == input.getStr())
 		{
+			String* l = new String[1];
+			l[0].setCurrentTime();
+			l[0] += " removed ";
+			l[0] += animals[i]->getName();
+			log.pushBack(l->clone());
+
 			animals.popAt(i);
 			found = true;
 			std::cout << "The animal was successfully removed!" << std::endl;
+			
 			break;
 		}
 	}
@@ -217,4 +252,28 @@ void Zoopark::printAll()
 		animals[i]->print();
 		std::cout << std::endl;
 	}
+}
+
+void Zoopark::listLog() const
+{
+	for (unsigned int i = 0; i < log.getSize(); i++)
+		std::cout << i + 1 << ". " << *log[i] << std::endl;
+}
+
+bool Zoopark::saveLogToFile()
+{
+	std::cout << "How would like to name your file? \nFiles with the same name will be overwritten! ";
+	String fName;
+	std::cin >> fName;
+	fName += ".txt";
+	std::ofstream ofile(fName.getStr());
+
+	if (!ofile.is_open()) {
+		return false;
+	}
+	for (unsigned int i = 0; i < log.getSize(); i++)
+		ofile << i + 1 << ". " << log[i]->getStr() << std::endl;
+	ofile.close();
+
+	return true;
 }

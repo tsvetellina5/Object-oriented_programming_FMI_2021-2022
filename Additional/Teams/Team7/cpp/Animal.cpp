@@ -52,15 +52,15 @@ bool Animal::isClean() const
 double Animal::getFoodQuantity() const
 {
 	double foodQuantity;
-	if (weightType == 0) //herbivore
+	if (weightType == 0) //light
 	{
 		foodQuantity = 0.2;
 	}
-	else if (weightType == 1) //carnivore
+	else if (weightType == 1) //medium
 	{
 		foodQuantity = 3;
 	}
-	else // omnivore
+	else // heavy
 	{
 		foodQuantity = 10;
 	}

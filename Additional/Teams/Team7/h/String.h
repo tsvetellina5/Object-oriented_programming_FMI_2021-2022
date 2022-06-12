@@ -27,6 +27,7 @@ public:
 
 	friend std::istream& operator>>(std::istream&, String&);
 	friend std::ostream& operator<<(std::ostream&, const String&);
+	void setCurrentTime();
 	String* clone() const;
 
 private:

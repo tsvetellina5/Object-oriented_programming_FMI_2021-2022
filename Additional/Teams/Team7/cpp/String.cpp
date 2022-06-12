@@ -142,6 +142,18 @@ size_t String::getSize() const {
 	return size;
 }
 
+void String::setCurrentTime()
+{
+	time_t a;
+	size = 64;
+	char* timeNow = new char[64];
+	strftime(timeNow, 64, "%c", localtime(&(a = time(NULL))));
+	free();
+	str = new char[size];
+	strcpy(str, timeNow);
+	delete[] timeNow;
+}
+
 String* String::clone() const
 {
 	return new String(*this);
