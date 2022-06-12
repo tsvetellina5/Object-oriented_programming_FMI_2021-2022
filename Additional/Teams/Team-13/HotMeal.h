@@ -9,9 +9,10 @@ private:
 	size_t cookingTime;// time necessary for the meal to be cooked (boiled, fried, baked, roasted, etc.)
 	Vector<MyString> appliances; // list of necessary appliances in order to execute the recipe (stove, oven, mixer, etc.)
 public:
-	HotMeal(const MyString& name, size_t preparationTime, const MyString& instructions, size_t cookingTemperature, size_t cookingTime, int id);
+	HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances);
 	void print() const override;
 	Recipe* clone() const override;
+	void determineDifficulty() override;
 
 	void setCookingTemperature(size_t cookingTemperature);
 	void setCookingTime(size_t cookingTime);
@@ -21,7 +22,7 @@ public:
 	size_t getCookingTime() const;
 	const Vector<MyString> getAppliances() const;
 
-	void inputAppliances(); // !! A function to take user input for appliances list
 };
+	void inputAppliances(Vector<MyString>& appliances); // !! A function to take user input for appliances list
 
 #endif

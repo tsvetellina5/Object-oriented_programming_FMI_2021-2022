@@ -1,13 +1,14 @@
 #include "HotMeal.h"
 #include <iostream>
-const double SIZE_T_LIMIT = 1e4;
-HotMeal::HotMeal(const MyString& name, size_t preparationTime, const MyString& instructions, size_t cookingTemperature, size_t cookingTime, int id)
-	: Recipe(name, preparationTime, instructions, id)
+
+const double SIZE_T_LIMIT = 1e3;
+HotMeal::HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances)
+	: Recipe(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert)
 {
 	setCookingTemperature(cookingTemperature);
 	setCookingTime(cookingTime);
-	inputAppliances();
-	//setAppliances(appliances);
+	setAppliances(appliances);
+	determineDifficulty();
 }
 
 void HotMeal::print() const
@@ -17,7 +18,7 @@ void HotMeal::print() const
 	std::cout << "Cooking temperature " << cookingTemperature << " degrees Celsius" << std::endl;
 	std::cout << "Necessary appliances: " << std::endl;
 	for (size_t i = 0; i < appliances.getSize(); ++i)
-		std::cout << appliances[i] << std::endl;
+		std::cout << "- " << appliances[i] << std::endl;
 }
 
 Recipe* HotMeal::clone() const
@@ -25,32 +26,47 @@ Recipe* HotMeal::clone() const
 	return new HotMeal(*this);
 }
 
-void HotMeal::setCookingTemperature(size_t cookingTemperature)
+void HotMeal::determineDifficulty() //cannot be less than 2, because preparation includes cooking in any case
+{
+	if (cookingTime >= 0.75 * getPreparationTime() && getPreparationTime() > 90)
+		setDifficulty(5);
+	else if (cookingTime >= 0.75 * getPreparationTime() && getPreparationTime() > 60)
+		setDifficulty(4);
+	else if (cookingTime >= 0.5 * getPreparationTime() && getPreparationTime() > 30)
+		setDifficulty(3);
+	else
+		setDifficulty(2);
+}
+
+void HotMeal::setCookingTemperature(const size_t& cookingTemperature)
 {
 	if (cookingTemperature >= 90 && cookingTemperature <= 260)
 	{
 		this->cookingTemperature = cookingTemperature;
 		return;
 	}
-	this->cookingTemperature = 100;
-	std::cout << "Invalid cooking temperature (must range from 90 to 260 Celsius). Cooking temperature set to 100 by default.";
+	throw "Invalid cooking temperature!";
+	/*this->cookingTemperature = 100;
+	std::cout << "Invalid cooking temperature (must range from 90 to 260 Celsius). Cooking temperature set to 100 by default.";*/
 }
 
 void HotMeal::setCookingTime(size_t cookingTime)
 {
 	if (cookingTime < SIZE_T_LIMIT)
 	{
-		if (cookingTime > getPreparationTime())
+		if (cookingTime >= getPreparationTime())
 		{
-			this->cookingTime = size_t(getPreparationTime() / 2);
+			throw "Invalid cooking time!";
+			/*this->cookingTime = size_t(getPreparationTime() / 2);
 			std::cout << "Cooking time cannot exceed preparation time. Cooking time set to 50% of preparation time by default" << std::endl;
-			return;
+			return;*/
 		}
 		this->cookingTime = cookingTime;
 		return;
-	}			
-	this->cookingTime = size_t(getPreparationTime() / 2);
-	std::cout << "Cooking time cannot exceed preparation time. Cooking time set to 50 % of preparation time by default" << std::endl;
+	}	
+	throw "Invalid cooking time!";
+	/*this->cookingTime = size_t(getPreparationTime() / 2);
+	std::cout << "Cooking time cannot exceed preparation time. Cooking time set to 50 % of preparation time by default" << std::endl;*/
 }
 
 void HotMeal::setAppliances(const Vector<MyString> appliances)
@@ -60,7 +76,8 @@ void HotMeal::setAppliances(const Vector<MyString> appliances)
 		this->appliances = appliances;
 		return;
 	}
-	this->appliances.push_back("No appliances");
+	throw "No appliances!";
+	//this->appliances.push_back("No appliances");
 }
 
 size_t HotMeal::getCookingTemperature() const
@@ -78,8 +95,11 @@ const Vector<MyString> HotMeal::getAppliances() const
 	return appliances;
 }
 
-void HotMeal::inputAppliances()
+void inputAppliances(Vector<MyString>& appliances)
 {
+	// an "IngredientList" has to be created before calling this function, 
+	// then it is going to be filled with information, and then the list can
+	// be used as a parameter of the recipe constructors
 	size_t num = 0;
 	std::cout << "Please, type the number of appliances: ";
 	while (true)
@@ -90,13 +110,17 @@ void HotMeal::inputAppliances()
 		else
 			std::cout << "Invalid number of appliances. Please try again..." << std::endl;
 	}
-		
+
+	bool hasTyped = false;
 	for (size_t i = 0; i < num; ++i)
 	{
 		std::cout << "Appliance: ";
 		MyString temp;
-		std::cin.ignore();
+		if (!hasTyped)
+			std::cin.ignore();
 		std::cin >> temp;
+		hasTyped = true;
 		appliances.push_back(temp);
+		//std::cin.clear();
 	}
 }
