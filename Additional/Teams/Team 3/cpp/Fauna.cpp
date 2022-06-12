@@ -2,7 +2,7 @@
 
 Fauna::Fauna() : Organism(), isPredator(false) {}
 
-Fauna::Fauna(const StringC& name, double lifeSpan, const VectorC<StringC>& habitats, const StringC& consLevel, bool isPredator)
+Fauna::Fauna(const StringC& name, double lifeSpan, const Vector<StringC>& habitats, const StringC& consLevel, bool isPredator)
 	: Organism(name, lifeSpan, habitats, consLevel), isPredator(isPredator) {}
 
 Organism* Fauna::clone() const

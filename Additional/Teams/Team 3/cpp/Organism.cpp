@@ -10,10 +10,10 @@ Organism::Organism()
 
 	speciesName = "";
 	lifeSpan = 0;
-	habitats = VectorC<StringC>();
+	habitats = Vector<StringC>();
 }
 
-Organism::Organism(const StringC& name, double lifeSpan, const VectorC<StringC>& habitats, const StringC& consLevel)
+Organism::Organism(const StringC& name, double lifeSpan, const Vector<StringC>& habitats, const StringC& consLevel)
 {
 	speciesName = name;
 	this->lifeSpan = lifeSpan;
@@ -51,7 +51,7 @@ void Organism::setHabitats()
 		std::cout << ">";
 		StringC habitat;
 		habitat.getline(std::cin);
-		habitats.push(habitat);
+		habitats.pushBack(habitat);
 	}
 }
 
@@ -59,7 +59,7 @@ void Organism::printHabitats() const
 {
 	for (int i = 0; i < habitats.getSize(); i++)
 	{
-		std::cout << habitats.getElement(i) << std::endl;
+		std::cout << habitats[i] << std::endl;
 	}
 }
 

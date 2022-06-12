@@ -2,7 +2,7 @@
 
 Fungi::Fungi() : Organism(), isPoisonous(false) {}
 
-Fungi::Fungi(const StringC& name, double lifeSpan, const VectorC<StringC>& habitats, const StringC& consLevel, bool poison)
+Fungi::Fungi(const StringC& name, double lifeSpan, const Vector<StringC>& habitats, const StringC& consLevel, bool poison)
 		: Organism(name, lifeSpan, habitats, consLevel), isPoisonous(poison) {}
 
 Organism* Fungi::clone() const

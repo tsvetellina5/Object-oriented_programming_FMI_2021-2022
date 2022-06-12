@@ -3,7 +3,7 @@
 #include <iostream>
 #include <ctime>
 
-#include "VectorC.hpp"
+#include "Vector.hpp"
 #include "StringC.h"
 
 class Organism
@@ -16,11 +16,11 @@ protected:
 
 	StringC speciesName;
 	double lifeSpan;
-	VectorC<StringC> habitats;
+	Vector<StringC> habitats;
 
 public:
 	Organism();
-	Organism(const StringC&, double, const VectorC<StringC>&, const StringC&);
+	Organism(const StringC&, double, const Vector<StringC>&, const StringC&);
 
 	bool setConservationLevel(const StringC&);
 	void setHabitats();

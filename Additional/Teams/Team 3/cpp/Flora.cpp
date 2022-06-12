@@ -2,7 +2,7 @@
 
 Flora::Flora() : Organism() {}
 
-Flora::Flora(const StringC& name, double lifeSpan, const VectorC<StringC>& habitats, const StringC& consLevel)
+Flora::Flora(const StringC& name, double lifeSpan, const Vector<StringC>& habitats, const StringC& consLevel)
 		: Organism(name, lifeSpan, habitats, consLevel) {}
 
 Organism* Flora::clone() const
