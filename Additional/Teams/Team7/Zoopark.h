@@ -7,18 +7,18 @@ class Zoopark
 private:
 	String name;
 	Array<Animal*> animals;
+	Array<String*> log;
 	bool cleaned;
-
 public:
-	Zoopark(); //Niki 
+	Zoopark();
 
 	void clean();
-	void feed();
-	void addAnimal();
+	bool feed();
+	bool addAnimal();
 	void menu();
 	void printCommands() const;
-	void printFacts() const;
-	void removeAnimal();
+	bool printFacts() const;
+	bool removeAnimal();
 	void printAll();
 private:
 	void addTurtle();

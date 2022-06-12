@@ -7,11 +7,13 @@ const int BUFFER_SIZE = 1024;
 
 Zoopark::Zoopark()
 {
-	std::cout << "What is the name of this zoopark? ";
-	std::cin >> name;
+	std::cout << "What is the name of the zoopark? ";
+	char* nameT = new char[1024];
+	std::cin.getline(nameT, 1024);
+	name = nameT;
+	delete[] nameT;
 	cleaned = false;
 }
-
 
 void Zoopark::clean()
 {
@@ -26,8 +28,9 @@ void Zoopark::clean()
 	}
 }
 
-void Zoopark::feed()
+bool Zoopark::feed()
 {
+	bool found = false;
 	std::cout << "Which animal do you want to feed? ";
 	String input; std::cin >> input;
 	for (size_t i = 0; i < animals.getSize(); i++)
@@ -35,13 +38,15 @@ void Zoopark::feed()
 		if (animals[i]->getName() == input.getStr())
 		{
 			std::cout << animals[i]->getName() << " was successfully fed with "
-				<< animals[i]->getFoodQuantity() << " kg of " << animals[i]->getFoodType()<<"!"<< std::endl;
+				<< animals[i]->getFoodQuantity() << " kg of " << animals[i]->getFoodType() << "!" << std::endl;
+			found = true;
 			break;
 		}
 	}
+	return found;
 }
 
-void Zoopark::addAnimal()
+bool Zoopark::addAnimal()
 {
 	std::cout << "What animal do you want to add? ";
 	String input;  std::cin >> input;
@@ -54,6 +59,10 @@ void Zoopark::addAnimal()
 		addPenguin();
 	}
 	//else if hippopotamus
+	else {
+		return false;
+	}
+	return true;
 }
 
 void Zoopark::addTurtle()
@@ -88,22 +97,26 @@ void Zoopark::menu()
 			std::cout << std::endl;
 		}
 		else if (cmd == "feed") {
-			feed();
+			if (!feed())
+				std::cout << "Could not find that animal!";
 			std::cout << std::endl;
 		}
 		else if (cmd == "add")
 		{
-			addAnimal();
+			if (!addAnimal())
+				std::cout << "That animal is not supported!";
 			std::cout << std::endl;
 		}
 		else if (cmd == "remove")
 		{
-			removeAnimal();
+			if (!removeAnimal())
+				std::cout << "Could not find that animal!";
 			std::cout << std::endl;
 		}
 		else if (cmd == "printFacts")
 		{
-			printFacts();
+			if (!printFacts())
+				std::cout<<"Could not find that animal!";
 			std::cout << std::endl;
 		}
 		else if (cmd == "printAll") {
@@ -131,25 +144,29 @@ void Zoopark::printCommands() const
 	std::cout << "\tprintAll - prints all animals in the zoo" << std::endl;
 }
 
-void Zoopark::printFacts() const
+bool Zoopark::printFacts() const
 {
+	bool found = false;
 	std::cout << "Which animal do you want to get facts for? ";
 	String input; std::cin >> input;
 
-	//handle string exception Niki
 	for (unsigned int i = 0; i < animals.getSize(); i++)
 	{
 		if (animals[i]->getName() == input.getStr())
 		{
 			std::cout << animals[i]->getFacts();
 			std::cout << std::endl;
+			found = true;
 			break;
 		}
 	}
+	return found;
 }
 
-void Zoopark::removeAnimal()
+bool Zoopark::removeAnimal()
 {
+	bool found=false;
+
 	std::cout << "What animal do you want to remove? ";
 	String input;  std::cin >> input;
 
@@ -158,15 +175,18 @@ void Zoopark::removeAnimal()
 		if (animals[i]->getName() == input.getStr())
 		{
 			animals.popAt(i);
+			found = true;
 			break;
 		}
 	}
+	
+	return found;
 }
 
 void Zoopark::printAll()
 {
 	for (unsigned int i = 0; i < animals.getSize(); i++) {
-		std::cout << "\t"<<i + 1 << ".";
+		std::cout << "\t" << i + 1 << ".";
 		animals[i]->print();
 		std::cout << std::endl;
 	}
