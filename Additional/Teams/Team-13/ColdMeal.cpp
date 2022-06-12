@@ -1,10 +1,11 @@
 #include "ColdMeal.h"
 #include <iostream>
-//const double EPS = 1e-10; // Needed to accurately compare numbers of type float and double
-ColdMeal::ColdMeal(const MyString& name, const size_t& preparationTime, const MyString& instructions, const double& storingTemperature)
-	: Recipe(name, preparationTime, instructions)
+
+ColdMeal::ColdMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const double& storingTemperature)
+	: Recipe(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert)
 {
 	setStoringTemperature(storingTemperature);
+	determineDifficulty();
 }
 
 void ColdMeal::print() const
@@ -18,6 +19,16 @@ Recipe* ColdMeal::clone() const
 	return new ColdMeal(*this);
 }
 
+void ColdMeal::determineDifficulty() // max difficulty of cold meal recipes is 3
+{
+	if (getPreparationTime() > 100)
+		setDifficulty(3);
+	else if (getPreparationTime() <= 100 && getPreparationTime() > 20)
+		setDifficulty(2);
+	else
+		setDifficulty(1);
+}
+
 void ColdMeal::setStoringTemperature(const double& storingTemperature)
 {
 	if (storingTemperature > -18 && storingTemperature < 4)
@@ -25,7 +36,7 @@ void ColdMeal::setStoringTemperature(const double& storingTemperature)
 		this->storingTemperature = storingTemperature;
 		return;
 	}
-	this->storingTemperature = 3.99; // setting default refrigerator temperature value
+	throw "Invalid storing temperature!";
 }
 
 const double ColdMeal::getStoringTemperature() const

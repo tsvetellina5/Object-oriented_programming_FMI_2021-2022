@@ -5,8 +5,10 @@
 #include "String.h"
 #include "Vector.hpp"
 #include "Pair.hpp"
+#include "Type.h"
 
 typedef Vector<Pair<MyString, size_t>> IngredientList;
+
 class Recipe
 {
 private:
@@ -14,26 +16,32 @@ private:
 	IngredientList ingredients;
 	size_t preparationTime;
 	MyString instructions;
-	Vector<size_t> ratings;
+	Vector<unsigned short> ratings;
 	double averageRating;
 	int ID;
-	//size_t difficulty; // (1-2 for cold meals, 3-5 for hot meals) ??
+
+	Type type;
+	size_t difficulty;
+	size_t kcal;
 
 public:
 
-	Recipe(const MyString& name, const size_t& preparationTime, const MyString& instructions);
+	Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert);
 	virtual ~Recipe() = default;
 	virtual void print() const;
 	virtual Recipe* clone() const = 0;
-
+	virtual void determineDifficulty() = 0;
 
 	void setName(const MyString& name);
 	void setIngredients(const IngredientList& ingredients);
 	void setPreparationTime(const size_t& time);
 	void setInstructions(const MyString& instructions);
-	void setRandomID();
+	void setID(const int& ID);
 	void setInitialRatingState();
-	
+	void setInitialDifficultyState();
+	void setKcal(const size_t& kcal);
+	void setType(const MyString& typeToConvert);
+	void setDifficulty(const size_t& difficulty);
 
 	void addRating(const size_t& rating); // not supposed to be used in the initialization
 
@@ -43,8 +51,12 @@ public:
 	const MyString getInstructions() const;
 	const int getID() const;
 	const double getRating() const;
+	const Type getType() const;
+	const size_t getKcal() const;
+	const size_t getDifficulty() const;
 
-	void inputIngredients(); // !! A function to take user input for the ingredients list
 };
+	void inputIngredients(IngredientList& ingredients); // !! A function to take user input for the ingredients list
+	// to be used inside the menu
 
 #endif
