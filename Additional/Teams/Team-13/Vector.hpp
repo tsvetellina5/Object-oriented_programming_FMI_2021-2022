@@ -1,5 +1,5 @@
-#ifndef KINDLE_VECTOR_HPP
-#define KINDLE_VECTOR_HPP
+#ifndef VECTOR_HPP
+#define VECTOR_HPP
 
 #include <iostream>
 #include <exception>
@@ -184,4 +184,4 @@ void Vector<T>::clear() {
     data = new T[capacity];
 }
 
-#endif //KINDLE_VECTOR_HPP
+#endif //VECTOR_HPP

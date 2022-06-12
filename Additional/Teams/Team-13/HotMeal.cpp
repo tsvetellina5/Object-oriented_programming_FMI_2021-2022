@@ -1,8 +1,8 @@
 #include "HotMeal.h"
 #include <iostream>
-const double SIZE_T_LIMIT = 1e3;
-HotMeal::HotMeal(const MyString& name, const size_t& preparationTime, const MyString& instructions, const size_t& cookingTemperature, const size_t& cookingTime)
-	: Recipe(name, preparationTime, instructions)
+const double SIZE_T_LIMIT = 1e4;
+HotMeal::HotMeal(const MyString& name, size_t preparationTime, const MyString& instructions, size_t cookingTemperature, size_t cookingTime, int id)
+	: Recipe(name, preparationTime, instructions, id)
 {
 	setCookingTemperature(cookingTemperature);
 	setCookingTime(cookingTime);
@@ -25,7 +25,7 @@ Recipe* HotMeal::clone() const
 	return new HotMeal(*this);
 }
 
-void HotMeal::setCookingTemperature(const size_t& cookingTemperature)
+void HotMeal::setCookingTemperature(size_t cookingTemperature)
 {
 	if (cookingTemperature >= 90 && cookingTemperature <= 260)
 	{
@@ -36,7 +36,7 @@ void HotMeal::setCookingTemperature(const size_t& cookingTemperature)
 	std::cout << "Invalid cooking temperature (must range from 90 to 260 Celsius). Cooking temperature set to 100 by default.";
 }
 
-void HotMeal::setCookingTime(const size_t& cookingTime)
+void HotMeal::setCookingTime(size_t cookingTime)
 {
 	if (cookingTime < SIZE_T_LIMIT)
 	{
@@ -63,12 +63,12 @@ void HotMeal::setAppliances(const Vector<MyString> appliances)
 	this->appliances.push_back("No appliances");
 }
 
-const size_t HotMeal::getCookingTemperature() const
+size_t HotMeal::getCookingTemperature() const
 {
 	return cookingTemperature;
 }
 
-const size_t HotMeal::getCookingTime() const
+size_t HotMeal::getCookingTime() const
 {
 	return cookingTime;
 }

@@ -1,8 +1,8 @@
 #include "ColdMeal.h"
 #include <iostream>
 //const double EPS = 1e-10; // Needed to accurately compare numbers of type float and double
-ColdMeal::ColdMeal(const MyString& name, const size_t& preparationTime, const MyString& instructions, const double& storingTemperature)
-	: Recipe(name, preparationTime, instructions)
+ColdMeal::ColdMeal(const MyString& name, size_t preparationTime, const MyString& instructions, double storingTemperature, int id)
+	: Recipe(name, preparationTime, instructions, id)
 {
 	setStoringTemperature(storingTemperature);
 }
@@ -18,7 +18,7 @@ Recipe* ColdMeal::clone() const
 	return new ColdMeal(*this);
 }
 
-void ColdMeal::setStoringTemperature(const double& storingTemperature)
+void ColdMeal::setStoringTemperature(double storingTemperature)
 {
 	if (storingTemperature > -18 && storingTemperature < 4)
 	{

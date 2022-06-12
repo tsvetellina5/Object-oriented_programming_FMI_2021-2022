@@ -1,18 +1,18 @@
 #include "Recipe.h"
 
-const double SIZE_T_LIMIT = 1e3; 
+const double SIZE_T_LIMIT = 1e4;
 // limit for size_t validation (when the user input is a negative number,
 // it might transform into a large positive number, because its type is size_t (unsigned long long)...)
-// we don't need numbers bigger than 1000 in our project anyway, that's why we put such boundary
+// we don't need numbers bigger than 10000 in our project anyway, that's why we put such boundary
 
-Recipe::Recipe(const MyString& name, const size_t& preparationTime, const MyString& instructions)
+Recipe::Recipe(const MyString& name, const size_t& preparationTime, const MyString& instructions, int id) : ID(id)
 {
 	setName(name);
 	//setIngredients(ingredients);
 	inputIngredients();
 	setPreparationTime(preparationTime);
 	setInstructions(instructions);
-	setRandomID();
+	//setRandomID();
 	setInitialRatingState();
 }
 
@@ -34,7 +34,7 @@ void Recipe::setName(const MyString& name)
 	if (name.c_str() != nullptr && name.getSize() > 0)
 	{
 		this->name = name;
-		if (this->name[0] < 'A' || this->name[0] > 'Z' && this->name[0] >= 'a' && this->name[0] <= 'z')
+		if ((this->name[0] < 'A' || this->name[0] > 'Z') && this->name[0] >= 'a' && this->name[0] <= 'z')
 			this->name[0] -= 32;
 		return;
 	}
@@ -52,7 +52,7 @@ void Recipe::setIngredients(const IngredientList& ingredients)
 	this->ingredients.push_back(temp);
 }
 
-void Recipe::setPreparationTime(const size_t& preparationTime)
+void Recipe::setPreparationTime(size_t preparationTime)
 {
 	if (preparationTime < SIZE_T_LIMIT && preparationTime > 0)
 	{
@@ -84,7 +84,7 @@ void Recipe::setInitialRatingState()
 	averageRating = 0;
 }
 
-void Recipe::addRating(const size_t& rating)
+void Recipe::addRating(int rating)
 {
 	if (rating > 5)
 		return;

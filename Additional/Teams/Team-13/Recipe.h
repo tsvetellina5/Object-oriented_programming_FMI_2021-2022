@@ -14,14 +14,14 @@ private:
 	IngredientList ingredients;
 	size_t preparationTime;
 	MyString instructions;
-	Vector<size_t> ratings;
+	Vector<int> ratings;
 	double averageRating;
 	int ID;
 	//size_t difficulty; // (1-2 for cold meals, 3-5 for hot meals) ??
 
 public:
 
-	Recipe(const MyString& name, const size_t& preparationTime, const MyString& instructions);
+	Recipe(const MyString& name, const size_t& preparationTime, const MyString& instructions, int id);
 	virtual ~Recipe() = default;
 	virtual void print() const;
 	virtual Recipe* clone() const = 0;
@@ -29,13 +29,12 @@ public:
 
 	void setName(const MyString& name);
 	void setIngredients(const IngredientList& ingredients);
-	void setPreparationTime(const size_t& time);
+	void setPreparationTime(size_t time);
 	void setInstructions(const MyString& instructions);
 	void setRandomID();
 	void setInitialRatingState();
-	
 
-	void addRating(const size_t& rating); // not supposed to be used in the initialization
+	void addRating(int rating); // not supposed to be used in the initialization
 
 	const MyString getName() const;
 	const IngredientList getIngredients() const;
