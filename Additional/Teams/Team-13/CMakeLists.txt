@@ -15,4 +15,8 @@ add_executable(Team_13
         Recipe.h
         String.cpp
         String.h
-        Vector.hpp RecipeBook.cpp RecipeBook.h)
+        Vector.hpp
+        RecipeBook.cpp
+        RecipeBook.h
+        Type.cpp
+        Type.h)

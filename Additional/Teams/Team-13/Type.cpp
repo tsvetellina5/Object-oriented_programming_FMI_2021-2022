@@ -12,8 +12,8 @@ Type stringToType(const MyString& other)
         return Type::stew;
     else if (other == "steak")
         return Type::steak;
-    else if (other == "sandwitch")
-        return Type::sandwitch;
+    else if (other == "sandwich")
+        return Type::sandwich;
     else if (other == "dessert")
         return Type::dessert;
 

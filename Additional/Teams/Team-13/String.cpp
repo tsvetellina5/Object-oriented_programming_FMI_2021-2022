@@ -2,6 +2,8 @@
 #include <cstring>
 #include <exception>
 
+#pragma warning (disable : 4996)
+
 const int SIZE = 1024;
 
 void MyString::copyFrom(const MyString &other) {

@@ -21,11 +21,11 @@ private:
 	int ID;
 
 	Type type;
-	size_t difficulty;
+	unsigned short difficulty;
 	size_t kcal;
 
 public:
-	Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert);
+	Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString& typeToConvert);
 	virtual ~Recipe() = default;
 	virtual void print() const;
 	virtual Recipe* clone() const = 0;
@@ -33,14 +33,14 @@ public:
 
 	void setName(const MyString& name);
 	void setIngredients(const IngredientList& ingredients);
-	void setPreparationTime(size_t time);
+	void setPreparationTime(const size_t& time);
 	void setInstructions(const MyString& instructions);
 	void setID(const int& ID);
 	void setInitialRatingState();
 	void setInitialDifficultyState();
 	void setKcal(const size_t& kcal);
 	void setType(const MyString& typeToConvert);
-	void setDifficulty(const size_t& difficulty);
+	void setDifficulty(const unsigned short& difficulty);
 
 	void addRating(const unsigned short& rating); // not supposed to be used in the initialization
 

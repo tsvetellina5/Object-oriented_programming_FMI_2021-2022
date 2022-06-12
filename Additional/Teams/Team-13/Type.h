@@ -10,7 +10,7 @@ enum class Type
 	pastry,
 	stew,
 	steak,
-	sandwitch,
+	sandwich,
 	dessert,
 	unknown
 };

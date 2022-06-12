@@ -1,7 +1,8 @@
 #include "ColdMeal.h"
 #include <iostream>
 
-ColdMeal::ColdMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const double& storingTemperature)
+ColdMeal::ColdMeal(const MyString& name, const int& ID, const IngredientList& ingredients,const size_t& preparationTime,
+                   const MyString& instructions, const size_t& kcal, const MyString& typeToConvert, const double& storingTemperature)
 	: Recipe(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert)
 {
 	setStoringTemperature(storingTemperature);

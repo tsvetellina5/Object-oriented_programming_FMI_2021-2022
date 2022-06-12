@@ -65,14 +65,18 @@ int RecipeBook::generateID() const
     return id;
 }
 
-void RecipeBook::addHotMeal(const MyString& name, size_t preparationTime, const MyString& instructions, size_t cookingTemperature, size_t cookingTime){
-    int id = generateID();
-    Recipe* newRecipe = new HotMeal(name, preparationTime, instructions, cookingTemperature, cookingTime, id);
+void RecipeBook::addHotMeal(const MyString& name, const IngredientList& ingredients, const size_t& preparationTime,
+                            const MyString& instructions, const size_t& kcal, const MyString& typeToConvert,
+                            const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances){
+    int ID = generateID();
+    Recipe* newRecipe = new HotMeal(name, ID, ingredients, preparationTime, instructions,
+                                    kcal, typeToConvert, cookingTemperature, cookingTime, appliances);
     addRecipe(newRecipe);
 }
-void RecipeBook::addColdMeal(const MyString& name, size_t preparationTime, const MyString& instructions, double storingTemperature){
-    int id = generateID();
-    Recipe* newRecipe = new ColdMeal(name, preparationTime, instructions, storingTemperature, id);
+void RecipeBook::addColdMeal(const MyString& name, const IngredientList& ingredients, const size_t& preparationTime,
+                             const MyString& instructions, const size_t& kcal, const MyString& typeToConvert, const double& storingTemperature){
+    int ID = generateID();
+    Recipe* newRecipe = new ColdMeal(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert, storingTemperature);
     addRecipe(newRecipe);
 }
 
@@ -94,3 +98,38 @@ bool RecipeBook::addRating(int rating, int id) {
     return true;
 }
 
+void RecipeBook::printType(const Type& type) const {
+    size_t size = recipes.getSize();
+    for (int i = 0; i < size; ++i) {
+        if (recipes[i]->getType() == type)
+            recipes[i]->print();
+    }
+}
+
+void RecipeBook::printAllSoups() const {
+    printType(Type::soup);
+}
+void RecipeBook::printAllSalads() const{
+    printType(Type::salad);
+}
+void RecipeBook::printAllStew() const {
+    printType(Type::stew);
+}
+
+void RecipeBook::printAllSteak() const {
+    printType(Type::steak);
+}
+void RecipeBook::printAllSandwiches() const {
+    printType(Type::sandwich);
+}
+void RecipeBook::printAllDesserts() const{
+    printType(Type::dessert);
+}
+
+void RecipeBook::printDifficulty(unsigned short difficulty) const {
+    size_t size = recipes.getSize();
+    for (int i = 0; i < size; ++i) {
+        if (recipes[i]->getDifficulty() == difficulty)
+            recipes[i]->print();
+    }
+}

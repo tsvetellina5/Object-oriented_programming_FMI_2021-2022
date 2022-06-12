@@ -5,7 +5,7 @@ const double SIZE_T_LIMIT = 1e4;
 // it might transform into a large positive number, because its type is size_t (unsigned long long)...)
 // we don't need numbers bigger than 10000 in our project anyway, that's why we put such boundary
 
-Recipe::Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert)
+Recipe::Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString& typeToConvert)
 {
 	setName(name);
 	setIngredients(ingredients);
@@ -117,7 +117,7 @@ void Recipe::setType(const MyString& typeToConvert)
 	type = stringToType(typeToConvert);
 }
 
-void Recipe::setDifficulty(const size_t& difficulty)
+void Recipe::setDifficulty(const unsigned short& difficulty)
 {//validation is being assured from another function
 	this->difficulty = difficulty;
 }

@@ -11,6 +11,8 @@ class RecipeBook {
     void free();
     void addRecipe(Recipe* recipe);
     int findAtId(int id) const;
+    void printType(const Type& type) const;
+
 
 public:
     RecipeBook(const RecipeBook& other);
@@ -19,11 +21,23 @@ public:
 
     int generateID() const;
 
-    void addHotMeal(const MyString& name, size_t preparationTime, const MyString& instructions, size_t cookingTemperature, size_t cookingTime);
-    void addColdMeal(const MyString& name, size_t preparationTime, const MyString& instructions, double storingTemperature);
+    void addHotMeal(const MyString& name, const IngredientList& ingredients, const size_t& preparationTime,
+                    const MyString& instructions, const size_t& kcal, const MyString& typeToConvert,
+                    const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances);
+    void addColdMeal(const MyString& name, const IngredientList& ingredients, const size_t& preparationTime,
+                     const MyString& instructions, const size_t& kcal, const MyString& typeToConvert, const double& storingTemperature);
 
     bool removeRecipe(int id);
     bool addRating(int rating, int id);
+
+    void printAllSoups() const;
+    void printAllSalads() const;
+    void printAllStew() const;
+    void printAllSteak() const;
+    void printAllSandwiches() const;
+    void printAllDesserts() const;
+
+    void printDifficulty(unsigned short difficulty) const;
 
 };
 

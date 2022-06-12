@@ -2,7 +2,9 @@
 #include <iostream>
 
 const double SIZE_T_LIMIT = 1e3;
-HotMeal::HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances)
+HotMeal::HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime,
+                 const MyString& instructions, const size_t& kcal, const MyString& typeToConvert,
+                 const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances)
 	: Recipe(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert)
 {
 	setCookingTemperature(cookingTemperature);
@@ -69,7 +71,7 @@ void HotMeal::setCookingTime(size_t cookingTime)
 	std::cout << "Cooking time cannot exceed preparation time. Cooking time set to 50 % of preparation time by default" << std::endl;*/
 }
 
-void HotMeal::setAppliances(const Vector<MyString> appliances)
+void HotMeal::setAppliances(const Vector<MyString>& appliances)
 {
 	if (appliances.getSize() > 0 && appliances.getSize() < SIZE_T_LIMIT)
 	{
@@ -90,7 +92,7 @@ size_t HotMeal::getCookingTime() const
 	return cookingTime;
 }
 
-const Vector<MyString> HotMeal::getAppliances() const
+const Vector<MyString>& HotMeal::getAppliances() const
 {
 	return appliances;
 }
