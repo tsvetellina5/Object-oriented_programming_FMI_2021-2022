@@ -2,6 +2,7 @@
 #include "Zoopark.h"
 #include "Turtle.h"
 #include "Penguin.h"
+#include "Hippopotamus.h"
 
 const int BUFFER_SIZE = 1024;
 
@@ -58,7 +59,9 @@ bool Zoopark::addAnimal()
 	else if (input == "penguin") {
 		addPenguin();
 	}
-	//else if hippopotamus
+	else if (input == "hippopotamus") {
+		addHippopotamus();
+	}
 	else {
 		return false;
 	}
@@ -78,6 +81,14 @@ void Zoopark::addPenguin()
 	std::cout << "How do you want to call your penguin? ";
 	String name; std::cin >> name;
 	Animal* animal = new Penguin(name);
+	animals.pushBack(animal->clone());
+}
+
+void Zoopark::addHippopotamus()
+{
+	std::cout << "How do you want to call your hippopotamus? ";
+	String name; std::cin >> name;
+	Animal* animal = new Hippopotamus(name);
 	animals.pushBack(animal->clone());
 }
 
@@ -129,7 +140,6 @@ void Zoopark::menu()
 		else {
 			std::cout << "Could not find that command!" << std::endl;
 		}
-
 	}
 }
 

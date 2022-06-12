@@ -41,7 +41,7 @@ bool Penguin::setFacts()
 	return true;
 }
 
-Penguin* Penguin::clone() const
+Animal* Penguin::clone() const
 {
 	return new Penguin(*this);
 }

@@ -10,7 +10,7 @@ public:
 	Turtle(const String&);
 
 	bool setFacts() override;
-	Turtle* clone() const override;
+	Animal* clone() const override;
 	void makeSound() override;
 	void print() const override;
 };

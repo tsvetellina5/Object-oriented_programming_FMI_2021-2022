@@ -3,11 +3,11 @@
 #include "Animal.h"
 #include "String.h"
 
-class Penguin : public Animal
+class Hippopotamus : public Animal
 {
 public:
-	Penguin();
-	Penguin(const String&);
+	Hippopotamus();
+	Hippopotamus(const String&);
 
 	bool setFacts() override;
 	Animal* clone() const override;

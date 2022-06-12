@@ -42,7 +42,7 @@ bool Turtle::setFacts()
 	return true;
 }
 
-Turtle* Turtle::clone() const
+Animal* Turtle::clone() const
 {
 	return new Turtle(*this);
 }
