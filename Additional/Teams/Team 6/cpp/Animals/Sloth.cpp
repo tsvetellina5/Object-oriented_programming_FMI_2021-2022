@@ -21,22 +21,22 @@ int Sloth::getSpeed() const {
 	return this->speed;
 }
 
-void Sloth::produceSound() {
+void Sloth::produceSound() const {
 
 	std::cout << "Aahh-eeeeeee" << std::endl;
 }
 
-String Sloth::typeToStr() {
+String Sloth::typeToStr() const {
 
 	return String("Sloth");
 }
 
-String Sloth::originToStr() {
+String Sloth::originToStr() const {
 
 	return String("South America");
 }
 
-void Sloth::printInfo() {
+void Sloth::printInfo() const {
 	std::cout << "Animal: " << typeToStr() << std::endl;
 	std::cout << "From: " << originToStr() << std::endl;
 	std::cout << "Name: " << getName() << std::endl;
