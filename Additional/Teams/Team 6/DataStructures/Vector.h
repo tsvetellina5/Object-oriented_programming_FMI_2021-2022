@@ -103,7 +103,7 @@ T& Vector<T>::popBack() {
 }
 
 template <typename T>
-T Vector<T>::popAt(size_t index) {
+T& Vector<T>::popAt(size_t index) {
 	if (index < 0 || index >= size)
 		throw "Invalid index";
 
