@@ -38,7 +38,7 @@ void ClothingItem::setGender(const char& gender)
 		return;
 	}
 }
-void ClothingItem::setSize(const String size)
+void ClothingItem::setSize(const String& size)
 {
 	if (size == "XS" || size == "xs")
 	{
