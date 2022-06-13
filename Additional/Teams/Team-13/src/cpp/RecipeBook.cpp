@@ -88,6 +88,7 @@ bool RecipeBook::removeRecipe(int id){
     if (index == -1)
         return false;
 
+    delete recipes[index];
     recipes.deleteAt(index);
     return true;
 }
