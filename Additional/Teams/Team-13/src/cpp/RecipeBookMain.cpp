@@ -315,6 +315,7 @@ void addRecipe() {
         catch (invalid_argument& e) {
             cout << e.what() << endl;
         }
+        cin.ignore();
 	}
 	else {
 		cout << "Not a valid input. Please try again." << endl;
