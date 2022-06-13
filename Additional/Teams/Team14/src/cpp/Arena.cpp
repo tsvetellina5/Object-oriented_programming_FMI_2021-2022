@@ -74,6 +74,8 @@ MyString::String getStringfrominput() {
 	char* arr = new char[size+1];
 	strcpy_s(arr, size+1, buffer);
 	MyString::String was(arr);
+	delete[] arr;
+	delete[] buffer;
 	return was;
 }
 
@@ -167,6 +169,8 @@ void Arena::free(){
 		delete chars[i];
 	}
 	delete[] chars;
+	delete player[0];
+	delete[] player;
 }
 
 void Arena::resize(){
