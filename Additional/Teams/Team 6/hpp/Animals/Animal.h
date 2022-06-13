@@ -43,7 +43,7 @@ public:
 	int getCaloriesEaten() const;
 	int getAge() const;
 	int getWeight() const;
-	String getName() const;
+	const String& getName() const;
 	int getNeededTimeToPlay() const;
 	int getTimePlayed() const;
 
@@ -56,11 +56,11 @@ public:
 
 	void play(const int);
 
-	virtual void produceSound() = 0;
-	virtual void printInfo() = 0;
+	virtual void produceSound() const = 0;
+	virtual void printInfo() const = 0;
 	virtual void eat(const Food&) = 0;
-	virtual String typeToStr() = 0;
-	virtual String originToStr() = 0;
+	virtual String typeToStr() const = 0;
+	virtual String originToStr() const = 0;
 
 	virtual Animal* clone() = 0;
 };
