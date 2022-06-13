@@ -10,22 +10,22 @@ Penguin::Penguin(const int age, const int weight, const int caloriesNeeded, cons
 	: Animal(age, weight, caloriesNeeded, PENGUINS_PLAYING_TIME, name)
 {}
 
-void Penguin::produceSound() {
+void Penguin::produceSound() const {
 
 	std::cout << "Squawk, squawk, squawk" << std::endl;
 }
 
-String Penguin::typeToStr() {
+String Penguin::typeToStr() const {
 
 	return String("Penguin");
 }
 
-String Penguin::originToStr() {
+String Penguin::originToStr() const {
 
 	return String("Antarctica");
 }
 
-void Penguin::printInfo() {
+void Penguin::printInfo() const {
 	std::cout << "Animal: " << typeToStr() << std::endl;
 	std::cout << "From: " << originToStr() << std::endl;
 	std::cout << "Name: " << getName() << std::endl;
