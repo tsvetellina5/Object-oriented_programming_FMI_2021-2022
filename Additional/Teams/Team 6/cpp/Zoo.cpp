@@ -7,7 +7,7 @@
 void Zoo::free() {
 
 	int sizeAnimals = animals.getSize();
-	int sizeFood = animals.getSize();
+	int sizeFood = food.getSize();
 
 	for (int i = 0; i < sizeAnimals; i++)
 	{
