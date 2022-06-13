@@ -160,9 +160,8 @@ Vector<String> String::split(const char seperator) {
 		}
 
 		argument[argumentIndex] = '\0';
-
-		String str(argument);
-		arguments.pushBack(str);
+	
+		arguments.pushBack(String(argument));
 	}
 
 	return arguments;
@@ -193,8 +192,7 @@ Vector<String> String::split(const String& seperators) {
 
 		argument[argumentIndex] = '\0';
 
-		String str(argument);
-		arguments.pushBack(str);
+		arguments.pushBack(String(argument));
 	}
 
 	return arguments;
@@ -208,7 +206,7 @@ std::ostream& operator<<(std::ostream& stream, const String& str)
 
 std::istream& operator>>(std::istream& stream, String& str)
 {
-	delete[] str.str;
+	str.free();
 	char buff[1024];
 	stream.getline(buff, 1024);
 
