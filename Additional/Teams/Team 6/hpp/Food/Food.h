@@ -16,6 +16,7 @@ protected:
 
 public:
 	Food(const int);
+	virtual ~Food() {};
 
 	int getCalories() const;
 	const Type& getType() const;
