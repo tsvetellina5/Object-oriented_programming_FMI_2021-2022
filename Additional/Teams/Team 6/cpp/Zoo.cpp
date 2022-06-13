@@ -217,17 +217,14 @@ void Zoo::showFastestCat() const {
 		}
 		else if (animals[i]->typeToStr() == "Lion")
 		{
-			if (animals[i]->typeToStr() == "Lion")
+			Lion* lion = (Lion*)animals[i];
+
+			int lionsSpeed = lion->getSpeed();
+
+			if (lionsSpeed > bestSpeed)
 			{
-				Lion* lion = (Lion*)animals[i];
-
-				int lionsSpeed = lion->getSpeed();
-
-				if (lionsSpeed > bestSpeed)
-				{
-					bestSpeed = lionsSpeed;
-					fastestIndex = i;
-				}
+				bestSpeed = lionsSpeed;
+				fastestIndex = i;
 			}
 		}
 	}
