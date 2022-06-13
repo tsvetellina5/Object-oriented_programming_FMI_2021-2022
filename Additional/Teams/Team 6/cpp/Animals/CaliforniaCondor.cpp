@@ -21,22 +21,22 @@ int CaliforniaCondor::getWingspan() const {
 	return this->wingspan;
 }
 
-void CaliforniaCondor::produceSound() {
+void CaliforniaCondor::produceSound() const {
 
 	std::cout << "Grunting" << std::endl;
 }
 
-String CaliforniaCondor::typeToStr() {
+String CaliforniaCondor::typeToStr() const {
 
 	return String("CaliforniaCondor");
 }
 
-String CaliforniaCondor::originToStr() {
+String CaliforniaCondor::originToStr() const {
 
 	return String("NorthAmerica");
 }
 
-void CaliforniaCondor::printInfo() {
+void CaliforniaCondor::printInfo() const {
 	std::cout << "Animal: " << typeToStr() << std::endl;
 	std::cout << "From: " << originToStr() << std::endl;
 	std::cout << "Name: " << getName() << std::endl;
