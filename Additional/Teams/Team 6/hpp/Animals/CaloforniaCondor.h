@@ -1,5 +1,5 @@
-#include "Animal.h"
 #pragma once
+#include "Animal.h"
 
 class CaliforniaCondor : public Animal
 {
@@ -12,11 +12,11 @@ public:
 
 	int getWingspan() const;
 
-	void produceSound() override;
-	void printInfo() override;
+	void produceSound() const override;
+	void printInfo() const override;
 	void eat(const Food&) override;
-	String typeToStr() override;
-	String originToStr() override;
+	String typeToStr() const override;
+	String originToStr() const override;
 
 	Animal* clone() override;
 };
