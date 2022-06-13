@@ -20,14 +20,14 @@ MyString samplePass = "SAMPLEPASS";
 void commander(MyString& user, MyString& pass);
 void menu(MyString& user, MyString& pass);
 
-bool compare(MyString a, MyString b) {
+bool compare(const MyString& a, const MyString& b) {
 	if (a == b) {
 		return true;
 	}
 	return false;
 }
 
-int stringToNum(char* str)
+/*int stringToNum(char* str)
 {
 	int number = 0;
 	if (str[0] >= '0' && str[0] <= '9') {
@@ -37,7 +37,7 @@ int stringToNum(char* str)
 		number = 10;
 	}
 	return number;
-}
+}*/
 
 
 void setAccount(MyString& user, MyString& pass) {
@@ -323,9 +323,9 @@ void addRecipe() {
 
 void removeRecipe(MyString& user, MyString& pass) {
 	cout << "Choose a recipe to remove" << endl;
-	int ind;
+	MyString ind;
 	cin >> ind;
-	recipebook.removeRecipe(ind);
+	recipebook.removeRecipe(ind.parseInt());
 }
 
 void printRecipe() {
@@ -338,9 +338,9 @@ void printRecipe() {
 void printByDifficultyRecipe() {
     cout << "You can also decide how difficult you want the recipes to be. " << endl;
     cout << "Choose difficulty between: 1, 2, 3, 4, 5." << endl;
-    unsigned short difficulty;
+    MyString difficulty;
     cin >> difficulty;
-    recipebook.printDifficulty(difficulty);
+    recipebook.printDifficulty(difficulty.parseInt());
 }
 
 void sortedMenuRecipe() {
@@ -392,45 +392,38 @@ void openBookMenu(MyString& user, MyString& pass) {
 	MyString command;
 	cout << ">";
 	cin >> command;
-	MyString addCommand = "add";
-	MyString removeCommand = "remove";
-	MyString logoutCommand = "logout";
-	MyString printCommand = "print";
-	MyString printByDifficultyCommand = "printByDifficulty";
-	MyString sortedMenuCommand = "sortedMenu";
-	MyString quitCommand = "quit";
 
-	if (compare(addCommand, command)) {
+	if (compare("add", command)) {
 		addRecipe();
 		openBookMenu(user, pass);
 		return;
 	}
-	else if (compare(removeCommand, command)) {
+	else if (compare("remove", command)) {
 		removeRecipe(user, pass);
 		openBookMenu(user, pass);
 		return;
 	}
-	else if (compare(printCommand, command)) {
+	else if (compare("print", command)) {
 		printRecipe();
 		openBookMenu(user, pass);
 		return;
 	}
-	else if (compare(printByDifficultyCommand, command)) {
+	else if (compare("printByDifficulty", command)) {
 		printByDifficultyRecipe();
 		openBookMenu(user, pass);
 		return;
 	}
-	else if (compare(sortedMenuCommand, command)) {
+	else if (compare("sortedMenu", command)) {
 		sortedMenuRecipe();
 		openBookMenu(user, pass);
 		return;
 	}
-	else if (compare(logoutCommand, command)) {
+	else if (compare("logout", command)) {
 		cout << "Logging out..." << endl;
 		commander(user, pass);
 		return;
 	}
-	else if (compare(quitCommand, command)) {
+	else if (compare("quit", command)) {
 		cout << "Goodbye! Don't forget to eat!" << endl;
 		return;
 	}
@@ -451,20 +444,16 @@ void menu(MyString& user, MyString& pass) {
 	MyString command;
 	cout << ">";
 	cin >> command;
-	MyString openCommand = "openBook";
-	MyString labelCommand = "readLabel";
-	MyString logoutCommand = "logout";
-	MyString quitCommand = "quit";
-	if (compare(openCommand, command)) {
+	if (compare("openBook", command)) {
 		openBookMenu(user, pass);
 		return;
 	}
-	else if (compare(logoutCommand, command)) {
+	else if (compare("logout", command)) {
 		cout << "Logging out..." << endl;
 		commander(user, pass);
 		return;
 	}
-	else if (compare(labelCommand, command)) {
+	else if (compare("readLabel", command)) {
 		cout << "Want to learn how to cook something more extravagant?" << endl;
 		cout << "Want to know more than a recipe on ho to build a sandwich?" << endl;
 		cout << "Want to eat your own hog-washes?" << endl;
@@ -479,7 +468,7 @@ void menu(MyString& user, MyString& pass) {
 		//commander(user, pass);
 		return;
 	}
-	else if (compare(quitCommand, command)) {
+	else if (compare("quit", command)) {
 		cout << "Goodbye! Don't forget to eat!" << endl;
 		return;
 	}

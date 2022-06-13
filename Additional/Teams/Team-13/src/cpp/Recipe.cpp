@@ -5,7 +5,8 @@ const double SIZE_T_LIMIT = 1e3;
 // it might transform into a large positive number, because its type is size_t (unsigned long long)...)
 // we don't need numbers bigger than 1000 in our project anyway, that's why we put such boundary
 
-Recipe::Recipe(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert)
+Recipe::Recipe(const MyString& name, int ID, const IngredientList& ingredients, size_t preparationTime,
+               const MyString& instructions, size_t kcal, const MyString& typeToConvert)
 {
 	setName(name);
 	setIngredients(ingredients);
@@ -14,7 +15,6 @@ Recipe::Recipe(const MyString& name, const int& ID, const IngredientList& ingred
 	setID(ID);
 	setInitialRatingState();
 	setKcal(kcal);
-	setInitialDifficultyState();
 	setType(typeToConvert);
 }
 
@@ -29,10 +29,6 @@ void Recipe::print() const
 		std::cout << "- " << ingredients[i].getFirst() << ", " << ingredients[i].getSecond() << std::endl;
 	std::cout << "Energy value: " << kcal << " kcal" << std::endl;
 	std::cout << "Preparation time: " << preparationTime << " minutes" << std::endl;
-	std::cout << "Difficulty: ";
-	for (size_t i = 0; i < difficulty; ++i)
-		std::cout << "* ";
-	std::cout << std::endl;
 	std::cout << "Cooking instructions: " << std::endl;
 	std::cout << instructions << std::endl;
 }
@@ -42,8 +38,8 @@ void Recipe::setName(const MyString& name)
 	if (name.c_str() != nullptr && name.getSize() > 0 && name.getSize() < 40)
 	{
 		this->name = name;
-		if (this->name[0] < 'A' || this->name[0] > 'Z' && this->name[0] >= 'a' && this->name[0] <= 'z')
-			this->name[0] -= 32;
+		if (!isLowerCase(this->name[0]))
+			toUpperCase(this->name[0]);
 		return;
 	}
 	throw std::invalid_argument("Invalid name!");
@@ -59,7 +55,7 @@ void Recipe::setIngredients(const IngredientList& ingredients)
 	throw std::invalid_argument("Unknown ingredients!");
 }
 
-void Recipe::setPreparationTime(const size_t& preparationTime)
+void Recipe::setPreparationTime(size_t preparationTime)
 {//preparation time limit is 180 minutes
 	if (preparationTime < SIZE_T_LIMIT && preparationTime > 0 && preparationTime < 180)
 	{
@@ -79,7 +75,7 @@ void Recipe::setInstructions(const MyString& instructions)
 	throw std::invalid_argument("No instructions!");
 }
 
-void Recipe::setID(const int& ID)
+void Recipe::setID(int ID)
 {
 	this->ID = ID;
 }
@@ -89,12 +85,7 @@ void Recipe::setInitialRatingState()
 	averageRating = 0;
 }
 
-void Recipe::setInitialDifficultyState()
-{
-	difficulty = 0;
-}
-
-void Recipe::setKcal(const size_t& kcal)
+void Recipe::setKcal(size_t kcal)
 {
 	if (kcal >= 400 && kcal <= 1200)
 	{	
@@ -109,12 +100,7 @@ void Recipe::setType(const MyString& typeToConvert)
 	type = stringToType(typeToConvert);
 }
 
-void Recipe::setDifficulty(const size_t& difficulty)
-{//validation is being assured from another function
-	this->difficulty = difficulty;
-}
-
-void Recipe::addRating(const unsigned short& rating)
+void Recipe::addRating(unsigned short rating)
 {
 	if (rating > 5)
 		return;
@@ -132,49 +118,44 @@ void Recipe::addRating(const unsigned short& rating)
 	averageRating = sum / count;
 }
 
-const MyString Recipe::getName() const
+const MyString& Recipe::getName() const
 {
 	return name;
 }
 
-const IngredientList Recipe::getIngredients() const
+const IngredientList& Recipe::getIngredients() const
 {
 	return ingredients;
 }
 
-const size_t Recipe::getPreparationTime() const
+size_t Recipe::getPreparationTime() const
 {
 	return preparationTime;
 }
 
-const MyString Recipe::getInstructions() const
+const MyString& Recipe::getInstructions() const
 {
 	return instructions;
 }
 
-const int Recipe::getID() const
+int Recipe::getID() const
 {
 	return ID;
 }
 
-const double Recipe::getRating() const
+double Recipe::getRating() const
 {
 	return averageRating;
 }
 
-const Type Recipe::getType() const
+const Type& Recipe::getType() const
 {
 	return type;
 }
 
-const size_t Recipe::getKcal() const
+size_t Recipe::getKcal() const
 {
 	return kcal;
-}
-
-const size_t Recipe::getDifficulty() const
-{
-	return difficulty;
 }
 
 void inputIngredients(IngredientList& ingredients)
@@ -206,4 +187,11 @@ void inputIngredients(IngredientList& ingredients)
 		Pair<MyString, size_t> temp(product, number);
 		ingredients.push_back(temp);
 	}
+}
+
+bool isLowerCase(char s) {
+    return s >= 'a' && s <= 'z';
+}
+void toUpperCase(char s) {
+    s -= 32;
 }

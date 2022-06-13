@@ -14,6 +14,7 @@ void RecipeBook::free() {
     for (size_t i = 0; i < size; ++i) {
         delete recipes[i];
     }
+    recipes.clear();
 }
 
 void swap(Recipe* lhs, Recipe* rhs) {
@@ -25,6 +26,8 @@ void swap(Recipe* lhs, Recipe* rhs) {
 void RecipeBook::addRecipe(Recipe* recipe){
     recipes.push_back(recipe);
     size_t i = recipes.getSize() - 1;
+    if (i <= 0)
+        return;
     while (recipes[i]->getRating() > recipes[i-1]->getRating()) {
         swap(recipes[i], recipes[i-1]);
         --i;

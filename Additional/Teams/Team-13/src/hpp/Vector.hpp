@@ -13,6 +13,7 @@ class Vector {
     void free();
     void copyFrom(const Vector<T>&);
     void resize();
+    bool isEmpty() const;
 
 public:
     Vector();
@@ -25,19 +26,22 @@ public:
     size_t getCapacity() const;
     void setCapacity(size_t);
     void push_back(const T&);
-    void insert(const T&, size_t);
+    void insert(const T&, long long);
 
-    T& operator[](size_t);
-    const T& operator[](size_t) const;
-    void deleteAt(size_t);
+    T& operator[](long long);
+    const T& operator[](long long) const;
+    void deleteAt(long long);
     void pop_back();
     long long findItem(const T&) const;
     void clear();
+
 };
 
 template <typename T>
 void Vector<T>::free() {
     delete[] data;
+    data = nullptr;
+    capacity = size = 0;
 }
 
 template <typename T>
@@ -62,6 +66,11 @@ void Vector<T>::resize() {
 
     delete[] data;
     data = newMemory;
+}
+
+template <typename T>
+bool Vector<T>::isEmpty() const {
+    return size == 0;
 }
 
 template <typename T>
@@ -119,40 +128,42 @@ template <typename T>
 void Vector<T>::push_back(const T& element) {
     if (size == capacity)
         resize();
-    size++;
-    data[size-1] = element;
+
+    data[size++] = element;
 }
 
 template <typename T>
-void Vector<T>::insert(const T& element, size_t index) {
+void Vector<T>::insert(const T& element, long long index) {
+    if (index >= size || index < 0)
+        throw std::out_of_range("out of range");
     if (size == capacity)
         resize();
-    ++size;
-    for (int i = size - 1; i > index; ++i) {
+
+    for (int i = size; i > index; --i) {
         data[i] = std::move(data[i - 1]);
     }
-
+    ++size;
     data[index] = element;
 }
 
 template <typename T>
-T& Vector<T>::operator[](size_t index) {
-    if (index >= size)
+T& Vector<T>::operator[](long long index) {
+    if (index >= size || index < 0)
         throw std::out_of_range("out of range");
     return data[index];
 }
 
 template <typename T>
-const T& Vector<T>::operator[](size_t index) const {
-    if (index >= size)
+const T& Vector<T>::operator[](long long index) const {
+    if (index >= size || index < 0)
         throw std::out_of_range("out of range");
 
     return data[index];
 }
 
 template <typename T>
-void Vector<T>::deleteAt(size_t index) {
-    if (index >= size)
+void Vector<T>::deleteAt(long long index) {
+    if (index >= size || index < 0)
         throw std::out_of_range("out of range");
 
     for (size_t i = index; i < size - 1; ++i)
@@ -163,6 +174,8 @@ void Vector<T>::deleteAt(size_t index) {
 
 template <typename T>
 void Vector<T>::pop_back() {
+    if (isEmpty())
+        throw std::logic_error("vector is empty");
     --size;
 }
 

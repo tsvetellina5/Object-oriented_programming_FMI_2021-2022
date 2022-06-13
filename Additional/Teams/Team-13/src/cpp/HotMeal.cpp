@@ -1,18 +1,25 @@
 #include "src/hpp/HotMeal.h"
 #include <iostream>
 const double SIZE_T_LIMIT = 1e3;
-HotMeal::HotMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const size_t& cookingTemperature, const size_t& cookingTime, const Vector<MyString>& appliances)
+HotMeal::HotMeal(const MyString& name, int ID, const IngredientList& ingredients,
+                 size_t preparationTime, const MyString& instructions, size_t kcal,
+                 const MyString& typeToConvert, size_t cookingTemperature, size_t cookingTime,
+                 const Vector<MyString>& appliances)
 	: Recipe(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert)
 {
 	setCookingTemperature(cookingTemperature);
 	setCookingTime(cookingTime);
 	setAppliances(appliances);
-	determineDifficulty();
 }
 
 void HotMeal::print() const
 {
 	Recipe::print();
+    unsigned short difficulty = getDifficulty();
+    std::cout << "Difficulty: ";
+    for (size_t i = 0; i < difficulty; ++i)
+        std::cout << "* ";
+    std::cout << std::endl;
 	std::cout << "Cooking time: " << cookingTime << " minutes" << std::endl;
 	std::cout << "Cooking temperature: " << cookingTemperature << " degrees Celsius" << std::endl;
 	std::cout << "Necessary appliances: " << std::endl;
@@ -25,19 +32,19 @@ Recipe* HotMeal::clone() const
 	return new HotMeal(*this);
 }
 
-void HotMeal::determineDifficulty() //cannot be less than 2, because preparation includes cooking in any case
+unsigned short HotMeal::getDifficulty() const //cannot be less than 2, because preparation includes cooking in any case
 {
 	if (cookingTime >= 0.75 * getPreparationTime() && getPreparationTime() > 90)
-		setDifficulty(5);
+        return 5;
 	else if (cookingTime >= 0.75 * getPreparationTime() && getPreparationTime() > 60)
-		setDifficulty(4);
+        return 4;
 	else if (cookingTime >= 0.5 * getPreparationTime() && getPreparationTime() > 30)
-		setDifficulty(3);
+        return 3;
 	else
-		setDifficulty(2);
+        return 2;
 }
 
-void HotMeal::setCookingTemperature(const size_t& cookingTemperature)
+void HotMeal::setCookingTemperature(size_t cookingTemperature)
 {
 	if (cookingTemperature >= 90 && cookingTemperature <= 260)
 	{
@@ -47,7 +54,7 @@ void HotMeal::setCookingTemperature(const size_t& cookingTemperature)
 	throw std::invalid_argument("Invalid cooking temperature!");
 }
 
-void HotMeal::setCookingTime(const size_t& cookingTime)
+void HotMeal::setCookingTime(size_t cookingTime)
 {
 	if (cookingTime < SIZE_T_LIMIT)
 	{
@@ -61,7 +68,7 @@ void HotMeal::setCookingTime(const size_t& cookingTime)
 	throw std::invalid_argument("Invalid cooking time!");
 }
 
-void HotMeal::setAppliances(const Vector<MyString> appliances)
+void HotMeal::setAppliances(const Vector<MyString>& appliances)
 {
 	if (appliances.getSize() > 0 && appliances.getSize() < SIZE_T_LIMIT)
 	{
@@ -71,17 +78,17 @@ void HotMeal::setAppliances(const Vector<MyString> appliances)
 	throw std::invalid_argument("No appliances!");
 }
 
-const size_t HotMeal::getCookingTemperature() const
+size_t HotMeal::getCookingTemperature() const
 {
 	return cookingTemperature;
 }
 
-const size_t HotMeal::getCookingTime() const
+size_t HotMeal::getCookingTime() const
 {
 	return cookingTime;
 }
 
-const Vector<MyString> HotMeal::getAppliances() const
+const Vector<MyString>& HotMeal::getAppliances() const
 {
 	return appliances;
 }

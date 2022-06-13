@@ -1,16 +1,22 @@
 #include "src/hpp/ColdMeal.h"
 #include <iostream>
 
-ColdMeal::ColdMeal(const MyString& name, const int& ID, const IngredientList& ingredients, const size_t& preparationTime, const MyString& instructions, const size_t& kcal, const MyString typeToConvert, const double& storingTemperature)
+ColdMeal::ColdMeal(const MyString& name, int ID, const IngredientList& ingredients,
+                   size_t preparationTime, const MyString& instructions, size_t kcal,
+                   const MyString& typeToConvert, double storingTemperature)
 	: Recipe(name, ID, ingredients, preparationTime, instructions, kcal, typeToConvert)
 {
 	setStoringTemperature(storingTemperature);
-	determineDifficulty();
 }
 
 void ColdMeal::print() const
 {
 	Recipe::print();
+    unsigned short difficulty = getDifficulty();
+    std::cout << "Difficulty: ";
+    for (size_t i = 0; i < difficulty; ++i)
+        std::cout << "* ";
+    std::cout << std::endl;
 	std::cout << "Storing temperature: " << storingTemperature << " degrees Celsius" << std::endl;
 }
 
@@ -19,17 +25,17 @@ Recipe* ColdMeal::clone() const
 	return new ColdMeal(*this);
 }
 
-void ColdMeal::determineDifficulty() // max difficulty of cold meal recipes is 3
+unsigned short ColdMeal::getDifficulty() const // max difficulty of cold meal recipes is 3
 {
 	if (getPreparationTime() > 100)
-		setDifficulty(3);
+        return 3;
 	else if (getPreparationTime() <= 100 && getPreparationTime() > 20)
-		setDifficulty(2);
+        return 2;
 	else
-		setDifficulty(1);
+        return 1;
 }
 
-void ColdMeal::setStoringTemperature(const double& storingTemperature)
+void ColdMeal::setStoringTemperature(double storingTemperature)
 {
 	if (storingTemperature > -18 && storingTemperature < 4)
 	{
@@ -39,7 +45,7 @@ void ColdMeal::setStoringTemperature(const double& storingTemperature)
 	throw std::invalid_argument("Invalid storing temperature!");
 }
 
-const double ColdMeal::getStoringTemperature() const
+double ColdMeal::getStoringTemperature() const
 {
 	return storingTemperature;
 }
