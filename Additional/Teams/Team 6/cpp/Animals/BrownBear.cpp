@@ -21,22 +21,22 @@ int BrownBear::getSpeed() const {
 	return this->speed;
 }
 
-void BrownBear::produceSound() {
+void BrownBear::produceSound() const {
 
 	std::cout << "Grooowl, grooowl" << std::endl;
 }
 
-String BrownBear::typeToStr() {
+String BrownBear::typeToStr() const {
 
 	return String("Brown Bear");
 }
 
-String BrownBear::originToStr() {
+String BrownBear::originToStr() const {
 
 	return String("Europe");
 }
 
-void BrownBear::printInfo() {
+void BrownBear::printInfo() const {
 	std::cout << "Animal: " << typeToStr() << std::endl;
 	std::cout << "From: " << originToStr() << std::endl;
 	std::cout << "Name: " << getName() << std::endl;
