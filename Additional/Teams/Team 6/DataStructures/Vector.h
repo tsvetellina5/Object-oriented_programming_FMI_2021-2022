@@ -20,7 +20,7 @@ public:
 	void pushBack(const T&);
 	void pushAt(const T&, const size_t);
 	T& popBack();
-	T popAt(const size_t);
+	T& popAt(const size_t);
 	T& operator[](const size_t);
 	const T& operator[](const size_t) const;
 	bool empty() const;
