@@ -62,8 +62,8 @@ void run()
 			{
 				Animal* animal = nullptr;
 
-				if (!(args[1] == "Lion" || args[1] == "Tiger" || args[1] == "CaliforniaCondor" || args[1] == "Penguin")
-					|| args[1] == "WhiteLion" || args[1] == "WhiteTiger" || args[1] == "Sloth" || args[1] == "BrownBear")
+				if (!(args[1] == "Lion" || args[1] == "Tiger" || args[1] == "CaliforniaCondor" || args[1] == "Penguin"
+					|| args[1] == "WhiteLion" || args[1] == "WhiteTiger" || args[1] == "Sloth" || args[1] == "BrownBear"))
 				{
 					throw "Invalid animal!";
 				}
