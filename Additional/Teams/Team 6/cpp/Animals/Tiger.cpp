@@ -26,22 +26,22 @@ int Tiger::getSpeed() const {
 	return this->speed;
 }
 
-void Tiger::produceSound() {
+void Tiger::produceSound() const {
 
 	std::cout << "Roaaaaaar" << std::endl;
 }
 
-String Tiger::typeToStr() {
+String Tiger::typeToStr() const {
 
 	return String("Tiger");
 }
 
-String Tiger::originToStr() {
+String Tiger::originToStr() const {
 
 	return String("Asia");
 }
 
-void Tiger::printInfo() {
+void Tiger::printInfo() const {
 	std::cout << "Animal: " << typeToStr() << std::endl;
 	std::cout << "From: " << originToStr() << std::endl;
 	std::cout << "Name: " << getName() << std::endl;
