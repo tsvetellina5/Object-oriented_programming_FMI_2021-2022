@@ -26,22 +26,22 @@ int Lion::getSpeed() const {
 	return this->speed;
 }
 
-void Lion::produceSound() {
+void Lion::produceSound() const {
 
 	std::cout << "Roaaaar, roaaaar" << std::endl;
 }
 
-String Lion::typeToStr() {
+String Lion::typeToStr() const {
 
 	return String("Lion");
 }
 
-String Lion::originToStr() {
+String Lion::originToStr() const {
 
 	return String("Africa");
 }
 
-void Lion::printInfo() {
+void Lion::printInfo() const {
 	std::cout << "Animal: " << typeToStr() << std::endl;
 	std::cout << "From: " << originToStr() << std::endl;
 	std::cout << "Name: " << getName() << std::endl;
