@@ -69,7 +69,7 @@ int Animal::getWeight() const {
 	return this->weight;
 }
 
-String Animal::getName() const {
+const String& Animal::getName() const {
 
 	return this->name;
 }
