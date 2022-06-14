@@ -29,11 +29,9 @@ void Zoopark::clean()
 	}
 }
 
-bool Zoopark::feed()
+bool Zoopark::feed(const String& input)
 {
 	bool found = false;
-	std::cout << "Which animal do you want to feed? ";
-	String input; std::cin >> input;
 	for (size_t i = 0; i < animals.getSize(); i++)
 	{
 		if (animals[i]->getName() == input.getStr())
@@ -61,11 +59,8 @@ bool Zoopark::feed()
 	return found;
 }
 
-bool Zoopark::addAnimal()
-{
-	std::cout << "What animal do you want to add? ";
-	String input;  std::cin >> input;
-	
+bool Zoopark::addAnimal(const String& input)
+{	
 	String* l = new String[1];
 	l[0].setCurrentTime();
 	
@@ -138,25 +133,33 @@ void Zoopark::menu()
 			std::cout << std::endl;
 		}
 		else if (cmd == "feed") {
-			if (!feed())
+			std::cout << "Which animal do you want to feed? ";
+			String input; std::cin >> input;
+			if (!feed(input))
 				std::cout << "Could not find that animal!";
 			std::cout << std::endl;
 		}
 		else if (cmd == "add")
 		{
-			if (!addAnimal())
+			std::cout << "What animal do you want to add? ";
+			String input;  std::cin >> input;
+			if (!addAnimal(input))
 				std::cout << "That animal is not supported!";
 			std::cout << std::endl;
 		}
 		else if (cmd == "remove")
 		{
-			if (!removeAnimal())
+			std::cout << "What animal do you want to remove? ";
+			String input;  std::cin >> input;
+			if (!removeAnimal(input))
 				std::cout << "Could not find that animal!";
 			std::cout << std::endl;
 		}
 		else if (cmd == "printFacts")
 		{
-			if (!printFacts())
+			std::cout << "Which animal do you want to get facts for? ";
+			String input; std::cin >> input;
+			if (!printFacts(input))
 				std::cout << "Could not find that animal!";
 			std::cout << std::endl;
 		}
@@ -195,11 +198,9 @@ void Zoopark::printCommands() const
 	std::cout << "\tsave - saves the loginto a .txt file" << std::endl;
 }
 
-bool Zoopark::printFacts() const
+bool Zoopark::printFacts(const String& input) const
 {
 	bool found = false;
-	std::cout << "Which animal do you want to get facts for? ";
-	String input; std::cin >> input;
 
 	for (unsigned int i = 0; i < animals.getSize(); i++)
 	{
@@ -214,12 +215,9 @@ bool Zoopark::printFacts() const
 	return found;
 }
 
-bool Zoopark::removeAnimal()
+bool Zoopark::removeAnimal(const String& input)
 {
 	bool found = false;
-
-	std::cout << "What animal do you want to remove? ";
-	String input;  std::cin >> input;
 
 	for (unsigned int i = 0; i < animals.getSize(); i++)
 	{
@@ -241,7 +239,7 @@ bool Zoopark::removeAnimal()
 	return found;
 }
 
-void Zoopark::printAll()
+void Zoopark::printAll() const
 {
 	for (unsigned int i = 0; i < animals.getSize(); i++) {
 		std::cout << "\t" << i + 1 << ".";
@@ -256,7 +254,7 @@ void Zoopark::listLog() const
 		std::cout << i + 1 << ". " << *log[i] << std::endl;
 }
 
-bool Zoopark::saveLogToFile()
+bool Zoopark::saveLogToFile() const
 {
 	std::cout << "How would like to name your file? \nFiles with the same name will be overwritten! ";
 	String fName;
