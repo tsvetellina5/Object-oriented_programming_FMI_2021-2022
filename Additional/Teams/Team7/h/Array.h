@@ -8,8 +8,8 @@ private:
 	T* data;
 public:
 	Array();
-	Array(unsigned int);
-	Array(unsigned int, const T&);
+	Array(const unsigned int);
+	Array(const unsigned int, const T&);
 	Array(const Array<T>&);
 
 	Array<T>& operator=(const Array<T>&);
@@ -18,16 +18,15 @@ public:
 	unsigned int getSize() const;
 	unsigned int getCapacity() const;
 
-	T& operator[](unsigned int i);
-	T& operator[](unsigned int i) const;
+	T& operator[](const unsigned int i) const;
 
-	void resize(unsigned int);
-	void resize(unsigned int, const T&);
+	void resize(const unsigned int);
+	void resize(const unsigned int, const T&);
 	void pushBack(const T&);
 	void pop();
 	void clear();
 	bool empty() const;
-	void popAt(unsigned int);
+	void popAt(const unsigned int);
 private:
 	void copy(const Array<T>&);
 	void free();
@@ -41,14 +40,14 @@ Array<T>::Array() {
 }
 
 template <class T>
-Array <T>::Array(unsigned int n) {
+Array <T>::Array(const unsigned int n) {
 	size = n;
 	capacity = n;
 	data = new T[n];
 }
 
 template <class T>
-Array<T>::Array(unsigned int n, const T& other) {
+Array<T>::Array(const unsigned int n, const T& other) {
 	size = n;
 	capacity = n;
 	data = new T[n];
@@ -102,21 +101,14 @@ unsigned int Array<T>::getCapacity() const {
 }
 
 template <class T>
-T& Array<T>::operator[](unsigned int n) {
+T& Array<T>::operator[](const unsigned int n) const {
 	if (n >= size)
 		throw "Out of bounds!";
 	return data[n];
 }
 
 template <class T>
-T& Array<T>::operator[](unsigned int n) const {
-	if (n >= size)
-		throw "Out of bounds!";
-	return data[n];
-}
-
-template <class T>
-void Array<T>::resize(unsigned int n) {
+void Array<T>::resize(const unsigned int n) {
 	if (n == 0) {
 		clear();
 	}
@@ -134,7 +126,7 @@ void Array<T>::resize(unsigned int n) {
 }
 
 template <class T>
-void Array<T>::resize(unsigned int n, const T& other) {
+void Array<T>::resize(const unsigned int n, const T& other) {
 	if (n == 0) {
 		clear();
 	}
@@ -192,7 +184,7 @@ bool Array<T>::empty() const {
 }
 
 template <class T>
-void Array<T>::popAt(unsigned int n) {
+void Array<T>::popAt(const unsigned int n) {
 	if (n >= size)
 		throw "Out of bounds!";
 	for (unsigned int i = n; i < size - 1; i++)
