@@ -19,9 +19,9 @@ public:
 	void printCommands() const;
 	bool printFacts(const String&) const;
 	bool removeAnimal(const String&);
-	void printAll();
+	void printAll() const;
 	void listLog() const;
-	bool saveLogToFile();
+	bool saveLogToFile() const;
 private:
 	void addTurtle();
 	void addPenguin();
