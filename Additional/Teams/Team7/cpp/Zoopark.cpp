@@ -6,13 +6,9 @@
 
 const int BUFFER_SIZE = 1024;
 
-Zoopark::Zoopark()
+Zoopark::Zoopark(const String& name)
 {
-	std::cout << "What is the name of the zoopark? ";
-	char* nameT = new char[BUFFER_SIZE];
-	std::cin.getline(nameT, BUFFER_SIZE);
-	name = nameT;
-	delete[] nameT;
+	this->name = name;
 }
 
 void Zoopark::clean()
