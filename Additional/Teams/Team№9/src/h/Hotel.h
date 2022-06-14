@@ -4,7 +4,6 @@
 #include "NO.h"
 #include "AI.h"
 #include "UAI.h"
-#include "Log.h"
 const int MAX_NUMBER_OF_VISITORS = 200;
 
 class Hotel
@@ -30,7 +29,6 @@ private:
 	String name;
 	String address;
 	Visitor visitors[MAX_NUMBER_OF_VISITORS];
-	Log logs[MAX_NUMBER_OF_VISITORS];
 
 	size_t logCounter;
 	size_t lastVisitor;
@@ -40,7 +38,6 @@ public:
 	size_t getLastVisitor() const;
 	size_t getLogCounter()const;
 	Visitor getVisitor(size_t index) const;
-	Log getLog(size_t index)const;
 
 	void payToBar(size_t index);
 	void payToRestaurant(size_t index);
@@ -57,7 +54,6 @@ public:
 	void listReservations() const;
 	void listVisitorReservation(const char* id) const;
 
-	void addLog(const String& visitorName);              //adds visitors to log array
 	void exportVisitors(const char* file);               //saves visitors to file
 
 	void display() const;

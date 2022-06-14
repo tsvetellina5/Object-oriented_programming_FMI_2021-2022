@@ -3,10 +3,10 @@
 #pragma warning (disable : 4996)
 using namespace std;
 
-Hotel::Hotel() : name(), address(), logs()
+Hotel::Hotel() : name(), address()
 {
-	count=0;
-	capacity=2;
+	count = 0;
+	capacity = 2;
 	logCounter = 0;
 	reservations = new Reservation * [capacity];
 	allReservations = 0;
@@ -21,11 +21,6 @@ size_t Hotel::getLastVisitor() const
 Visitor Hotel::getVisitor(size_t index) const
 {
 	return visitors[index];
-}
-
-Log Hotel::getLog(size_t index) const
-{
-	return logs[index];
 }
 
 bool Hotel::barStatus(size_t index) const
@@ -87,13 +82,13 @@ void Hotel::copyFrom(const Hotel& other)
 	capacity = other.capacity;
 
 	for (size_t i = 0; i < count; i++)
-	reservations[i] = other.reservations[i]->clone();
+		reservations[i] = other.reservations[i]->clone();
 }
 
 void Hotel::resize()
 {
 	Reservation** newCollection = new Reservation * [capacity *= 2];
-	for (size_t i = 0; i <count; i++)
+	for (size_t i = 0; i < count; i++)
 		newCollection[i] = reservations[i];
 	delete[] reservations;
 	reservations = newCollection;
@@ -231,7 +226,7 @@ void Hotel::listVisitorReservation(const char* id) const
 			reservations[i]->display();
 		}
 	}
-	std::cout<<std::endl;
+	std::cout << std::endl;
 }
 
 Hotel::Hotel(const String& name, const String& address)
@@ -245,17 +240,11 @@ void Hotel::display() const
 	cout << "  Name: " << name << endl << "  Address: " << address << endl << "  Number of visitors: " << lastVisitor << endl;
 }
 
-void Hotel::addLog(const String& data)
-{
-	logs[logCounter].setData(data);
-	logCounter++;
-}
-
 void Hotel::exportVisitors(const char* file) {
 	ofstream output(file);
 
 	for (int i = 0; i < lastVisitor; i++)
-		output <<"Name: "<< visitors[i].getName()<<" ID: "<< visitors[i].getID() << endl;
+		output << "Name: " << visitors[i].getName() << " ID: " << visitors[i].getID() << endl;
 	for (int i = 0; i < count; i++)
 	{
 		String temp(reservations[i]->getID());
