@@ -47,7 +47,7 @@ Animal* Turtle::clone() const
 	return new Turtle(*this);
 }
 
-void Turtle::makeSound() const
+void Turtle::makeSound() const 
 {
 	std::cout << getSound();
 }
