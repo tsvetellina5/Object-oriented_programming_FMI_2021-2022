@@ -7,7 +7,7 @@ NO::NO() :Reservation()
 	paidRestaurant = false;
 }
 
-NO::NO(const String& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
+NO::NO(const Type& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
 	:Reservation(type, days, roomNumber, bedNumber, id), paidBar(false),
 	paidRestaurant(false) {}
 

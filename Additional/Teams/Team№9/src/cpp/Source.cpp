@@ -3,6 +3,17 @@
 using namespace std;
 const int BUFFER_SIZE = 1024;
 
+Reservation::Type stringToType(const String& other)
+{
+	if (other == "UAI")
+		return Reservation::Type::UAI;
+	else if (other == "AI")
+		return Reservation::Type::AI;
+	else if (other == "NO")
+		return Reservation::Type::NO;
+	return Reservation::Type::UNKNOWN;
+}
+
 int main()
 {
 	String name("Duni Royal Resort"), street("Na moreto");
@@ -70,11 +81,13 @@ int main()
 					String type;
 					cin >> type;
 
+					Reservation::Type t = stringToType(type);
+
 					size_t days, room, beds;
 					cout << "days: "; cin >> days;
 					cout << "room: "; cin >> room;
 					cout << "beds: "; cin >> beds;
-					a.addReservation(id, type, days, room, beds);
+					a.addReservation(id, t, days, room, beds);
 					continue;
 				}
 

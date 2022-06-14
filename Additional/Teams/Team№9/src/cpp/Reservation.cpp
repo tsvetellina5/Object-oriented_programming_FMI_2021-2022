@@ -7,9 +7,10 @@ Reservation::Reservation()
 	roomNumber = 0;
 	bedNumber = 0;
 	price = 0;
+	type = UNKNOWN;
 }
 
-Reservation::Reservation(const String& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
+Reservation::Reservation(/*const String&*/const Type& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
 {
 	this->type = type;
 	this->days = days;
@@ -17,7 +18,7 @@ Reservation::Reservation(const String& type, size_t days, size_t roomNumber, siz
 	this->bedNumber = bedNumber;
 }
 
-void Reservation::setType(const String& type)
+void Reservation::setType(/*const String&*/const Type& type)
 {
 	this->type = type;
 }
@@ -42,7 +43,7 @@ void Reservation::setPrice(double price)
 	this->price = price;
 }
 
-const String& Reservation::getType() const
+const Reservation::Type& Reservation::getType() const
 {
 	return type;
 }

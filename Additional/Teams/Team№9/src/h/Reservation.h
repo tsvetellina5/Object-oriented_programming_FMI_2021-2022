@@ -4,8 +4,16 @@
 
 class Reservation
 {
+public:
+	enum Type
+	{
+		UAI,
+		AI,
+		NO,
+		UNKNOWN
+	}type;
 protected:
-	String type;
+	//String type;
 	String id;
 	size_t days;
 	size_t roomNumber;
@@ -14,15 +22,15 @@ protected:
 
 public:
 	Reservation();
-	Reservation(const String& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id);
+	Reservation(/*const String&*/const Type& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id);
 
-	void setType(const String& type);
+	void setType(/*const String&*/const Type& type);
 	void setDays(size_t days);
 	void setRoomNumber(size_t roomNumber);
 	void setBedNumber(size_t bedNumber);
 	void setPrice(double price);
 
-	const String& getType() const;
+	/*const String&*/const Type& getType() const;
 	const String& getID() const;
 	size_t getDays() const;
 	size_t getRoomNumber() const;

@@ -6,7 +6,7 @@ AI::AI() :Reservation()
 	paidBar = false;
 }
 
-AI::AI(const String& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
+AI::AI(const Type& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
 	: Reservation(type, days, roomNumber, bedNumber, id) {
 	paidBar = false;
 }

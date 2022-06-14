@@ -113,7 +113,7 @@ void Hotel::deleteVisitor(const char* id)
 	}
 }
 
-void Hotel::addReservation(const char* id, const String& type, size_t days, size_t room, size_t beds)
+void Hotel::addReservation(const char* id, /*const String&*/const Reservation::Type& type, size_t days, size_t room, size_t beds)
 {
 	allReservations++;
 	int index = 0;
@@ -137,7 +137,7 @@ void Hotel::addReservation(const char* id, const String& type, size_t days, size
 	if (count == capacity)
 		resize();
 
-	if (type.compare("AI"))
+	if (/*type.compare("AI")*/type==Reservation::Type::AI)
 	{
 		AI a(type, days, room, beds, id);
 
@@ -145,7 +145,7 @@ void Hotel::addReservation(const char* id, const String& type, size_t days, size
 		cout << "All inclusive reservation successfully added!" << endl;
 	}
 
-	if (type.compare("UAI"))
+	if (/*type.compare("UAI")*/type == Reservation::Type::UAI)
 	{
 		UAI b(type, days, room, beds, id);
 
@@ -153,7 +153,7 @@ void Hotel::addReservation(const char* id, const String& type, size_t days, size
 		cout << "Ultra all inclusive reservation successfully added!" << endl;
 	}
 
-	if (type.compare("NO"))
+	if (/*type.compare("NO")*/type == Reservation::Type::NO)
 	{
 		NO c(type, days, room, beds, id);
 

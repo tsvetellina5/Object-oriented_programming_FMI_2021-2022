@@ -44,7 +44,7 @@ public:
 
 	void addVisitor(const char* id, const String& name);
 	void deleteVisitor(const char* id);
-	void addReservation(const char* id, const String& type, size_t days, size_t room, size_t beds);
+	void addReservation(const char* id, /*const String&*/const Reservation::Type& type, size_t days, size_t room, size_t beds);
 	bool deleteReservation(size_t index);
 
 	void listVisitors() const;

@@ -3,7 +3,7 @@
 
 UAI::UAI() :Reservation() {}
 
-UAI::UAI(const String& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
+UAI::UAI(const Type& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
 	: Reservation(type, days, roomNumber, bedNumber, id) {}
 
 void UAI::display() const
