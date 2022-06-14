@@ -44,14 +44,14 @@ template <class T>
 Array <T>::Array(unsigned int n) {
 	size = n;
 	capacity = n;
-	data = new T(n);
+	data = new T[n];
 }
 
 template <class T>
 Array<T>::Array(unsigned int n, const T& other) {
 	size = n;
 	capacity = n;
-	data = new T(n);
+	data = new T[n];
 	for (int i = 0; i < n; i++)
 		data[i] = other;
 }
@@ -65,7 +65,7 @@ template <class T>
 void Array<T>::copy(const Array<T>& other) {
 	size = other.size;
 	capacity = other.capacity;
-	data = new T(other.size);
+	data = new T[other.size];
 	for (int i = 0; i < other.size; i++)
 		data[i] = other[i];
 }
