@@ -14,7 +14,7 @@ Turtle::Turtle()
 	setFacts();
 }
 
-Turtle::Turtle(String name)
+Turtle::Turtle(const String& name)
 {
 	weightType = MEDIUM;
 	consumerType = OMNIVORE;
