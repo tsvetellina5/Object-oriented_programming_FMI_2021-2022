@@ -18,10 +18,10 @@ public:
 	String& operator+=(const String&);
 	String& operator+=(const char*);
 	String& operator+=(const char);
-	char operator[](size_t) const;
+	char operator[](const size_t) const;
 	bool operator==(const char*) const;
 
-	double transformToNum();
+	double transformToNum() const;
 	char* getStr() const;
 	size_t getSize() const;
 
