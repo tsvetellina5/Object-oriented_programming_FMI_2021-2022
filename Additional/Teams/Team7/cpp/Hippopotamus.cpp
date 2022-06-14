@@ -47,7 +47,7 @@ Animal* Hippopotamus::clone() const
 	return new Hippopotamus(*this);
 }
 
-void Hippopotamus::makeSound()
+void Hippopotamus::makeSound() const
 {
 	std::cout << getSound();
 }
