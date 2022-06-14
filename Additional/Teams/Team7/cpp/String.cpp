@@ -86,7 +86,7 @@ String& String::operator+=(const char* str)
 	return *this;
 }
 
-char String::operator[](size_t pos) const
+char String::operator[](const size_t pos) const
 {
 	if (pos > size || pos < 0)
 		throw "Incorrect size";
@@ -109,7 +109,7 @@ char* String::getStr() const
 	return str;
 }
 
-double String::transformToNum()
+double String::transformToNum() const
 {
 	double num = 0;
 	size_t index = getSize() - 1;
