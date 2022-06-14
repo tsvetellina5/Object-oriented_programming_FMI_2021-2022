@@ -46,7 +46,7 @@ Animal* Penguin::clone() const
 	return new Penguin(*this);
 }
 
-void Penguin::makeSound()
+void Penguin::makeSound() const
 {
 	std::cout << getSound();
 }
