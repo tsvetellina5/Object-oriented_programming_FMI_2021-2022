@@ -7,7 +7,7 @@
 диаграма:
 -
 
-![App Screenshot](https://cdn.discordapp.com/attachments/979669866384617485/985558087517749278/UML_class_2.png)
+![App Screenshot](https://discord.com/channels/800810096799121498/975473265780854804/986199116256256050)
 
 
 Да се състави базов клас Аnimal, който да притежава следните член данни:
