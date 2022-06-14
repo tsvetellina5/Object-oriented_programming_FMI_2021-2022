@@ -10,7 +10,7 @@ private:
 	Array<String*> log;
 
 public:
-	Zoopark();
+	Zoopark(const String&);
 
 	void clean();
 	bool feed();
@@ -19,9 +19,9 @@ public:
 	void printCommands() const;
 	bool printFacts() const;
 	bool removeAnimal();
-	void printAll();
+	void printAll() const;
 	void listLog() const;
-	bool saveLogToFile();
+	bool saveLogToFile() const;
 private:
 	void addTurtle();
 	void addPenguin();
