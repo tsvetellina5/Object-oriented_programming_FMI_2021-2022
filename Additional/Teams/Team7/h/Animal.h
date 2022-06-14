@@ -36,6 +36,6 @@ public:
 
 	virtual bool setFacts() = 0;
 	virtual Animal* clone() const = 0;
-	virtual void makeSound() = 0;
+	virtual void makeSound() const = 0;
 	virtual void print() const = 0;
 };
