@@ -11,6 +11,6 @@ public:
 
 	bool setFacts() override;
 	Animal* clone() const override;
-	void makeSound() override;
+	void makeSound() const override;
 	void print() const override;
 };
