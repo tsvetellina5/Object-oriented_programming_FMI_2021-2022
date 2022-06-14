@@ -88,7 +88,7 @@ String& String::operator+=(const char* str)
 
 char String::operator[](size_t pos) const
 {
-	if (pos > size || pos <= 0)
+	if (pos > size || pos < 0)
 		throw "Incorrect size";
 	return str[pos];
 }
