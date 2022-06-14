@@ -7,7 +7,7 @@ class Turtle : public Animal
 {
 public:
 	Turtle();
-	Turtle(String);
+	Turtle(const String&);
 
 	bool setFacts() override;
 	Animal* clone() const  override;
