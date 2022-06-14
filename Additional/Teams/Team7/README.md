@@ -7,7 +7,7 @@
 диаграма:
 -
 
-![App Screenshot](https://discord.com/channels/800810096799121498/975473265780854804/986199116256256050)
+![image](https://user-images.githubusercontent.com/79370130/173543610-5a1b9738-3f11-448c-97f9-6db2a5b7656c.png)
 
 
 Да се състави базов клас Аnimal, който да притежава следните член данни:
