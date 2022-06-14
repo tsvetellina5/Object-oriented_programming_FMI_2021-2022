@@ -4,7 +4,7 @@
 UAI::UAI() :Reservation() {}
 
 UAI::UAI(const String& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
-	: Reservation(type, days, roomNumber, bedNumber,id) {}
+	: Reservation(type, days, roomNumber, bedNumber, id) {}
 
 void UAI::display() const
 {
@@ -26,7 +26,7 @@ Reservation* UAI::clone() const
 	return new UAI(*this);
 }
 
-void UAI::payForBar() 
+void UAI::payForBar()
 {
 	std::cout << "Bar is paid!" << std::endl;
 }

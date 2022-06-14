@@ -6,7 +6,7 @@ const int BUFFER_SIZE = 1024;
 int main()
 {
 	String name("Duni Royal Resort"), street("Na moreto");
-	Hotel a(name,street);
+	Hotel a(name, street);
 	while (true) {
 		cout << "Write one of the following commands and press enter: \n 1.Edit \n 2.List \n 3.Save \n 4.Display \n 5.Action \n 6.Quit \n";
 		size_t command;
@@ -25,7 +25,7 @@ int main()
 			{
 				cout << "Write one of the following commands and press enter: \n   1.Add new visitor\n   2.Delete visitor\n";
 				size_t second;
-				cin>>second;
+				cin >> second;
 				cin.ignore();
 
 				if (1 == second)
@@ -119,12 +119,12 @@ int main()
 				a.listVisitorReservation(id);
 				continue;
 			}
-			
+
 		}
 
 		else if (3 == command)
 		{
-		cout << "Write file name: ";
+			cout << "Write file name: ";
 			char buff[BUFFER_SIZE];
 			cin.getline(buff, BUFFER_SIZE);
 
@@ -141,14 +141,14 @@ int main()
 
 		else if (5 == command)
 		{
-		cout << "Index of reservation: ";
+			cout << "Index of reservation: ";
 			size_t index;
 			cin >> index;
 			cin.ignore();
 
 			cout << "Status for bar: ";
 			cout << boolalpha << a.barStatus(index - 1);
-			cout<<endl;
+			cout << endl;
 			cout << "Status for restaurant: ";
 			cout << boolalpha << a.restaurantStatus(index - 1);
 			cout << endl;
@@ -175,7 +175,7 @@ int main()
 		}
 		else if (6 == command)
 		{
-		return 0;
+			return 0;
 		}
 	}
 	return 0;

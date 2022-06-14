@@ -4,6 +4,7 @@
 #include "NO.h"
 #include "AI.h"
 #include "UAI.h"
+#include "Vector.h"
 const int MAX_NUMBER_OF_VISITORS = 200;
 
 class Hotel
@@ -28,15 +29,11 @@ public:
 private:
 	String name;
 	String address;
-	Visitor visitors[MAX_NUMBER_OF_VISITORS];
+	Vector <Visitor>visitors;
 
-	size_t logCounter;
-	size_t lastVisitor;
 	size_t allReservations;
 
 public:
-	size_t getLastVisitor() const;
-	size_t getLogCounter()const;
 	Visitor getVisitor(size_t index) const;
 
 	void payToBar(size_t index);

@@ -1,7 +1,7 @@
 #pragma once
 #include "Reservation.h"
 
-class AI:public Reservation
+class AI :public Reservation
 {
 private:
 	bool paidBar;

@@ -8,8 +8,8 @@ NO::NO() :Reservation()
 }
 
 NO::NO(const String& type, size_t days, size_t roomNumber, size_t bedNumber, const String& id)
-	:Reservation(type, days, roomNumber, bedNumber, id) ,paidBar(false),
-	paidRestaurant(false){}
+	:Reservation(type, days, roomNumber, bedNumber, id), paidBar(false),
+	paidRestaurant(false) {}
 
 void NO::display() const
 {
@@ -31,7 +31,7 @@ Reservation* NO::clone() const
 	return new NO(*this);
 }
 
-void NO::payForBar() 
+void NO::payForBar()
 {
 	paidBar = true;
 	std::cout << "You succesfully paid for bar!" << std::endl;

@@ -7,15 +7,8 @@ Hotel::Hotel() : name(), address()
 {
 	count = 0;
 	capacity = 2;
-	logCounter = 0;
 	reservations = new Reservation * [capacity];
 	allReservations = 0;
-	lastVisitor = 0;
-}
-
-size_t Hotel::getLastVisitor() const
-{
-	return lastVisitor;
 }
 
 Visitor Hotel::getVisitor(size_t index) const
@@ -43,14 +36,9 @@ void Hotel::payToRestaurant(size_t index)
 	reservations[index]->payForRestaurant();
 }
 
-size_t Hotel::getLogCounter() const
-{
-	return logCounter;
-}
-
 void Hotel::addVisitor(const char* id, const String& name)
 {
-	if (lastVisitor <= MAX_NUMBER_OF_VISITORS)
+	if (visitors.getSize() < MAX_NUMBER_OF_VISITORS)
 	{
 		int index = 0;
 		int number = 0;
@@ -59,10 +47,8 @@ void Hotel::addVisitor(const char* id, const String& name)
 			number *= 10;
 			number += (id[index++] - '0');
 		}
-		visitors[lastVisitor].setID(number);
-		visitors[lastVisitor].setName(name);
-
-		lastVisitor++;
+		Visitor temp(id, name);
+		visitors.pushBack(temp);
 	}
 	else
 		cout << "Hotel is full" << endl;
@@ -117,18 +103,14 @@ Hotel::~Hotel()
 void Hotel::deleteVisitor(const char* id)
 {
 	String temp(id);
-	size_t index = 0;
-	for (size_t i = 0; i < lastVisitor; i++)
+	for (size_t i = 0; i < visitors.getSize(); i++)
 	{
 		if (temp.compare(visitors[i].getID()))
 		{
-			index = i;
+			visitors.popAt(i);
 			break;
 		}
 	}
-	visitors[index].setID(visitors[lastVisitor].getID());
-	visitors[index].setName(visitors[lastVisitor].getName());
-	lastVisitor--;
 }
 
 void Hotel::addReservation(const char* id, const String& type, size_t days, size_t room, size_t beds)
@@ -143,7 +125,7 @@ void Hotel::addReservation(const char* id, const String& type, size_t days, size
 	}
 
 	size_t current = 0;
-	for (int i = 0; i < lastVisitor; i++)
+	for (int i = 0; i < visitors.getSize(); i++)
 	{
 		if (number == visitors[i].getID())
 		{
@@ -202,10 +184,11 @@ bool Hotel::deleteReservation(size_t index)
 
 void Hotel::listVisitors() const
 {
-	for (int i = 0; i < lastVisitor; i++)
+	for (int i = 0; i < visitors.getSize(); i++)
 	{
-		cout << " Name: " << visitors[i].getName() << " ID: " << visitors[i].getID() << endl;
+		cout << "Name: " << visitors[i].getName() << " ID: " << visitors[i].getID() << endl;
 	}
+	cout << endl;
 }
 
 void Hotel::listReservations() const
@@ -237,13 +220,14 @@ Hotel::Hotel(const String& name, const String& address)
 
 void Hotel::display() const
 {
-	cout << "  Name: " << name << endl << "  Address: " << address << endl << "  Number of visitors: " << lastVisitor << endl;
+	cout << "Name: " << name << endl << "Address: " << address << endl << "Number of visitors: " << visitors.getSize() << endl;
+	cout << endl;
 }
 
 void Hotel::exportVisitors(const char* file) {
 	ofstream output(file);
 
-	for (int i = 0; i < lastVisitor; i++)
+	for (int i = 0; i < visitors.getSize(); i++)
 		output << "Name: " << visitors[i].getName() << " ID: " << visitors[i].getID() << endl;
 	for (int i = 0; i < count; i++)
 	{

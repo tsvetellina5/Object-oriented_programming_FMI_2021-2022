@@ -13,7 +13,7 @@ AI::AI(const String& type, size_t days, size_t roomNumber, size_t bedNumber, con
 
 void AI::display() const
 {
-	std::cout << "All inclusive reservation for " << days << " days in room " << roomNumber << " with " << bedNumber << " beds for " << bedNumber*days*100 << "$." << std::endl;
+	std::cout << "All inclusive reservation for " << days << " days in room " << roomNumber << " with " << bedNumber << " beds for " << bedNumber * days * 100 << "$." << std::endl;
 }
 
 bool AI::goToRestaurant() const
@@ -36,7 +36,7 @@ Reservation* AI::clone() const
 	return new AI(*this);
 }
 
-void AI::payForRestaurant() 
+void AI::payForRestaurant()
 {
 	std::cout << "Restaurant is paid!" << std::endl;
 }
