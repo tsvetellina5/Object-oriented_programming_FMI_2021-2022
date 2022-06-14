@@ -56,6 +56,6 @@ public:
 	void inputIngredients(IngredientList& ingredients); // !! A function to take user input for the ingredients list
 	// to be used inside the menu
     bool isLowerCase(char s);
-    void toUpperCase(char s);
+    void toUpperCase(char& s);
 
 #endif

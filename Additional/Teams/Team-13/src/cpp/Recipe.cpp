@@ -38,7 +38,7 @@ void Recipe::setName(const MyString& name)
 	if (name.c_str() != nullptr && name.getSize() > 0 && name.getSize() < 40)
 	{
 		this->name = name;
-		if (!isLowerCase(this->name[0]))
+		if (isLowerCase(this->name[0]))
 			toUpperCase(this->name[0]);
 		return;
 	}
@@ -192,6 +192,6 @@ void inputIngredients(IngredientList& ingredients)
 bool isLowerCase(char s) {
     return s >= 'a' && s <= 'z';
 }
-void toUpperCase(char s) {
+void toUpperCase(char& s) {
     s -= 32;
 }

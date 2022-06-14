@@ -332,7 +332,7 @@ void removeRecipe(MyString& user, MyString& pass) {
 void printRecipe() {
 	cout << "Here are all the recipes we can offer you." << endl;
 	cout << "Choose wisely!" << endl;
-	cout << "(Although everything in here is an addition that shouldn't be missed out on!)";
+	cout << "(Although everything in here is an addition that shouldn't be missed out on!)" << endl;
 	recipebook.printAll();
 }
 
