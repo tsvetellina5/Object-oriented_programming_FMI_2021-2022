@@ -13,15 +13,15 @@ public:
 	Zoopark(const String&);
 
 	void clean();
-	bool feed();
-	bool addAnimal();
+	bool feed(const String&);
+	bool addAnimal(const String&);
 	void menu();
 	void printCommands() const;
-	bool printFacts() const;
-	bool removeAnimal();
-	void printAll() const;
+	bool printFacts(const String&) const;
+	bool removeAnimal(const String&);
+	void printAll();
 	void listLog() const;
-	bool saveLogToFile() const;
+	bool saveLogToFile();
 private:
 	void addTurtle();
 	void addPenguin();
