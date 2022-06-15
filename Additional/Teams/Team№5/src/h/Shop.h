@@ -12,8 +12,8 @@ private:
 public:
 	Shop();
 
-	String getName() const;
-	String getAddress() const;
+	const String& getName() const;
+	consr String& getAddress() const;
 	double getProfit() const;
 
 	void setName(const String&);
