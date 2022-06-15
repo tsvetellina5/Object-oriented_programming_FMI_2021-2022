@@ -5,12 +5,13 @@
 -наследяващи класове: Motherboard, CPU, GPU, RAM
 
 Поддържани операции:
-
- -print
- 
- -buy Motherboard *manufacturer* *model* *price* *socket* *RamType*
- 
-  -купуване на Дънна платка
+-
+-print
+-принтиране на компоненти
+-
+-buy Motherboard *manufacturer* *model* *price* *socket* *RamType*
+-
+-купуване на Дънна платка
   
   
  -buy CPU *manufacturer* *model* *price* *socket* *cores*
@@ -51,3 +52,6 @@
 
 ![image](https://user-images.githubusercontent.com/16359914/173884389-abceaf82-347b-4b3b-a31c-ac90ede13710.png)
 
+Repository за проекта:
+-
+- https://github.com/ceco27/Team-8-Project
