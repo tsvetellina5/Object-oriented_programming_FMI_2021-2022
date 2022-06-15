@@ -96,7 +96,7 @@ void String::getLine(std::istream& outFile)
 }
 char String::operator[](const size_t index)
 {
-	if (index < 0 || index >= size)
+	if (index >= size)
 		throw "Invalid index";
 
 	return str[index];
