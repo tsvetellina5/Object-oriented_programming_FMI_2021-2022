@@ -30,7 +30,11 @@
  
  -*price* е нецяло число
  
- -*cores*, *mideoMemory*, *memoryCapacity* са цели числа
+ -*cores*, *videoMemory*, *memoryCapacity* са цели числа
+ 
+ -*socket* може да бъде "AM4", "AM5", "LGA1151", "LGA1200"
+ 
+ -*ramType* може да бъде "DDR4", "DDR5"
  
  
 ![image](https://user-images.githubusercontent.com/16359914/173884389-abceaf82-347b-4b3b-a31c-ac90ede13710.png)
