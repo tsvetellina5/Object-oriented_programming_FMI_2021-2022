@@ -32,9 +32,12 @@ public:
 	size_t getSize() const;
 	Organism* getSpeciesAt(const size_t) const;
 
+	bool addFaunaFromUserInput();
+	bool addFloraFromUserInput();
+	bool addFungiFromUserInput();
+
 private:
 	void copy(const RedBook&);
 	void free();
 	void resize();
 };
-

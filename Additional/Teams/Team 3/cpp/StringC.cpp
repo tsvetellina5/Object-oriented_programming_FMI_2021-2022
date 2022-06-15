@@ -1,4 +1,4 @@
-﻿#include "C:\Users\tswet\OneDrive\Documents\ФМИ\Object-oriented_programming_FMI_2021-2022\Additional\Teams\Team 3\h\StringC.h"
+﻿#include "StringC.h"
 
 void StringC::copy(const StringC& other)
 {

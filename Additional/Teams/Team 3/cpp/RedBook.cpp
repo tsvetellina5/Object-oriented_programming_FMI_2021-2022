@@ -1,4 +1,4 @@
-﻿#include "C:\Users\tswet\OneDrive\Documents\ФМИ\Object-oriented_programming_FMI_2021-2022\Additional\Teams\Team 3\h\RedBook.h"
+﻿#include "RedBook.h"
 
 void RedBook::copy(const RedBook& other) {
 	size = other.size;
@@ -164,4 +164,160 @@ Organism* RedBook::getSpeciesAt(const size_t index) const
 		return nullptr;
 	}
 	return list[index]->clone();
+}
+
+bool RedBook::addFaunaFromUserInput()
+{
+	StringC name, habitat, consLvL, con;
+	int lifespan, consoleConsLvl, habNum;
+	bool isPredator;
+
+	std::cout << "    name:";
+	std::cin >> name;
+	std::cout << "    lifespan:";
+	std::cin >> lifespan;
+	std::cout << "    habitats count:";
+	std::cin >> habNum;
+	std::cin.ignore();
+
+	if (habNum <= 0)
+	{
+		std::cout << "Habitats have to be at least one." << std::endl;
+		return false;
+	}
+
+	Vector<StringC> habitats;
+
+	for (size_t i = 0; i < habNum; i++)
+	{
+		std::cout << "\t >";
+		habitat.getline(std::cin);
+		habitats.pushBack(habitat);
+	}
+	
+	std::cout << "    conservation lvl (from 0 to 6):";
+	std::cin >> consoleConsLvl;
+
+	switch (consoleConsLvl)
+	{
+	case 0: consLvL = "least concern"; break;
+	case 1: consLvL = "near threatened"; break;
+	case 2: consLvL = "vulnerable"; break;
+	case 3: consLvL = "endangered"; break;
+	case 4: consLvL = "critically endangered"; break;
+	case 5: consLvL = "extinct in the wild"; break;
+	case 6: consLvL = "extinct"; break;
+	default: consLvL = "unknown";
+	}
+
+	std::cout << "    is it predator (yes or no):";
+	std::cin >> con;
+	std::cin.ignore();
+
+	isPredator = con == "yes";
+
+	Fauna f(name, lifespan, habitats, consLvL, isPredator);
+	return addOrganism(f);
+}
+
+bool RedBook::addFloraFromUserInput()
+{
+	StringC name, habitat, consLvL, con;
+	int lifespan, consoleConsLvl, habNum;
+
+	std::cout << "    name:";
+	std::cin >> name;
+	std::cout << "    lifespan:";
+	std::cin >> lifespan;
+	std::cout << "    habitats count:";
+	std::cin >> habNum;
+	std::cin.ignore();
+
+	if (habNum <= 0)
+	{
+		std::cout << "Habitats have to be at least one." << std::endl;
+		return false;
+	}
+
+	Vector<StringC> habitats;
+
+	for (size_t i = 0; i < habNum; i++)
+	{
+		std::cout << "\t >";
+		habitat.getline(std::cin);
+		habitats.pushBack(habitat);
+	}
+
+	std::cout << "    conservation lvl (from 0 to 6):";
+	std::cin >> consoleConsLvl;
+	std::cin.ignore();
+
+	switch (consoleConsLvl)
+	{
+	case 0: consLvL = "least concern"; break;
+	case 1: consLvL = "near threatened"; break;
+	case 2: consLvL = "vulnerable"; break;
+	case 3: consLvL = "endangered"; break;
+	case 4: consLvL = "critically endangered"; break;
+	case 5: consLvL = "extinct in the wild"; break;
+	case 6: consLvL = "extinct"; break;
+	default: consLvL = "unknown";
+	}
+
+	Flora f(name, lifespan, habitats, consLvL);
+	return addOrganism(f);
+}
+
+bool RedBook::addFungiFromUserInput()
+{
+	StringC name, habitat, consLvL, con;
+	int lifespan, consoleConsLvl, habNum;
+	bool isPoisonous;
+
+	std::cout << "    name:";
+	std::cin >> name;
+	std::cout << "    lifespan:";
+	std::cin >> lifespan;
+	std::cout << "    habitats count:";
+	std::cin >> habNum;
+	std::cin.ignore();
+
+	if (habNum <= 0)
+	{
+		std::cout << "Habitats have to be at least one." << std::endl;
+		return false;
+	}
+
+	Vector<StringC> tempVec;
+
+	for (size_t i = 0; i < habNum; i++)
+	{
+		std::cout << "\t >";
+		habitat.getline(std::cin);
+		tempVec.pushBack(habitat);
+	}
+
+	std::cout << "    conservation lvl (from 0 to 6):";
+	std::cin >> consoleConsLvl;
+
+	switch (consoleConsLvl)
+	{
+	case 0: consLvL = "least concern"; break;
+	case 1: consLvL = "near threatened"; break;
+	case 2: consLvL = "vulnerable"; break;
+	case 3: consLvL = "endangered"; break;
+	case 4: consLvL = "critically endangered"; break;
+	case 5: consLvL = "extinct in the wild"; break;
+	case 6: consLvL = "extinct"; break;
+	default: consLvL = "unknown";
+	}
+
+	std::cout << "    is it poisonous (yes or no):";
+	std::cin >> con;
+	std::cin.ignore();
+
+	isPoisonous = con == "yes";
+
+	Fungi f(name, lifespan, tempVec, consLvL, isPoisonous);
+	return addOrganism(f);
 }

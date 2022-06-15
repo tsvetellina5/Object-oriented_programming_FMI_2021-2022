@@ -1,4 +1,4 @@
-﻿#include "C:\Users\tswet\OneDrive\Documents\ФМИ\Object-oriented_programming_FMI_2021-2022\Additional\Teams\Team 3\h\Organism.h"
+﻿#include "Organism.h"
 
 const StringC Organism::LEVELS[8] = { "least concern", "near threatened", "vulnerable", "endangered", "critically endangered",
 								"extinct in the wild", "extinct", "unknown" };
