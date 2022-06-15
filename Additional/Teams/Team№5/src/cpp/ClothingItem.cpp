@@ -96,7 +96,7 @@ ClothingItem::Size ClothingItem::getSize() const
 	return size;
 }
 
-String ClothingItem::getName() const
+const String& ClothingItem::getName() const
 {
 	return name;
 }

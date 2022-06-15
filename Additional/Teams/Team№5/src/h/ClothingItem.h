@@ -38,13 +38,13 @@ public:
 	void setPrice(const double);
 	void setNumAvailable(const size_t);
 	void setGender(const char&);
-	void setSize(const String);
+	void setSize(const String&);
 
 	virtual Type getType() const;
 	Gender getGender() const;
 	Size getSize() const;
 
-	String getName() const;
+	const String& getName() const;
 	double getPrice() const;
 	size_t getNumAvailable() const;
 
