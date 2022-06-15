@@ -33,12 +33,12 @@ ClothingContainer::~ClothingContainer()
 	free();
 }
 
-double ClothingContainer::getPrice(size_t index)
+double ClothingContainer::getPrice(size_t index) const
 {
 	return container[index]->getPrice();
 }
 
-void ClothingContainer::AddClothingItem(ClothingItem& item)
+void ClothingContainer::addClothingItem(ClothingItem& item) const
 {
 	if (size >= capacity)
 	{
@@ -57,7 +57,7 @@ void ClothingContainer::AddClothingItem(ClothingItem& item)
 	container[size++] = item.clone();
 }
 
-bool ClothingContainer::DeleteClothingItem(size_t index)
+bool ClothingContainer::deleteClothingItem(size_t index) const
 {
 	if (index >= size)
 	{
@@ -85,7 +85,7 @@ bool ClothingContainer::DeleteClothingItem(size_t index)
 	return true;
 }
 
-void ClothingContainer::ListAvailableItems()
+void ClothingContainer::listAvailableItems() const
 {
 	for (size_t i = 0; i < size; i++)
 	{
@@ -93,7 +93,7 @@ void ClothingContainer::ListAvailableItems()
 	}
 }
 
-void ClothingContainer::ListSoldItems()
+void ClothingContainer::listSoldItems() const
 {
 	for (size_t i = 0; i < logSize; i++)
 	{
@@ -101,7 +101,7 @@ void ClothingContainer::ListSoldItems()
 	}
 }
 
-void ClothingContainer::ExportSoldLog()
+void ClothingContainer::exportSoldLog() const
 {
 	std::ofstream writeFile("logFile.txt", std::ios::app);
 	for (size_t i = 0; i < logSize; i++)

@@ -8,11 +8,11 @@ Shop::Shop()
 	profit = 0;
 
 }
-String Shop::getName() const
+const String& Shop::getName() const
 {
 	return shopName;
 }
-String Shop::getAddress() const
+const String& Shop::getAddress() const
 {
 	return address;
 }

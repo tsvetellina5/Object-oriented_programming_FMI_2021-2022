@@ -13,7 +13,7 @@ public:
 	Shop();
 
 	const String& getName() const;
-	consr String& getAddress() const;
+	const String& getAddress() const;
 	double getProfit() const;
 
 	void setName(const String&);
