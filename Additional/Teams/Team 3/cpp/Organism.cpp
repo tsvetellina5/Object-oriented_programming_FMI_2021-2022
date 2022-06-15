@@ -1,11 +1,12 @@
-#include "Organism.h"
+﻿#include "C:\Users\tswet\OneDrive\Documents\ФМИ\Object-oriented_programming_FMI_2021-2022\Additional\Teams\Team 3\h\Organism.h"
 
-const StringC Organism::LEVELS[7] = { "least concern", "near threatened", "vulnerable", "endangered", "critically endangered",
-								"extinct in the wild", "extinct" };
+const StringC Organism::LEVELS[8] = { "least concern", "near threatened", "vulnerable", "endangered", "critically endangered",
+								"extinct in the wild", "extinct", "unknown" };
 
 Organism::Organism()
 {
-	conservationLevel = 0;
+	consLevel = (conservationLevel)0;
+
 	time(&lastLevelChange);
 
 	speciesName = "";
@@ -23,20 +24,31 @@ Organism::Organism(const StringC& name, double lifeSpan, const Vector<StringC>& 
 	time(&lastLevelChange);
 }
 
-bool Organism::setConservationLevel(const StringC& consLevel)
+Organism::conservationLevel Organism::convertStrToEnum(const StringC& str)
 {
-	for (int i = 0; i < 7; i++)
-	{
-		if (LEVELS[i] == consLevel)
-		{
-			conservationLevel = i;
-			time(&lastLevelChange);
-			return true;
-		}
-	}
+	if (str == "least concern")
+		return conservationLevel::leastConcern;
+	if (str == "near threatened")
+		return conservationLevel::nearThreatened;
+	if (str == "vulnerable")
+		return conservationLevel::vulnerable;
+	if (str == "endangered")
+		return conservationLevel::endangered;
+	if (str == "critically endangered")
+		return conservationLevel::criticallyEndangered;
+	if (str == "extinct in the wild")
+		return conservationLevel::extinctInTheWild;
+	if (str == "extinct")
+		return conservationLevel::extinct;
 
-	return false;
+	return conservationLevel::unknown;
 }
+
+void Organism::setConservationLevel(const StringC& consLevel)
+{
+	this->consLevel = convertStrToEnum(consLevel);
+}
+
 void Organism::setHabitats()
 {
 	std::cout << "Number of habitats: ";
@@ -55,37 +67,48 @@ void Organism::setHabitats()
 	}
 }
 
+void Organism::addHabitat(const StringC& newHabitat)
+{
+	habitats.pushBack(newHabitat);
+}
+
+bool Organism::removeHabitat(const StringC& remHabitat)
+{
+	for (size_t i = 0; i < habitats.getSize(); i++)
+	{
+		if (habitats.At(i) == remHabitat)
+		{
+			habitats.popAt(i);
+			return true;
+		}
+	}
+	return false;
+}
+
 void Organism::printHabitats() const
 {
 	for (int i = 0; i < habitats.getSize(); i++)
-	{
 		std::cout << habitats[i] << std::endl;
-	}
 }
 
 void Organism::print() const
 {
 	std::cout << "Species name: " << speciesName << std::endl;
-	std::cout << "Conservation level: " << LEVELS[conservationLevel] << std::endl;
+	std::cout << "Conservation level: " << LEVELS[(int)consLevel] << std::endl;
 	std::cout << "Last conservation level change: " << ctime(&lastLevelChange);
 	std::cout << "Average lifespan (in years): " << lifeSpan << std::endl;
 	std::cout << "Habitats: " << std::endl;
 	printHabitats();
 }
 
-StringC Organism::getName() const
+const StringC& Organism::getName() const
 {
 	return speciesName;
 }
 
-int Organism::getConservationLevel() const
+const StringC& Organism::getConservationLevel() const
 {
-	return conservationLevel;
-}
-
-StringC Organism::getConservationLevelStr() const
-{
-	return LEVELS[conservationLevel];
+	return LEVELS[(int)consLevel];
 }
 
 double Organism::getLifeSpan() const

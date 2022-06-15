@@ -23,6 +23,7 @@ public:
 	void pushBack(T&& n);
 	void pushAt(const T&, const size_t);
 	void pushAt(T&&, const size_t);
+	T& At(const size_t) const;
 	T& popBack();
 	T& popAt(const size_t);
 	T& operator[](const size_t);
@@ -131,6 +132,14 @@ void Vector<T>::pushAt(T&& element, const size_t index) {
 
 	data[index] = element;
 	size++;
+}
+
+template <typename T>
+T& Vector<T>::At(const size_t index) const
+{
+	if (index < 0 || index >= size)
+		throw "Invalid index";
+	return data[index];
 }
 
 template <typename T>

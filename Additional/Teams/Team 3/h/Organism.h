@@ -9,10 +9,21 @@
 class Organism
 {
 protected:
-	static const StringC LEVELS[7];
+	static const StringC LEVELS[8];
+
+	enum class conservationLevel
+	{
+		leastConcern = 0,
+		nearThreatened,
+		vulnerable,
+		endangered,
+		criticallyEndangered,
+		extinctInTheWild,
+		extinct,
+		unknown
+	} consLevel;
 	
 	time_t lastLevelChange;
-	int conservationLevel;
 
 	StringC speciesName;
 	double lifeSpan;
@@ -22,16 +33,20 @@ public:
 	Organism();
 	Organism(const StringC&, double, const Vector<StringC>&, const StringC&);
 
-	bool setConservationLevel(const StringC&);
+	void setConservationLevel(const StringC&);
 	void setHabitats();
+
+	void addHabitat(const StringC&);
+	bool removeHabitat(const StringC&);
 
 	void printHabitats() const;
 	virtual void print() const;
 
-	StringC getName() const;
-	int getConservationLevel() const;
-	StringC getConservationLevelStr() const;
+	const StringC& getName() const;
+	const StringC& getConservationLevel() const;
 	double getLifeSpan() const;
+
+	conservationLevel convertStrToEnum(const StringC&);
 
 	virtual Organism* clone() const = 0;
 	virtual ~Organism() = default;

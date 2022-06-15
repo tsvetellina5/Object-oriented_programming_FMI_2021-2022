@@ -1,4 +1,4 @@
-#include "StringC.h"
+﻿#include "C:\Users\tswet\OneDrive\Documents\ФМИ\Object-oriented_programming_FMI_2021-2022\Additional\Teams\Team 3\h\StringC.h"
 
 void StringC::copy(const StringC& other)
 {
@@ -143,15 +143,8 @@ void StringC::setString(const char* str)
 	if (this->str != nullptr)
 		free();
 
-	if (strlen(str) == 0)
-	{
-		size = 0;
-		this->str = new char[1];
-		this->str[0] = '\0';
-		return;
-	}
-
 	size = strlen(str);
+
 	this->str = new char[size + 1];
 	strcpy(this->str, str);
 }

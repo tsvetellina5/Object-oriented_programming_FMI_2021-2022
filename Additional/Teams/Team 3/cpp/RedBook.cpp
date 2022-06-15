@@ -1,4 +1,4 @@
-#include "RedBook.h"
+﻿#include "C:\Users\tswet\OneDrive\Documents\ФМИ\Object-oriented_programming_FMI_2021-2022\Additional\Teams\Team 3\h\RedBook.h"
 
 void RedBook::copy(const RedBook& other) {
 	size = other.size;
@@ -86,41 +86,10 @@ void RedBook::printAll() const {
 	}
 }
 
-/*void RedBook::printSpecific(char* type) const {
+void RedBook::printConservationLevel(const StringC& level) const {
 	for (size_t i = 0; i < size; i++) {
-		if (list[i] != nullptr) {
-			{
-				if (strcmp(type, "Animals") == 0) {
-					if (strcmp(list[i]->typeToStr(), "Animal") == 0)
-					{
-						Animal* organism = (Animal*)list[i];
-						list[i]->print();
-					}
-				}
-				if (strcmp(type, "Plats") == 0) {
-					if (strcmp(list[i]->typeToStr(), "Plants") == 0)
-					{
-						Plant* organism = (Plant*)list[i];
-						list[i]->print();
-					}
-				}
-				if (strcmp(type, "Fungi") == 0) {
-					if (strcmp(list[i]->typeToStr(), "Fungi") == 0)
-					{
-						Fungi* organism = (Fungi*)list[i];
-						list[i]->print();
-					}
-				}
-			}
-		}
-	}
-	*/
-
-void RedBook::printConservationLevel(size_t level) const {
-	for (size_t i = 0; i < size; i++) {
-		if (list[i]->getConservationLevel() == level) {
+		if (list[i]->getConservationLevel() == level)
 			list[i]->print();
-		}
 	}
 }
 
@@ -130,13 +99,9 @@ void RedBook::printFauna() const {
 		Fauna* tmp = dynamic_cast<Fauna*>(list[i]);
 
 		if (tmp == nullptr)
-		{
-			delete tmp;
 			continue;
-		}
 
 		tmp->print();
-		delete tmp;
 	}
 }
 
@@ -146,13 +111,9 @@ void RedBook::printFlora() const {
 		Flora* tmp = dynamic_cast<Flora*>(list[i]);
 
 		if (tmp == nullptr)
-		{
-			delete tmp;
 			continue;
-		}
 
 		tmp->print();
-		delete tmp;
 	}
 }
 
@@ -162,13 +123,9 @@ void RedBook::printFungi() const {
 		Fungi* tmp = dynamic_cast<Fungi*>(list[i]);
 
 		if (tmp == nullptr)
-		{
-			delete tmp;
 			continue;
-		}
 
 		tmp->print();
-		delete tmp;
 	}
 }
 
@@ -177,10 +134,11 @@ bool RedBook::setConservationLevelByIndex(int index, const StringC& level)
 	if (index < 0 || index >= size)
 		return false;
 
-	if (list[index]->getConservationLevelStr() == "extinct")
+	if (list[index]->getConservationLevel() == "extinct")
 		return false;
 
-	return list[index]->setConservationLevel(level);
+	list[index]->setConservationLevel(level);
+	return true;
 }
 
 int RedBook::getSpeciesIndex(const StringC& name) const
@@ -192,4 +150,18 @@ int RedBook::getSpeciesIndex(const StringC& name) const
 	}
 
 	return -1;
+}
+
+size_t RedBook::getSize() const
+{
+	return size;
+}
+
+Organism* RedBook::getSpeciesAt(const size_t index) const
+{
+	if (index >= size)
+	{
+		return nullptr;
+	}
+	return list[index]->clone();
 }

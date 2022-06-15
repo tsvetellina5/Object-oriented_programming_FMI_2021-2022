@@ -18,18 +18,19 @@ public:
 	~RedBook();
 
 	void printAll() const;
-	//void printSpecific(char*) const;
 	void printFauna() const;
 	void printFlora() const;
 	void printFungi() const;
 
 	bool addOrganism(const Organism&);
 	bool removeAtIndex(size_t);
-	void printConservationLevel(size_t) const;
+	void printConservationLevel(const StringC&) const;
 
 	bool setConservationLevelByIndex(int, const StringC&);
 
 	int getSpeciesIndex(const StringC&) const;
+	size_t getSize() const;
+	Organism* getSpeciesAt(const size_t) const;
 
 private:
 	void copy(const RedBook&);
