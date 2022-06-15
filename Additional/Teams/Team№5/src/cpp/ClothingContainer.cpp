@@ -112,9 +112,9 @@ void ClothingContainer::ExportSoldLog()
 
 void ClothingContainer::resize()
 {
-	ClothingItem** tempCont = new ClothingItem * [capacity * 2];
-	String* tempLog = new String[capacity * 2];
-	double* tempLogPrice = new double[capacity * 2];
+	ClothingItem** tempCont = new ClothingItem * [capacity *= 2];
+	String* tempLog = new String[capacity *= 2];
+	double* tempLogPrice = new double[capacity *= 2];
 
 	for (size_t i = 0; i < size; i++)
 	{
