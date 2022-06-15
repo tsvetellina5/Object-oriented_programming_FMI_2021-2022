@@ -150,7 +150,6 @@ String ClothingItem::getData() const
 }
 void ClothingItem::print() const
 {
-	String data;
 	std::cout << getData();
 	std::cout << "\nPrice: " << price << std::endl << "Number available: " << numAvailable << std::endl;
 }
