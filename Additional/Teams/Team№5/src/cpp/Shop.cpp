@@ -5,8 +5,6 @@
 
 Shop::Shop()
 {
-	shopName = "";
-	address = "";
 	profit = 0;
 
 }
@@ -40,7 +38,7 @@ void Shop::displayShopInfo() const
 {
 	std::cout << "Shop: " << getName() << std::endl
 		<< "Adddress: " << getAddress() << std::endl
-		<< "Profit: " << getProfit()std::endl;
+		<< "Profit: " << getProfit() << std::endl;
 }
 void Shop::diplayAddDialog()
 {
