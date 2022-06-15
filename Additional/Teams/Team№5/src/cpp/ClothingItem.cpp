@@ -26,13 +26,13 @@ void ClothingItem::setGender(const char& gender)
 		return;
 	}
 
-	if (gender == 'W' || gender == 'w')
+	else if (gender == 'W' || gender == 'w')
 	{
 		this->gender = Gender::WOMAN;
 		return;
 	}
 
-	if (gender == 'U' || gender == 'u')
+	else if (gender == 'U' || gender == 'u')
 	{
 		this->gender = Gender::UNISEX;
 		return;
@@ -46,37 +46,37 @@ void ClothingItem::setSize(const String& size)
 		return;
 	}
 
-	if (size == "S" || size == "s")
+	else if (size == "S" || size == "s")
 	{
 		this->size = Size::S;
 		return;
 	}
 
-	if (size == "M" || size == "m")
+	else if (size == "M" || size == "m")
 	{
 		this->size = Size::M;
 		return;
 	}
 
-	if (size == "L" || size == "l")
+	else if (size == "L" || size == "l")
 	{
 		this->size = Size::L;
 		return;
 	}
 
-	if (size == "XL" || size == "xl")
+	else if (size == "XL" || size == "xl")
 	{
 		this->size = Size::XL;
 		return;
 	}
 
-	if (size == "XXL" || size == "xxl")
+	else if (size == "XXL" || size == "xxl")
 	{
 		this->size = Size::XXL;
 		return;
 	}
 
-	if (size == "O" || size == "o")
+	else if (size == "O" || size == "o")
 	{
 		this->size = Size::UNKNOWN;
 		return;
@@ -119,28 +119,20 @@ const char* ClothingItem::sizeToStr() const
 	{
 	case ClothingItem::Size::XS:
 		return "XS";
-		break;
 	case ClothingItem::Size::S:
 		return "S";
-		break;
 	case ClothingItem::Size::M:
 		return "M";
-		break;
 	case ClothingItem::Size::L:
 		return "L";
-		break;
 	case ClothingItem::Size::XL:
 		return "XL";
-		break;
 	case ClothingItem::Size::XXL:
 		return "XXL";
-		break;
 	case ClothingItem::Size::UNKNOWN:
 		return "Unknown";
-		break;
 	default:
 		return "Unknown";
-		break;
 	}
 }
 const char* ClothingItem::genderToStr() const
