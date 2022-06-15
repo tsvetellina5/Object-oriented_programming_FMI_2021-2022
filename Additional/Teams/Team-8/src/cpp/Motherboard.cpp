@@ -1,6 +1,6 @@
 #include "Motherboard.h"
 
-Motherboard::Motherboard(const char* manufacturer, const char* model, const double price, Socket socket, RamType ramType) : Component(manufacturer, model, price, MOTHERBOARD)
+Motherboard::Motherboard(const char* manufacturer, const char* model, const double price, const Socket socket, const RamType ramType) : Component(manufacturer, model, price, MOTHERBOARD)
 {
 	this->socket = socket;
 	this->ramType = ramType;
@@ -24,11 +24,6 @@ void Motherboard::showComponentInfo() const
 	std::cout << "Price: " << price << std::endl;
 	std::cout << "Socket: " << getSocketTypeText(socket) << std::endl;
 	std::cout << "Ram Type: " << getRamTypeText(ramType) << std::endl;
-}
-
-ComponentType Motherboard::getComponentType() const
-{
-	return componentType;
 }
 
 void Motherboard::saveToFile(std::ofstream& file) const

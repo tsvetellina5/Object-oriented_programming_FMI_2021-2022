@@ -1,6 +1,6 @@
 #include "Cpu.h"
 
-Cpu::Cpu(const char* manufacturer, const char* model, const double price, Socket socket, size_t cores) : Component(manufacturer, model, price, CPU)
+Cpu::Cpu(const char* manufacturer, const char* model, const double price, const Socket socket, const size_t cores) : Component(manufacturer, model, price, CPU)
 {
 	this->socket = socket;
 	this->cores = cores;
@@ -24,11 +24,6 @@ void Cpu::showComponentInfo() const
 	std::cout << "Price: " << price << std::endl;
 	std::cout << "Socket: " << getSocketTypeText(socket) << std::endl;
 	std::cout << "Cores: " << cores << std::endl;
-}
-
-ComponentType Cpu::getComponentType() const
-{
-	return componentType;
 }
 
 void Cpu::saveToFile(std::ofstream& file) const

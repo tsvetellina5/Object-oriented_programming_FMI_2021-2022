@@ -34,7 +34,7 @@ void PCStore::setMoney(double money)
 	this->money = money;
 }
 
-bool PCStore::checkBalance(double price)
+bool PCStore::checkBalance(double price) const
 {
 	return money > price;
 }
@@ -72,7 +72,7 @@ void PCStore::addMotherboard(Motherboard motherboard)
 	components[countComponents++] = new Motherboard(motherboard);
 }
 
-void PCStore::addCpu(Cpu cpu)
+void PCStore::addCpu(const Cpu cpu)
 {
 	if (countComponents == capacityComponents)
 		resize();
@@ -80,7 +80,7 @@ void PCStore::addCpu(Cpu cpu)
 	components[countComponents++] = new Cpu(cpu);
 }
 
-void PCStore::addGpu(Gpu gpu)
+void PCStore::addGpu(const Gpu gpu)
 {
 	if (countComponents == capacityComponents)
 		resize();
@@ -88,7 +88,7 @@ void PCStore::addGpu(Gpu gpu)
 	components[countComponents++] = new Gpu(gpu);
 }
 
-void PCStore::addRam(Ram ram)
+void PCStore::addRam(const Ram ram)
 {
 	if (countComponents == capacityComponents)
 		resize();
@@ -96,32 +96,50 @@ void PCStore::addRam(Ram ram)
 	components[countComponents++] = new Ram(ram);
 }
 
-void PCStore::sellComponent(size_t index)
-{
-	money += components[index]->getPrice();
-	removeFromIndex(index);
-	std::cout << "Component sold!" << std::endl;
-}
-
-void PCStore::removeFromIndex(size_t index)
+bool PCStore::sellComponent(size_t index)
 {
 	if (index >= countComponents)
 	{
 		std::cout << "No such index!" << std::endl;
-		return;
+		return false;
 	}
 
-	delete[] components[index];
+	money += components[index]->getPrice();
+	removeFromIndex(index);
+	std::cout << "Component sold!" << std::endl;
 
-	for (size_t j = index; j < countComponents - 1; j++)
-		components[j] = components[j + 1]->clone();
-
-	if (index != countComponents - 1)
-		delete[] components[countComponents - 1];
-	countComponents--;
+	return true;
 }
 
-void PCStore::buildComputer()
+bool PCStore::removeFromIndex(size_t index)
+{
+	if (index >= countComponents)
+	{
+		std::cout << "No such index!" << std::endl;
+		return false;
+	}
+
+	Component** newComponents = new Component * [capacityComponents];
+
+	countComponents--;
+
+	for (size_t i = 0; i < index; i++)
+		newComponents[i] = components[i];
+
+	for (size_t i = index; i < countComponents; i++)
+		newComponents[i] = components[i + 1];
+
+	//for (size_t i = 0; i < countComponents + 1; i++)
+		//delete components[i];
+
+	delete[] components;
+
+	components = newComponents;
+
+	return true;
+}
+
+bool PCStore::buildComputer()
 {
 	int indexMotherboard, indexCPU, indexGPU, indexRAM;
 	std::cout << "Enter index of Motherboard: ";
@@ -129,7 +147,7 @@ void PCStore::buildComputer()
 	if (components[indexMotherboard - 1]->getComponentType() != MOTHERBOARD)
 	{
 		std::cout << "This component is not a Motherboard!" << std::endl;
-		return;
+		return false;
 	}
 	std::cout << "Enter index of CPU: ";
 	std::cin >> indexCPU;
@@ -137,24 +155,22 @@ void PCStore::buildComputer()
 	if (components[indexCPU - 1]->getComponentType() != CPU)
 	{
 		std::cout << "This component is not a CPU!" << std::endl;
-		return;
+		return false;
 	}
 	std::cout << "Enter index of GPU: ";
 	std::cin >> indexGPU;
 	if (components[indexGPU - 1]->getComponentType() != GPU)
 	{
 		std::cout << "This component is not a GPU!" << std::endl;
-		return;
+		return false;
 	}
 	std::cout << "Enter index of RAM: ";
 	std::cin >> indexRAM;
 	if (components[indexRAM - 1]->getComponentType() != RAM)
 	{
 		std::cout << "This component is not a RAM!" << std::endl;
-		return;
+		return false;
 	}
-
-	Motherboard* mb = dynamic_cast<Motherboard*>(components[indexMotherboard - 1]);
 
 	if (checkCompatibilityCpu(*dynamic_cast<Motherboard*>(components[indexMotherboard - 1]), *dynamic_cast<Cpu*>(components[indexCPU - 1]))
 		&& checkCompatibilityRam(*dynamic_cast<Motherboard*>(components[indexMotherboard - 1]), *dynamic_cast<Ram*>(components[indexRAM - 1])))
@@ -181,15 +197,18 @@ void PCStore::buildComputer()
 	else
 	{
 		std::cout << "Incompatible components!" << std::endl;
+		return false;
 	}
+
+	return true;
 }
 
-bool PCStore::checkCompatibilityCpu(Motherboard& motherboard, Cpu& cpu)
+bool PCStore::checkCompatibilityCpu(Motherboard& motherboard, Cpu& cpu) const
 {
 	return motherboard.getSocket() == cpu.getSocket();
 }
 
-bool PCStore::checkCompatibilityRam(Motherboard& motherboard, Ram& ram)
+bool PCStore::checkCompatibilityRam(Motherboard& motherboard, Ram& ram) const
 {
 	return motherboard.getRamType() == ram.getRamType();
 }

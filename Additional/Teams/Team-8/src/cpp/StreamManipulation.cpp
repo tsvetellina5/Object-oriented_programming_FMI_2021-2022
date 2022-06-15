@@ -7,14 +7,14 @@ PCStore readComponents()
 
 	PCStore pcstore;
 
-	char* line = new char[256];
+	char* line = new char[BUFFER_LINE];
 
-	file.getline(line, 256);
+	file.getline(line, BUFFER_LINE);
 	pcstore.setMoney(readDoubleAtIndex(line, getIndexOfSpace(line, 1), strlen(line)));
 
 	while (checkStartsWith(line, "End") == 0)
 	{
-		file.getline(line, 256);
+		file.getline(line, BUFFER_LINE);
 
 		if (checkStartsWith(line, "End"))
 			break;
@@ -34,12 +34,7 @@ PCStore readComponents()
 
 	return pcstore;
 }
-/*
-readStringAtIndex(line, getIndexOfSpace(line, ), getIndexOfSpace(line, ))
-readDoubleAtIndex(line, getIndexOfSpace(line, ), getIndexOfSpace(line, ))
-strlen(line)
-*/
-Motherboard readMotherboard(const char* line)//Motherboard manufacturer model price socket ramType
+Motherboard readMotherboard(const char* line)
 {
 	char* manufacturer = readStringAtIndex(line, getIndexOfSpace(line, 1), getIndexOfSpace(line, 2));
 	char* model = readStringAtIndex(line, getIndexOfSpace(line, 2), getIndexOfSpace(line, 3));
@@ -51,7 +46,7 @@ Motherboard readMotherboard(const char* line)//Motherboard manufacturer model pr
 	return Motherboard(manufacturer, model, price, socket, ramType);
 }
 
-Cpu readCpu(const char* line)//CPU manufacturer model price socket cores
+Cpu readCpu(const char* line)
 {
 	char* manufacturer = readStringAtIndex(line, getIndexOfSpace(line, 1), getIndexOfSpace(line, 2));
 	char* model = readStringAtIndex(line, getIndexOfSpace(line, 2), getIndexOfSpace(line, 3));
@@ -63,7 +58,7 @@ Cpu readCpu(const char* line)//CPU manufacturer model price socket cores
 	return Cpu(manufacturer, model, price, socket, cores);
 }
 
-Gpu readGpu(const char* line)//GPU manufacturer model price videoMemory
+Gpu readGpu(const char* line)
 {
 	char* manufacturer = readStringAtIndex(line, getIndexOfSpace(line, 1), getIndexOfSpace(line, 2));
 	char* model = readStringAtIndex(line, getIndexOfSpace(line, 2), getIndexOfSpace(line, 3));
@@ -74,7 +69,7 @@ Gpu readGpu(const char* line)//GPU manufacturer model price videoMemory
 	return Gpu(manufacturer, model, price, videoMemory);
 }
 
-Ram readRam(const char* line)//RAM manufacturer model price ramType memoryCapacity
+Ram readRam(const char* line)
 {
 	char* manufacturer = readStringAtIndex(line, getIndexOfSpace(line, 1), getIndexOfSpace(line, 2));
 	char* model = readStringAtIndex(line, getIndexOfSpace(line, 2), getIndexOfSpace(line, 3));

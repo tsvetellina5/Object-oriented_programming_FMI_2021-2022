@@ -1,6 +1,6 @@
 #include "Enums.h"
 #include<iostream>
-char* getComponentTypeText(ComponentType componentType)
+char* getComponentTypeText(const ComponentType& componentType)
 {
 	char* type = new char[20];
 	switch (componentType)
@@ -14,7 +14,7 @@ char* getComponentTypeText(ComponentType componentType)
 	return type;
 }
 
-char* getSocketTypeText(Socket socket)
+char* getSocketTypeText(const Socket& socket)
 {
 	char* type = new char[10];
 	switch (socket)
@@ -28,7 +28,7 @@ char* getSocketTypeText(Socket socket)
 	return type;
 }
 
-char* getRamTypeText(RamType ramType)
+char* getRamTypeText(const RamType& ramType)
 {
 	char* type = new char[5];
 	switch (ramType)

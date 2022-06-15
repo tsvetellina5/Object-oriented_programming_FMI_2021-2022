@@ -4,9 +4,9 @@
 
 Component::Component()
 {
-	manufacturer = new char[1]{""};
+	manufacturer = nullptr;
 
-	model = new char[1]{""};
+	model = nullptr;
 
 	price = 0.0;
 }

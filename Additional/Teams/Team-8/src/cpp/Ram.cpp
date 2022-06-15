@@ -1,6 +1,6 @@
 #include "Ram.h"
 
-Ram::Ram(const char* manufacturer, const char* model, const double price, RamType ramType, size_t memoryCapacity) : Component(manufacturer, model, price, RAM)
+Ram::Ram(const char* manufacturer, const char* model, const double price, const RamType ramType, const size_t memoryCapacity) : Component(manufacturer, model, price, RAM)
 {
 	this->ramType = ramType;
 	this->memoryCapacity = memoryCapacity;
@@ -24,11 +24,6 @@ void Ram::showComponentInfo() const
 	std::cout << "Price: " << price << std::endl;
 	std::cout << "Ram Type: " << getRamTypeText(ramType) << std::endl;
 	std::cout << "Memory Capacity: " << memoryCapacity << std::endl;
-}
-
-ComponentType Ram::getComponentType() const
-{
-	return componentType;
 }
 
 void Ram::saveToFile(std::ofstream& file) const

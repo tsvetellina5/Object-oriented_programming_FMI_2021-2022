@@ -5,11 +5,11 @@ using namespace std;
 int main()
 {
 	PCStore pcstore = readComponents();
-	char* line = new char[256];
+	char* line = new char[BUFFER_LINE];
 	
 	while (strcmp(line, "exit"))
 	{
-		cin.getline(line, 256);
+		cin.getline(line, BUFFER_LINE);
 
 		if (strcmp(line, "exit") == 0)
 		{
