@@ -18,7 +18,7 @@ public:
 	~PCStore();
 
 	void setMoney(double);
-	bool checkBalance(double);
+	bool checkBalance(double) const;
 
 	const double getMoney() const;
 	void subtractFunds(double);
@@ -27,17 +27,17 @@ public:
 	void printComponentInfos() const;
 
 	void addMotherboard(Motherboard);
-	void addCpu(Cpu);
-	void addGpu(Gpu);
-	void addRam(Ram);
+	void addCpu(const Cpu);
+	void addGpu(const Gpu);
+	void addRam(const Ram);
 
-	void sellComponent(size_t);
+	bool sellComponent(size_t);
 
-	void removeFromIndex(size_t);
+	bool removeFromIndex(size_t);
 
-	void buildComputer();
-	bool checkCompatibilityCpu(Motherboard&, Cpu&);
-	bool checkCompatibilityRam(Motherboard&, Ram&);
+	bool buildComputer();
+	bool checkCompatibilityCpu(Motherboard&, Cpu&) const;
+	bool checkCompatibilityRam(Motherboard&, Ram&) const;
 
 	void writeToFile() const;
 

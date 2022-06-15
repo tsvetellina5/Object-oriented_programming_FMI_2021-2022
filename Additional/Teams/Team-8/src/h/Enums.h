@@ -22,9 +22,9 @@ enum RamType
 	DDR5
 };
 
-char* getComponentTypeText(ComponentType componentType);
-char* getSocketTypeText(Socket socket);
-char* getRamTypeText(RamType ramType);
+char* getComponentTypeText(const ComponentType& componentType);
+char* getSocketTypeText(const Socket& socket);
+char* getRamTypeText(const RamType& ramType);
 
 ComponentType getComponentTypeFromString(const char*);
 Socket getSocketFromString(const char*);

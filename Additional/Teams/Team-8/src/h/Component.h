@@ -12,7 +12,7 @@ protected:
 public:
 
 	Component();
-	Component(const char*, const char*, const double, ComponentType);
+	Component(const char*, const char*, const double, const ComponentType);
 	Component(const Component&);
 	Component& operator=(const Component&);
 	virtual ~Component();

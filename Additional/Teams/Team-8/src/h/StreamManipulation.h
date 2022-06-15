@@ -1,5 +1,6 @@
 #pragma once
 #include "PCStore.h"
+#define BUFFER_LINE 256
 PCStore readComponents();
 
 Motherboard readMotherboard(const char*);
