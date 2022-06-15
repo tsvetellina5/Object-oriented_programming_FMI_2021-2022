@@ -1,7 +1,7 @@
 # Red book
-An application that is used to collect and represent data about the threatened species. 
+OOP project by Antonio Georgiev (group 3), Bozhidar Kyorov (group 6), Tsvetelina Tsvetanova (group 3).
 
-There is a base class called Organism and three derived classes (the three kingdoms) - Flora, Fauna, Fungi. The heterogeneous container Red Book consists of Organisms.
+This is an application that is used to collect and represent data about the threatened species. There is a base class called Organism, three derived classes (the three kingdoms) - Flora, Fauna, Fungi, and a heterogeneous container - Red Book.
 
 # Documentation
 **Organism - base class**<br/>
