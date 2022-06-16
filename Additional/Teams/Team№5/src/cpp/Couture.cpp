@@ -23,11 +23,6 @@ ClothingItem* Couture::clone() const
 	return new Couture(*this);
 }
 
-String Couture::getData() const
-{
-	return ClothingItem::getData();
-}
-
 void Couture::print() const
 {
 	ClothingItem::print();
