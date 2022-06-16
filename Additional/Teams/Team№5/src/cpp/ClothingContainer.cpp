@@ -40,10 +40,6 @@ double ClothingContainer::getPrice(size_t index) const
 
 void ClothingContainer::addClothingItem(ClothingItem& item) const
 {
-	if (size >= capacity)
-	{
-		resize();
-	}
 
 	for (size_t i = 0; i < size; i++)
 	{
@@ -52,6 +48,10 @@ void ClothingContainer::addClothingItem(ClothingItem& item) const
 			container[i]->setNumAvailable(container[i]->getNumAvailable() + item.getNumAvailable());
 			return;
 		}
+	}
+	if (size >= capacity)
+	{
+		resize();
 	}
 
 	container[size++] = item.clone();
