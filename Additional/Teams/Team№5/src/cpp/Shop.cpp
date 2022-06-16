@@ -142,7 +142,7 @@ void Shop::displayMenu()
 		std::cin >> cmd;
 
 		if (cmd == "add" || cmd == "Add") {
-			diplayAddDialog();
+			displayAddDialog();
 		}
 		else if (cmd == "sell" || cmd == "Sell") {
 			displaySellDialog();//delete function
