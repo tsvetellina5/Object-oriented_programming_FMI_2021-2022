@@ -39,7 +39,7 @@
 Да се реализират подходящи член-функции/методи.
 
 # Документация:
-[Идея-за-проект.docx](https://github.com/DaniellaGeorgieva/Clothing_shop/files/8886113/-.-.docx)
+[Идея-за-проект.docx](https://github.com/DaniellaGeorgieva/Object-oriented_programming_FMI_2021-2022/files/8923114/-.-.docx)
 
 # Разработили проекта:
  - Таня Илиева
