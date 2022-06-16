@@ -88,7 +88,7 @@ void Transport::print(){
 void Transport::add(){
 
     MyString input;
-    cout << "Possible commands:\n \t - driverB - a driver for an electric car;\n \t - driverD - a driver for an electric bus;\n \t - bus - add an electric intercity bus;\n \t - cityBus - an electric city bus;\n \t - car - an electric taxi/car;\n \t - scooter - an electric scooter;";
+    cout << "Possible commands:\n \t - driverB - a driver for an electric car;\n \t - driverD - a driver for an electric bus;\n \t - bus - add an electric intercity bus;\n \t - cityBus - an electric city bus;\n \t - car - an electric taxi/car;\n \t - scooter - an electric scooter;\n> ";
     cin >> input;
 
     if(input == "driverB"){
@@ -152,7 +152,10 @@ void Transport::add(){
         cin >> breakMinutes;
         cout << "Break stop destination: ";
         cin >> breakStop;
-        Transport::vehicles.pushBack(new IntercityBus(idDriver, idVehicle, model, range, rate, start, end, sH, sM, fH, fM, bH, bM, breakMinutes, breakStop));
+        Vehicle *temp = new IntercityBus(idDriver, idVehicle, model, range, rate, start, end, sH, sM, fH, fM, bH, bM, breakMinutes, breakStop);
+        Transport::vehicles.pushBack(temp);
+        delete temp;
+
     }
     else if(input == "cityBus"){
 
@@ -163,7 +166,7 @@ void Transport::add(){
         cin >> idDriver;
         cout << "Registration number of the vehicle: ";
         cin >> idVehicle;
-        cout << "Model of the bus: ";
+        cout << "Model of the cityBus: ";
         cin >> model;
         cout << "Possible battery range: ";
         cin >> range;
@@ -183,7 +186,9 @@ void Transport::add(){
         cin >> fM;
         cout << "The Capacity of the Battery: ";
         cin >> capacity;
-        Transport::vehicles.pushBack(new CityBus(idDriver, idVehicle, model, range, rate, start, end, sH, sM, fH, fM, capacity));
+        Vehicle *temp = new CityBus(idDriver, idVehicle, model, range, rate, start, end, sH, sM, fH, fM, capacity);
+        Transport::vehicles.pushBack(temp);
+        delete temp;
     }
     else if(input == "car"){
 
@@ -194,7 +199,7 @@ void Transport::add(){
         cin >> idDriver;
         cout << "Registration number of the vehicle: ";
         cin >> idVehicle;
-        cout << "Model of the bus: ";
+        cout << "Model of the car: ";
         cin >> model;
         cout << "Possible battery range: ";
         cin >> range;
@@ -202,22 +207,28 @@ void Transport::add(){
         cin >> rate;
         cout << "How many seats will be there: ";
         cin >> seats;
-        Transport::vehicles.pushBack(new ElectricCar(idDriver, idVehicle, seats, model, range, rate));
+        Vehicle *temp = new ElectricCar(idDriver, idVehicle, seats, model, range, rate);
+        Transport::vehicles.pushBack(temp);
+        delete temp;
     }
     else if(input == "scooter"){
 
         MyString model;
         size_t idVehicle;
         double range, rate;
+        cout << "Id of the driver: ";
         cin >> idVehicle;
-        cout << "Model of the bus: ";
+        cout << "Model of the scooter: ";
         cin >> model;
         cout << "Possible battery range: ";
         cin >> range;
         cout << "Charging rate (ex. 1.5 (km per min)): ";
         cin >> rate;
-        Transport::vehicles.pushBack(new ElectricScooter(idVehicle, model, range, rate));
+        Vehicle *temp = new ElectricScooter(idVehicle, model, range, rate);
+        Transport::vehicles.pushBack(temp);
+        delete temp;
     }
+    else return;
     
 
     cout << "Successfully created " << input << ".\n";
@@ -238,7 +249,7 @@ void Transport::remove(){
         return;
     }
 
-    Transport::vehicles.popAt(index);
+    delete Transport::vehicles.popAt(index);
     cout << "Erased a vehicle" << ".\n"; 
 }
 

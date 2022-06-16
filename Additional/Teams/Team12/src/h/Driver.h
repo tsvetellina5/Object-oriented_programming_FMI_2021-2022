@@ -13,7 +13,7 @@ public:
 		Unknown
 	}license;
 	Driver();
-	Driver(MyString, size_t, size_t , driverLicense);
+	Driver(const MyString &, size_t, size_t , driverLicense);
 	void display() const;
 
 	MyString getLicenseString() const;

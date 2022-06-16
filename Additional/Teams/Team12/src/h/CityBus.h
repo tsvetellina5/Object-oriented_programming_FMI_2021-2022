@@ -4,7 +4,7 @@
 class CityBus : public ElectricBus {
 public:
 	CityBus();
-	CityBus(size_t, size_t, MyString, double, double, MyString, MyString, size_t, size_t, size_t, size_t, size_t);
+	CityBus(size_t, size_t, const MyString &, double, double, const MyString &, const MyString &, size_t, size_t, size_t, size_t, size_t);
 
 	bool isItWorkingAt(size_t, size_t) const override;
 

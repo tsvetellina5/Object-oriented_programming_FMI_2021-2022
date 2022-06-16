@@ -4,7 +4,7 @@ CityBus::CityBus() : ElectricBus() {
 	type = Vehicle::ElectricType::E_CITY_BUS;
 }
 
-CityBus::CityBus(size_t DriverIdentityNumber,size_t vehicleID, MyString model, double batteryRange, double chargingRate, MyString startDestination, MyString finalDestination, size_t sH, size_t sM, size_t fH, size_t fM, size_t capacity) :
+CityBus::CityBus(size_t DriverIdentityNumber,size_t vehicleID, const MyString &model, double batteryRange, double chargingRate, const MyString &startDestination, const MyString &finalDestination, size_t sH, size_t sM, size_t fH, size_t fM, size_t capacity) :
 	ElectricBus(DriverIdentityNumber, vehicleID, model, batteryRange, chargingRate, startDestination, finalDestination, sH, sM, fH, fM), capacity(capacity) {
 	type = Vehicle::ElectricType::E_CITY_BUS;
 

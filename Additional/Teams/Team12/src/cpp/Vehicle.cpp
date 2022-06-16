@@ -5,7 +5,7 @@ bool Vehicle::needCharging(const double distance) const {
 }
 
 void Vehicle::exhaustBattery(const double km){
-	this -> battery = ((batteryRange - km) * 100) / batteryRange;
+	battery = ((batteryRange - km) * 100) / batteryRange;
 }
 
 double Vehicle::getMinutesToCharge() const {
@@ -38,8 +38,8 @@ Vehicle::Vehicle() : DriverIdentityNumber(0), vehicleID(0), model(""), battery(1
 	type = ElectricType::UNKNOWN;
 }
 
-Vehicle::Vehicle(size_t DriverIdentityNumber,size_t vehicleID, MyString model, double batteryRange, double chargingRate) :
-	DriverIdentityNumber(DriverIdentityNumber), model(""), vehicleID(vehicleID), battery(100), batteryRange(batteryRange), chargingRate(chargingRate) {
+Vehicle::Vehicle(size_t DriverIdentityNumber,size_t vehicleID, const MyString &model, double batteryRange, double chargingRate) :
+	DriverIdentityNumber(DriverIdentityNumber), model(model), vehicleID(vehicleID), battery(100), batteryRange(batteryRange), chargingRate(chargingRate) {
 	type = ElectricType::UNKNOWN;
 }
 

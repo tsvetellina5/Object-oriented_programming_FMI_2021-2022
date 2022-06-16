@@ -4,7 +4,7 @@ Driver::Driver() : name(""), identityNumber(0), age(0){
 	license = driverLicense::Unknown;
 }
 
-Driver::Driver(MyString name, size_t identityNumber, size_t age, driverLicense type) : name(name), identityNumber(identityNumber), age(age), license(type) {}
+Driver::Driver(const MyString &name, size_t identityNumber, size_t age, driverLicense type) : name(name), identityNumber(identityNumber), age(age), license(type) {}
 
 void Driver::display() const {
 	std::cout << "\tName : " << name << "\n" <<

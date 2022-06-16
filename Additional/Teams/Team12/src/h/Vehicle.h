@@ -21,7 +21,7 @@ public:
 	}type;
 
 	Vehicle();
-	Vehicle(size_t, size_t, MyString, double, double);
+	Vehicle(size_t, size_t, const MyString &, double, double);
 	virtual ~Vehicle() {};
 
 	bool needCharging(const double) const;
