@@ -18,13 +18,3 @@ ClothingItem* Casual::clone() const
 {
 	return new Casual(*this);
 }
-
-String Casual::getData() const
-{
-	return ClothingItem::getData();
-}
-
-void Casual::print() const
-{
-	ClothingItem::print();
-}
