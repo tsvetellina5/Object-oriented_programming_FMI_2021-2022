@@ -57,6 +57,10 @@ void Shop::displayAddDialog()
 	std::cout << "Price: \n>";
 	double price;
 	std::cin >> price;
+	if (price <= 0) {
+		throw "Invalid value";
+		return;
+	}
 	std::cout << "Count to add (number > 0): \n>";
 	size_t countToAdd;
 	std::cin >> countToAdd;
