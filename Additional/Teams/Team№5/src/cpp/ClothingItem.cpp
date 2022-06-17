@@ -43,43 +43,39 @@ void ClothingItem::setSize(const String& size)
 	if (size == "XS" || size == "xs")
 	{
 		this->size = Size::XS;
-		return;
 	}
 
 	else if (size == "S" || size == "s")
 	{
 		this->size = Size::S;
-		return;
 	}
 
 	else if (size == "M" || size == "m")
 	{
 		this->size = Size::M;
-		return;
 	}
 
 	else if (size == "L" || size == "l")
 	{
 		this->size = Size::L;
-		return;
 	}
 
 	else if (size == "XL" || size == "xl")
 	{
 		this->size = Size::XL;
-		return;
 	}
 
 	else if (size == "XXL" || size == "xxl")
 	{
 		this->size = Size::XXL;
-		return;
 	}
 
 	else if (size == "O" || size == "o")
 	{
 		this->size = Size::UNKNOWN;
-		return;
+	}
+	else {
+		throw "Invalid size";
 	}
 }
 ClothingItem::Type ClothingItem::getType() const
