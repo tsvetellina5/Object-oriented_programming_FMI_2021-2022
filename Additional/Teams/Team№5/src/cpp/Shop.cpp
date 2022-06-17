@@ -128,7 +128,7 @@ void Shop::displaySellDialog() const
 	addToProfit(listOfClothes.getPrice(index));
 	listOfClothes.DeleteClothingItem(index);
 }
-void Shop::displayMenu()
+void Shop::displayMenu() const
 {
 	std::cout << "Welcome!" << std::endl;
 	String cmd;

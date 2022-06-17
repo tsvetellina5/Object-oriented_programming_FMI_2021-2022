@@ -20,7 +20,7 @@ public:
 	void setAddress(const String&);
 	void addToProfit(const double);
 
-	void displayMenu();
+	void displayMenu() const;
 	
 private:
 	void displayAddDialog() const;
