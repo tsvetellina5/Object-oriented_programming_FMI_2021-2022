@@ -4,12 +4,13 @@
 
 ClothingContainer::ClothingContainer()
 {
-	capacity = 2;
+	capacityContainer = 2;
+	capacityLog = 2;
 	size = 0;
 	logSize = 0;
-	container = new ClothingItem * [capacity];
-	log = new String[capacity];
-	logPrice = new double[capacity];
+	container = new ClothingItem * [capacityContainer];
+	log = new String[capacityLog];
+	logPrice = new double[capacityLog];
 }
 
 ClothingContainer::ClothingContainer(const ClothingContainer& other)
@@ -49,9 +50,9 @@ void ClothingContainer::addClothingItem(ClothingItem& item) const
 			return;
 		}
 	}
-	if (size >= capacity)
+	if (size >= capacityContainer)
 	{
-		resize();
+		resizeContainer();
 	}
 
 	container[size++] = item.clone();
@@ -66,7 +67,7 @@ bool ClothingContainer::deleteClothingItem(size_t index) const
 
 	if (logSize >= capacity)
 	{
-		resize();
+		resizeLog();
 	}
 	log[logSize] = container[index]->getData();
 	logPrice[logSize++] = container[index]->getPrice();
@@ -110,38 +111,46 @@ void ClothingContainer::exportSoldLog() const
 	}
 }
 
-void ClothingContainer::resize()
+void ClothingContainer::resizeContainer()
 {
-	ClothingItem** tempCont = new ClothingItem * [capacity *= 2];
-	String* tempLog = new String[capacity *= 2];
-	double* tempLogPrice = new double[capacity *= 2];
-
+	ClothingItem** tempCont = new ClothingItem * [capacityContainer *= 2];
 	for (size_t i = 0; i < size; i++)
 	{
 		tempCont[i] = container[i];
-		tempLog[i] = log[i];
-		tempLogPrice[i] = logPrice[i];
 	}
 
 	delete[] container;
+
+	container = tempCont;
+	
+	tempCont = nullptr;
+	
+}
+void ClothingContainer::resizeLog()
+{
+	String* tempLog = new String[capacityLog *= 2];
+	double* tempLogPrice = new double[capacityLog *= 2];
+	for (size_t i = 0; i < size; i++)
+	{
+		tempLog[i] = log[i];
+		tempLogPrice[i] = logPrice[i];
+	}
 	delete[] log;
 	delete[] logPrice;
-	container = tempCont;
 	log = tempLog;
 	logPrice = tempLogPrice;
-	tempCont = nullptr;
 	tempLog = nullptr;
 	tempLogPrice = nullptr;
 }
-
 void ClothingContainer::copy(const ClothingContainer& other)
 {
-	capacity = other.capacity;
+	capacityContainer = other.capacityContainer;
+	capacityLog = other.capacityLog;
 	size = other.size;
 	logSize = other.logSize;
-	container = new ClothingItem * [capacity];
-	log = new String[capacity];
-	logPrice = new double[capacity];
+	container = new ClothingItem * [capacityContainer];
+	log = new String[capacityLog];
+	logPrice = new double[capacityLog];
 
 	for (size_t i = 0; i < size; i++)
 	{

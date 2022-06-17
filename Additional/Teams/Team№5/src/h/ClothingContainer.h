@@ -7,7 +7,8 @@ private:
 	ClothingItem** container;
 	String* log;
 	double* logPrice;
-	size_t capacity;
+	size_t capacityContainer;
+	size_t capacityLog;
 	size_t size;
 	size_t logSize;
 public:
@@ -24,7 +25,8 @@ public:
 	void exportSoldLog() const;
 
 private:
-	void resize();
+	void resizeContainer();
+	void resizeLog();
 	void copy(const ClothingContainer&);
 	void free();
 };
