@@ -18,7 +18,7 @@ public:
 	~ClothingContainer();
 
 	double getPrice(size_t) const;
-	void addClothingItem(ClothingItem&) const;
+	void addClothingItem(const ClothingItem&) const;
 	bool deleteClothingItem(size_t) const;
 	void listAvailableItems() const;
 	void listSoldItems() const;

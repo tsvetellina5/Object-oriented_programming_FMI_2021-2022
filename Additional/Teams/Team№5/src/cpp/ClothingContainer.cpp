@@ -39,7 +39,7 @@ double ClothingContainer::getPrice(size_t index) const
 	return container[index]->getPrice();
 }
 
-void ClothingContainer::addClothingItem(ClothingItem& item) const
+void ClothingContainer::addClothingItem(const ClothingItem& item) const
 {
 
 	for (size_t i = 0; i < size; i++)
