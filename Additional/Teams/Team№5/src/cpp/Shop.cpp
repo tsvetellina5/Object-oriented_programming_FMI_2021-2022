@@ -40,7 +40,7 @@ void Shop::displayShopInfo() const
 		<< "Adddress: " << getAddress() << std::endl
 		<< "Profit: " << getProfit() << std::endl;
 }
-void Shop::displayAddDialog()
+void Shop::displayAddDialog() const
 {
 	std::cout << "Name of piece of clothing: \n>";
 	String name;
@@ -99,7 +99,7 @@ void Shop::displayAddDialog()
 		listOfClothes.AddClothingItem(item);
 	}
 }
-void Shop::displayListDialog()
+void Shop::displayListDialog() const
 {
 	char command;
 	std::cout << "Choose whether you want to: " << std::endl;
@@ -120,7 +120,7 @@ void Shop::displayListDialog()
 		std::cout << "Invalid command!" << std::endl;
 	}
 }
-void Shop::displaySellDialog()
+void Shop::displaySellDialog() const
 {
 	size_t index;
 	std::cout << "Write down the index of the clothing item you sold: ";

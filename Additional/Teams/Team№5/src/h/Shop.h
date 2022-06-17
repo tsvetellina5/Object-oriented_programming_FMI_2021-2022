@@ -23,8 +23,8 @@ public:
 	void displayMenu();
 	
 private:
-	void displayAddDialog();
-	void displayListDialog();
-	void displaySellDialog();
+	void displayAddDialog() const;
+	void displayListDialog() const;
+	void displaySellDialog() const;
 	void displayShopInfo() const;
 };
