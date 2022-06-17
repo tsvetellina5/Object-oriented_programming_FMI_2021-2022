@@ -40,7 +40,7 @@ void Shop::displayShopInfo() const
 		<< "Adddress: " << getAddress() << std::endl
 		<< "Profit: " << getProfit() << std::endl;
 }
-void Shop::diplayAddDialog()
+void Shop::displayAddDialog()
 {
 	std::cout << "Name of piece of clothing: \n>";
 	String name;
@@ -131,7 +131,7 @@ void Shop::displayMenu()
 	while (!(cmd == "quit" || cmd == "Quit")) {
 		std::cout <<  " You can choose one of the following options : " << std::endl;
 		std::cout << " 1. Add" << std::endl;
-		std::cout << " 2. Sell" << std::endl;//same as delete
+		std::cout << " 2. Sell" << std::endl;
 		std::cout << " 3. List" << std::endl;
 		std::cout << " 4. Export sells report(log)" << std::endl;
 		std::cout << " 5. Display info about the shop" << std::endl;
@@ -145,13 +145,13 @@ void Shop::displayMenu()
 			displayAddDialog();
 		}
 		else if (cmd == "sell" || cmd == "Sell") {
-			displaySellDialog();//delete function
+			displaySellDialog();
 		}
 		else if (cmd == "list" || cmd == "List") {
 			displayListDialog();
 		}
 		else if (cmd == "export" || cmd == "Export") {
-			//function from container
+			listOfClothes.exportSoldLog();
 		}
 		else if (cmd == "display" || cmd == "Display") {
 			displayShopInfo();
