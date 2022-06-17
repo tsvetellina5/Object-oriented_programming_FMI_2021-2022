@@ -130,7 +130,7 @@ void ClothingContainer::resizeLog()
 {
 	String* tempLog = new String[capacityLog *= 2];
 	double* tempLogPrice = new double[capacityLog *= 2];
-	for (size_t i = 0; i < size; i++)
+	for (size_t i = 0; i < logSize; i++)
 	{
 		tempLog[i] = log[i];
 		tempLogPrice[i] = logPrice[i];
