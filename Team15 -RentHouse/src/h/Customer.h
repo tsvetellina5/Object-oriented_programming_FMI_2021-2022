@@ -13,8 +13,9 @@ public:
     Customer(const MyString &, const MyString &, const MyString &, const MyString &, const MyString &, const MyString &, const MyString &);
 
     const MyString &getUsername() const;
-    void setUsername(const MyString &);
     const MyString &getPassword() const;
+    
+    void setUsername(const MyString &);
     void setPassword(const MyString &);
 
     Customer *clone() const;

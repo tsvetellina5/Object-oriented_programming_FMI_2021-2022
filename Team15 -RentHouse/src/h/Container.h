@@ -43,7 +43,7 @@ public:
 template <typename T>
 void Container<T>::free()
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         delete elements[i];
     }
@@ -54,7 +54,7 @@ template <typename T>
 void Container<T>::resize()
 {
     T **newCollection = new T *[capacity *= 2];
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         newCollection[i] = elements[i];
     }

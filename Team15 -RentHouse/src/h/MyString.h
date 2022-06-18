@@ -41,7 +41,7 @@ public:
 	bool isInt() const;
 
 	double convertToDouble() const;
-	int findDotInDouble() const;
+	size_t findDotInDouble() const;
 	bool isDouble() const;
 	bool isChar(const char) const;
 };

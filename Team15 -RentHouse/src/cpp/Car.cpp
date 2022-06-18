@@ -7,8 +7,11 @@ Car::Car() : Vehicle()
     isConvertable = false;
 }
 
-Car::Car(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount, const bool isSportsCar, const bool isConvertable)
-    : Vehicle(brand, licensePlate, yearOfProduction, seatsCount), isSportsCar(isSportsCar), isConvertable(isConvertable)
+Car::Car(const MyString &brand, const MyString& model, const MyString &licensePlate, const size_t yearOfProduction,
+         const size_t seatsCount, const size_t gearbox, const size_t engineType, const bool isSportsCar, const bool isConvertable)
+
+    : Vehicle(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType),
+      isSportsCar(isSportsCar), isConvertable(isConvertable)
 {
     category = Category::Automobile;
 }
@@ -57,8 +60,8 @@ std::ifstream &operator>>(std::ifstream &ifstr, Car &C)
     C.setYearOfProduction(temp.convertToInt());
     ifstr >> temp;
     C.setSeatsCount(temp.convertToInt());
-//    ifstr >> temp;
-//    C.setIsRented(temp.convertToInt());
+    //    ifstr >> temp;
+    //    C.setIsRented(temp.convertToInt());
     ifstr >> temp;
     C.setEngineType(temp.convertToInt());
     ifstr >> temp;
@@ -80,7 +83,7 @@ std::ofstream &operator<<(std::ofstream &ofstr, const Car &C)
     ofstr << C.getModel();
     ofstr << C.getYearOfProduction() << newLine;
     ofstr << C.getSeatsCount() << newLine;
-//    ofstr << C.getIsRented() << newLine;
+    //    ofstr << C.getIsRented() << newLine;
     ofstr << C.engineType << newLine;
     ofstr << C.gearbox << newLine;
     ofstr << C.isSportsCar << newLine;

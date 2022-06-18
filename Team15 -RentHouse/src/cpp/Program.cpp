@@ -3,8 +3,8 @@
 void Program::StartMenu()
 {
     const int size = 5;
-    const MyString commands[size] =
-        {"Add", "Print", "Rent", "Delete", "Quit"};
+    const MyString commands[size] = {
+        "Add", "Print", "Rent", "Delete", "Quit"};
     char char_counter = '1';
 
     std::cout << "Welcome!\n";
@@ -91,10 +91,10 @@ void Program::Menu_Add()
 
 void Program::Menu_Print()
 {
-    const int size = 8;
+    const int size = 7;
 
     const MyString commands[size] =
-        {"All customers", "All vehicles", "All rents", "Vehicles by price", "Cars by model",
+        {"All customers", "All vehicles", "All rents", "Cars by model",
          "Rents by start date", "Rents by end date", "All free cars"};
 
     char char_counter = 'a';
@@ -120,23 +120,19 @@ void Program::Menu_Print()
     }
     else if (line.isChar(char_counter + 3))
     {
-        // rentHouse.printCarsByPrice();
+        Print_VehiclesByBrand();
     }
     else if (line.isChar(char_counter + 4))
     {
-        Print_VehiclesByBrand();
+        rentHouse.printRentsByStartDate();
     }
     else if (line.isChar(char_counter + 5))
     {
-        // rentHouse.printRentsByStartDate();
+        rentHouse.printRentsByEndDate();
     }
     else if (line.isChar(char_counter + 6))
     {
-        // rentHouse.printRentsByEndDate();
-    }
-    else if (line.isChar(char_counter + 7))
-    {
-        //  rentHouse.printAllFreeCars();
+        rentHouse.printAllFreeCars();
     }
     else
     {
@@ -149,7 +145,7 @@ void Program::Menu_Rent()
     const int size = 4;
 
     const MyString commands[size] =
-        {"Rent a car", "Extend rent", "Change owner", "End rent"};
+        {"Rent a vehicle", "Extend rent", "Change owner", "End rent"};
 
     char char_counter = 'a';
 
@@ -235,14 +231,12 @@ void Program::Add_Customer()
     std::cout << "Enter password: ";
     password.getLine(std::cin);
 
-    if (!rentHouse.addCustomer(name, email, EGN, city, phone, username, password))
-    {
-        std::cout << "Error while adding Customer!\n";
-    }
-    else
+    if (rentHouse.addCustomer(name, email, EGN, city, phone, username, password))
     {
         std::cout << "Customer added successfully!\n";
+        return;
     }
+    std::cout << "Error while adding Customer!\n";
 }
 
 void Program::Add_Vehicle()
@@ -266,46 +260,46 @@ void Program::Add_Vehicle()
 void Program::Print_VehiclesByBrand() const
 {
     std::cout << "Enter brand: ";
-
     MyString brand;
     brand.getLine(std::cin);
-    // check if brand exists???
 
     rentHouse.printVehiclesByBrand(brand);
-    // if (!rentHouse.printCarsByBrand(brand)) // if bool
-    // {
-    //     std::cout << "Brand does not exist!\n";
-    // }
+    if (rentHouse.printVehiclesByBrand(brand))
+    {
+        // They are printed
+        return;
+    }
+    std::cout << "Brand does not exist!\n";
 }
 
 void Program::Delete_Customer()
 {
-    // if customer is in rent??
-
     std::cout << "Enter EGN: ";
     MyString EGN;
     EGN.getLine(std::cin);
-    // check if exists, check if in rent, then delete
-    if (true)
+
+    if (rentHouse.deleteCustomer(EGN))
     {
         std::cout << "Customer deleted successfully!\n";
+        return;
     }
-    // else
-    // {
-    //     std::cout << "Customer deletion failed!\n"
-    // }
+
+    std::cout << "Customer deletion failed!\n";
 }
 
 void Program::Delete_Vehicle()
 {
-
-    // if vehicle is in rent??,  we need checks!
-
     std::cout << "Enter License plate: ";
     MyString plate;
     plate.getLine(std::cin);
 
-    // check if exists,....
+    if (rentHouse.deleteVechile(plate))
+    {
+        std::cout << "Vehicle deleted successfully!\n";
+        return;
+    }
+
+    std::cout << "Vehicle deletion failed!\n";
 }
 
 void Program::Rent_RentVehicle()
@@ -314,50 +308,79 @@ void Program::Rent_RentVehicle()
     MyString EGN;
     EGN.getLine(std::cin);
 
-    // check if exists
+    if (!rentHouse.doesCustomerWithEGNExist(EGN))
+    {
+        std::cout << "No customer found\n";
+        return;
+    }
 
     std::cout << "Enter License plate: ";
     MyString plate;
     plate.getLine(std::cin);
 
-    // check if is free
+    if (rentHouse.isLicensePlateUnique(plate))
+    {
+        std::cout << "Car does not exist!\n";
+        return;
+    }
+
+    if (rentHouse.doesRentWithSameLicenseExist(plate))
+    {
+        std::cout << "Car is already in use\n";
+        return;
+    }
 
     std::cout << "Enter start date: ";
-    MyString StartDate;
-    StartDate.getLine(std::cin);
-    // converter
+    Date StartDate;
 
-    Date SDate; // check if ok by converter
+    do
+    {
+        std::cin >> StartDate;
+    } while (!StartDate.isValidDate());
 
     std::cout << "Enter end date: ";
-    MyString EndDate;
-    EndDate.getLine(std::cin);
+    Date EndDate;
 
-    Date EDate; // same things
+    do
+    {
+        std::cin >> EndDate;
+    } while (!StartDate.isValidDate());
 
-    if (SDate >= EDate)
+    if (StartDate >= EndDate)
     {
         std::cout << "End date is before Start date!";
     }
-    // if( !rentHouse.addRent(EGN,plate,SDate, EDate) ) {
-    //      vehicle with this plate exist
-    // }
-    // A person can rent 2 cars,
-    // but one car cant be rent by 2 people
-    // same with man and woman
+
+    rentHouse.addRent(EGN, plate, StartDate, EndDate);
+    std::cout << "Rent added successfuly!\n";
 }
 
 void Program::Rent_EndRentVehicle()
 {
-    // if( !rentHouse.removeRent(licensePlate) ) {
-    //     there is not vehicle with this licensePlate
-    // }
+    std::cout << "Enter License plate: ";
+    MyString plate;
+    plate.getLine(std::cin);
+
+    if (rentHouse.removeRent(plate))
+    {
+        std::cout << "Rent ended successfully!\n";
+        return;
+    }
+    std::cout << "There is no vehicle with this license plate!\n";
 }
 
 void Program::Rent_ExtendRent()
 {
-    // kak namirame renta?
-    // rent id?
+    std::cout << "Enter License plate: ";
+    MyString plate;
+    plate.getLine(std::cin);
+
+    if (!rentHouse.doesRentWithSameLicenseExist(plate))
+    {
+        std::cout << "Rent not found!\n";
+        return;
+    }
+
     std::cout << "Enter days to extend: ";
     MyString daysStr;
     daysStr.getLine(std::cin);
@@ -370,17 +393,40 @@ void Program::Rent_ExtendRent()
     }
     size_t days = daysStr.convertToInt();
 
-    // if( a.increaseRentalTime(licensePlate, days) ) {
-    //      there is not vehicle with this licensePlate
-    // }
-
+    if (rentHouse.increaseRentalTime(plate, days))
+    {
+        std::cout << "Rent days increased successfully!\n";
+        return;
+    }
+    std::cout << "Rent days failed to be increased!\n";
 }
 
 void Program::Rent_ChangeOwner()
 {
-    // cout << fromEGN << toEGN << licensePlate
-    // if(rentHouse.changeOwners(fromEGN, toEGN, licensePlate)){
-    //     something went wrong (a lot of thing could go wrong)
-    // }
+    std::cout << "Enter License plate: ";
+    MyString plate;
+    plate.getLine(std::cin);
 
+    if (!rentHouse.doesRentWithSameLicenseExist(plate))
+    {
+        std::cout << "Rent not found!\n";
+        return;
+    }
+
+    std::cout << "Enter Customer's EGN to change the car to: ";
+    MyString EGN;
+    EGN.getLine(std::cin);
+
+    if (!rentHouse.doesCustomerWithEGNExist(EGN))
+    {
+        std::cout << "Customer not found!\n";
+        return;
+    }
+
+    if (rentHouse.changeOwners(EGN, plate))
+    {
+        std::cout << "Rent owner changed successfully!\n";
+    }
+
+    std::cout << "Rent owner change failed!\n";
 }

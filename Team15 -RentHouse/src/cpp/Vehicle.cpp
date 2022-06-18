@@ -3,14 +3,23 @@
 
 Vehicle::Vehicle()
 {
+    seatsCount = 0;
+    yearOfProduction = 2000;
+    gearbox = Vehicle::Gearbox::UnknownGearbox;
+    engineType = Vehicle::EngineType::UnknownEngineType;
+    category = Vehicle::Category::UnknownVehicleType;
 }
 
-Vehicle::Vehicle(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount)
+Vehicle::Vehicle(const MyString &brand, const MyString& model, const MyString &licensePlate,
+                 const size_t yearOfProduction, const size_t seatsCount, const size_t gearbox, const size_t engineType)
 {
     setBrand(brand);
+    setModel(model);
     setLicensePlate(licensePlate);
     setYearOfProduction(yearOfProduction);
     setSeatsCount(seatsCount);
+    setGearbox(gearbox);
+    setEngineType(engineType);
 }
 
 void Vehicle::setBrand(const MyString &brand)
@@ -37,11 +46,6 @@ void Vehicle::setModel(const MyString &model)
 {
     this->model = model;
 }
-
-/*void Vehicle::setIsRented(const bool isRented)
-{
-    this->isRented = isRented;
-}*/
 
 void Vehicle::setEngineType(const size_t index)
 {
@@ -72,15 +76,11 @@ size_t Vehicle::getSeatsCount() const
 {
     return seatsCount;
 }
+
 const MyString &Vehicle::getModel() const
 {
     return model;
 }
-
-/*bool Vehicle::getIsRented() const
-{
-    return isRented;
-}*/
 
 const Vehicle::Category &Vehicle::getCategory() const
 {
@@ -99,23 +99,15 @@ const Vehicle::EngineType &Vehicle::getEngineType() const
 
 bool Vehicle::isVehicleNew()
 {
-    size_t newYear = 2010;
+    const size_t newYear = 2010;
     return yearOfProduction >= newYear;
 }
-
-/*bool Vehicle::isVehicleRented() const
-{
-    return isRented;
-} */
-
-/*void Vehicle::changeRentedStatus(bool status)
-{
-    isRented = status;
-}*/
 
 void Vehicle::print() const
 {
     std::cout << "License plate: " << licensePlate << std::endl;
-//    std::cout << "Is rented: " << isRented << std::endl;
-    std::cout << "Brand: " << brand << "; Model: " << model << "; Year of production: " << yearOfProduction << "; Number of seats: " << seatsCount << "; ";
+    std::cout << "Brand: " << brand
+              << ", Model: " << model
+              << ", Year of production: " << yearOfProduction
+              << ", Number of seats: " << seatsCount << "; " << std::endl;
 }

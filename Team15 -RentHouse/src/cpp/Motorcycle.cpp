@@ -7,8 +7,8 @@ Motorcycle::Motorcycle() : Vehicle()
     hasStorageSpace = false;
 }
 
-Motorcycle::Motorcycle(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount, const bool doesHaveExtraHouse, const bool hasStorageSpace)
-    : Vehicle(brand, licensePlate, yearOfProduction, seatsCount), doesHaveExtraHouse(doesHaveExtraHouse), hasStorageSpace(hasStorageSpace)
+Motorcycle::Motorcycle(const MyString &brand, const MyString& model, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount, const size_t gearbox, const size_t engineType, const bool doesHaveExtraHouse, const bool hasStorageSpace)
+    : Vehicle(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType), doesHaveExtraHouse(doesHaveExtraHouse), hasStorageSpace(hasStorageSpace)
 {
     category = Category::Motorcycle;
 }

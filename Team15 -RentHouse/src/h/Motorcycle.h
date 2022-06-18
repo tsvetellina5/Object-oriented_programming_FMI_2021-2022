@@ -9,7 +9,7 @@ private:
 
 public:
 	Motorcycle();
-	Motorcycle(const MyString &, const MyString &, const size_t, const size_t, const bool, const bool);
+	Motorcycle(const MyString&, const MyString&, const MyString&, const size_t, const size_t, const size_t, const size_t, const bool, const bool);
 
 	const bool getDoesHaveExtraHouse() const;
 	void setDoesHaveExtraHouse(const bool);

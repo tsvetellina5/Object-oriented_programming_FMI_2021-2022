@@ -2,6 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <iomanip>
+#pragma warning(disable:4996)
 
 void MyString::copyFrom(const MyString &other)
 {
@@ -44,7 +45,7 @@ size_t getNumSize(size_t num)
 
 MyString::MyString(size_t n)
 {
-    int numSize = getNumSize(n);
+    size_t numSize = getNumSize(n);
     str = new char[numSize + 1];
 
     str[numSize] = '\0';
@@ -198,7 +199,7 @@ bool MyString::isInt() const
 {
     bool isNeg = (str[0] == '-');
 
-    for (int i = isNeg; i < size; i++)
+    for(size_t i = isNeg; i < size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
         {
@@ -215,7 +216,7 @@ bool MyString::isInt() const
 
 bool MyString::isOnlyNumbers() const
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
         {
@@ -239,7 +240,7 @@ int MyString::convertToInt() const
         return 0;
     }
 
-    for (int i = isNeg; i < size; i++)
+    for (size_t i = isNeg; i < size; i++)
     {
         n += (str[i] - '0');
         n *= 10;
@@ -263,7 +264,7 @@ bool MyString::isDouble() const
     bool isNeg = (str[0] == '-');
     int dotCount = 0;
 
-    for (int i = isNeg; i < size; i++)
+    for (size_t i = isNeg; i < size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
         {
@@ -287,9 +288,9 @@ bool MyString::isDouble() const
     return dotCount == 1;
 }
 
-int MyString::findDotInDouble() const
+size_t MyString::findDotInDouble() const
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         if (str[i] == '.')
         {
@@ -314,21 +315,22 @@ double MyString::convertToDouble() const
         return 0;
     }
 
-    int index = findDotInDouble();
+    size_t index = findDotInDouble();
     bool isNeg = (str[0] == '-');
-    for (int i = isNeg; i < index; i++)
+
+    for (size_t i = isNeg; i < index; i++)
     {
         n += (str[i] - '0');
         n *= 10;
     }
     n /= 10;
-    for (int i = index + 1; i < size; i++)
+    for (size_t i = index + 1; i < size; i++)
     {
         after += (str[i] - '0');
         after *= 10;
     }
     after /= 10;
-    for (int i = 0; i < size - index - 1; i++)
+    for(size_t i = 0; i < size - index - 1; i++)
     {
         after /= 10;
     }

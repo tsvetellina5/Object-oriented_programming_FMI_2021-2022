@@ -7,8 +7,9 @@ Bus::Bus() : Vehicle()
     hasAC = false;
 }
 
-Bus::Bus(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount, const size_t rating, const bool hasAC)
-    : Vehicle(brand, licensePlate, yearOfProduction, seatsCount), rating(rating), hasAC(hasAC)
+Bus::Bus(const MyString& brand, const MyString& model, const MyString& licensePlate, const size_t yearOfProduction,
+         const size_t seatsCount, const size_t gearbox, const size_t engineType, const size_t rating, const bool hasAC)
+    : Vehicle(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType), rating(rating), hasAC(hasAC)
 {
     category = Category::Bus;
 }
@@ -58,8 +59,8 @@ std::ifstream &operator>>(std::ifstream &ifstr, Bus &B)
     ifstr >> temp;
     B.setSeatsCount(temp.convertToInt());
     ifstr >> temp;
-    //B.setIsRented(temp.convertToInt());
-    //ifstr >> temp;
+    // B.setIsRented(temp.convertToInt());
+    // ifstr >> temp;
     B.setEngineType(temp.convertToInt());
     ifstr >> temp;
     B.setGearbox(temp.convertToInt());
@@ -80,7 +81,7 @@ std::ofstream &operator<<(std::ofstream &ofstr, const Bus &B)
     ofstr << B.getModel();
     ofstr << B.getYearOfProduction() << newLine;
     ofstr << B.getSeatsCount() << newLine;
-//    ofstr << B.getIsRented() << newLine;
+    //    ofstr << B.getIsRented() << newLine;
     ofstr << B.engineType << newLine;
     ofstr << B.gearbox << newLine;
     ofstr << B.rating << newLine;
