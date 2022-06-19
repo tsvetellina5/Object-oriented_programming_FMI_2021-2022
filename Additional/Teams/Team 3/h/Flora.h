@@ -1,10 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include "Organism.h"
 #include "Vector.hpp"
 #include "StringC.h"
-
-#include <iostream>
 
 class Flora : public Organism
 {

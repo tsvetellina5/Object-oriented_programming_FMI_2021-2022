@@ -213,3 +213,28 @@ int integerDigitsCnt(int num)
 
 	return cnt;
 }
+
+int strToint(const StringC& input)
+{
+	const char* str = input.getString();
+	int result = 0;
+
+	for (int i = 0; i < input.getSize(); i++)
+	{
+		result *= 10;
+		result += str[i] - '0';
+	}
+	return result;
+}
+
+bool isInteger(const StringC& input)
+{
+	const char* str = input.getString();
+	for (int i = 0; i < input.getSize(); i++)
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return false;
+	}
+
+	return true;
+}

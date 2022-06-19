@@ -12,7 +12,8 @@ void printMainCommands();
 void printPrintCommands();
 void printLevels();
 
-int strToint(const char*);
+int strToint(const StringC&);
+bool isInteger(const StringC&);
 
 int main()
 {
@@ -61,30 +62,20 @@ void commandMenu(RedBook& tempBook)
 				std::cout << "    >";
 				consoleCom.getline(std::cin);
 
-				int index;
-				if (consoleCom == "least concern")
-					index = 0;
-				else if (consoleCom == "near threatened")
-					index = 1;
-				else if (consoleCom == "vulnerable")
-					index = 2;
-				else if (consoleCom == "endangered")
-					index = 3;
-				else if (consoleCom == "critically endangered ")
-					index = 4;
-				else if (consoleCom == "extinct in the wild")
-					index = 5;
-				else if (consoleCom == "extinct")
-					index = 6;
-				else
-					index = strToint(consoleCom.getString());
+				int index = strToint(consoleCom.getString());
+
+				if (index < 0 || index > 7)
+				{
+					std::cout << "    Conservation level must be from 0 to 7." << std::endl;
+					continue;
+				}
 
 				std::cout << "    All species with conservation level " << consoleCom << std::endl;
 				tempBook.printConservationLevel(index);
 			}
 			else if (consoleCom == "5" || consoleCom == "flora" || consoleCom == "Flora" || consoleCom == "print Flora")
 			{
-				std::cout << "  All species in the book:" << std::endl;
+				std::cout << "    All species in the book:" << std::endl;
 				tempBook.printAll();
 			}
 			else if (consoleCom == "0" || consoleCom == "quit")
@@ -120,14 +111,14 @@ void commandMenu(RedBook& tempBook)
 				}
 				else if (consoleCom == "2" || consoleCom == "plant" || consoleCom == "Plant" || consoleCom == "flora")
 				{
-					if(!tempBook.addFloraFromUserInput())
+					if (!tempBook.addFloraFromUserInput())
 						std::cout << "Adding was unsuccessful." << std::endl;
 					else
 						std::cout << "Adding was successful." << std::endl;
 				}
 				else if (consoleCom == "3" || consoleCom == "fungus" || consoleCom == "Fungus" || consoleCom == "fungi")
 				{
-					if(!tempBook.addFungiFromUserInput())
+					if (!tempBook.addFungiFromUserInput())
 						std::cout << "Adding was unsuccessful." << std::endl;
 					else
 						std::cout << "Adding was successful." << std::endl;
@@ -143,15 +134,15 @@ void commandMenu(RedBook& tempBook)
 				std::cout << "   name or index" << std::endl;
 				std::cout << "   >";
 				consoleCom.getline(std::cin);
-				int comNum = strToint(consoleCom.getString());
-				int index = tempBook.getSpeciesIndex(consoleCom);
-				if (index == -1)
+
+				int index = tempBook.getIndexFromUserInput(consoleCom);
+
+				if (!tempBook.isValidIndex(index))
 				{
-					if (tempBook.removeAtIndex(comNum))
-						std::cout << "    Successful removal" << std::endl;
-					else
-						std::cout << "    Error in removing!" << std::endl;
+					std::cout << "    No such organism." << std::endl;
+					continue;
 				}
+
 				else
 				{
 					tempBook.removeAtIndex(index);
@@ -181,35 +172,33 @@ void commandMenu(RedBook& tempBook)
 				std::cout << "    >";
 
 				consoleCom.getline(std::cin);
-				int comNum = strToint(consoleCom.getString());
-				int index = tempBook.getSpeciesIndex(consoleCom);
 
-				if (tempBook.getSpeciesAt(index) == nullptr)
+				int index = tempBook.getIndexFromUserInput(consoleCom);
+
+				if (!tempBook.isValidIndex(index))
 				{
-					if (tempBook.getSpeciesAt(comNum) == nullptr)
-						std::cout << "    Invalid name or index!" << std::endl;
-					else
-						tempBook.getSpeciesAt(comNum)->print();
+					std::cout << "    No such organism." << std::endl;
+					continue;
 				}
-				else
-					tempBook.getSpeciesAt(index)->print();
+
+				tempBook.getSpeciesAt(index)->print();
 			}
 			else if (consoleCom == "2" || consoleCom == "check conservation" || consoleCom == "check conservation level")
 			{
 				std::cout << "    name or index" << std::endl;
 				std::cout << "    >";
 				consoleCom.getline(std::cin);
-				int comNum = strToint(consoleCom.getString());
-				int index = tempBook.getSpeciesIndex(consoleCom);
-				if (tempBook.getSpeciesAt(index) == nullptr)
+
+
+				int index = tempBook.getIndexFromUserInput(consoleCom);
+
+				if (!tempBook.isValidIndex(index))
 				{
-					if (tempBook.getSpeciesAt(comNum) == nullptr)
-						std::cout << "    Invalid name or index!" << std::endl;
-					else
-						std::cout << "    " << tempBook.getSpeciesAt(comNum)->getConservationLevel() << std::endl;
+					std::cout << "    No such organism." << std::endl;
+					continue;
 				}
-				else
-					std::cout << "    " << tempBook.getSpeciesAt(index)->getConservationLevel() << std::endl;
+
+				std::cout << "    " << tempBook.getSpeciesAt(index)->getConservationLevel() << std::endl;
 
 			}
 			else if (consoleCom == "3" || consoleCom == "change species")
@@ -217,19 +206,12 @@ void commandMenu(RedBook& tempBook)
 				std::cout << "    name or index" << std::endl;
 				std::cout << "    >";
 				consoleCom.getline(std::cin);
-				int comNum = strToint(consoleCom.getString());
-				int index = tempBook.getSpeciesIndex(consoleCom);
 
-				Organism* temp = tempBook.getSpeciesAt(index);
+				int index = tempBook.getIndexFromUserInput(consoleCom);
 
-				if (temp == nullptr)
+				if (!tempBook.isValidIndex(index))
 				{
-					temp = tempBook.getSpeciesAt(comNum);
-					index = comNum;
-				}
-				if (temp == nullptr)
-				{
-					std::cout << "    Invalid name or index!" << std::endl;
+					std::cout << "    No such organism." << std::endl;
 					continue;
 				}
 
@@ -244,14 +226,14 @@ void commandMenu(RedBook& tempBook)
 					std::cout << "      new habitat" << std::endl;
 					std::cout << "	    >";
 					consoleCom.getline(std::cin);
-					temp->addHabitat(consoleCom);
+					tempBook.addHabitatByIndex(index, consoleCom);
 				}
 				else if (consoleCom == "2" || consoleCom == "remove habitat")
 				{
 					std::cout << "      remove habitat" << std::endl;
 					std::cout << "	    >";
 					consoleCom.getline(std::cin);
-					if (temp->removeHabitat(consoleCom))
+					if (tempBook.removeHabitatByIndex(index, consoleCom))
 						std::cout << "      Remove successful" << std::endl;
 					else
 						std::cout << "      Error in removing!" << std::endl;
@@ -272,29 +254,35 @@ void commandMenu(RedBook& tempBook)
 				std::cout << "    --critically endangered" << std::endl;
 				std::cout << "    --extinct in the wild" << std::endl;
 				std::cout << "    --extinct" << std::endl;
+				std::cout << "    --unknown" << std::endl;
+
 				std::cout << "    name or index of species" << std::endl;
 				std::cout << "    >";
+
 				consoleCom.getline(std::cin);
-				int comNum = strToint(consoleCom.getString());
-				int index = tempBook.getSpeciesIndex(consoleCom);
 
-				if (index == -1)
+				int index = tempBook.getIndexFromUserInput(consoleCom);
+
+				if (!tempBook.isValidIndex(index))
 				{
-					if (comNum <= 0 || comNum >= tempBook.getSize())
-					{
-						std::cout << "    Invalid name or index!" << std::endl;
-						continue;
-					}
-
-					std::cout << "    level" << std::endl;
-					std::cout << "    >";
-					consoleCom.getline(std::cin);
-
-					if (!tempBook.setConservationLevelByIndex(comNum, consoleCom))
-						std::cout << "    Invalid level" << std::endl;
-					else
-						std::cout << "    Successful change" << std::endl;
+					std::cout << "    No such organism." << std::endl;
+					continue;
 				}
+
+				std::cout << "    level" << std::endl;
+				std::cout << "    >";
+				consoleCom.getline(std::cin);
+
+				if (isInteger(consoleCom))
+				{
+					std::cout << "    Level can't be a number." << std::endl;
+					continue;
+				}
+
+				if (!tempBook.setConservationLevelByIndex(index, consoleCom))
+					std::cout << "    Extinct species' level cannot be changed." << std::endl;
+				else
+					std::cout << "    Successful change" << std::endl;
 			}
 			else if (consoleCom == "0" || consoleCom == "quit")
 				continue;
@@ -311,18 +299,6 @@ void commandMenu(RedBook& tempBook)
 		else
 			std::cout << "Wrong command!" << std::endl;
 	}
-}
-
-int strToint(const char* str)
-{
-	int index = 0;
-	int temp = 1;
-	for (int i = StringC(str).getSize() - 1; i >= 0; i--)
-	{
-		index += (int(str[i]) - int(char('0'))) * temp;
-		temp *= 10;
-	}
-	return index;
 }
 
 void printMainCommands()
@@ -355,4 +331,5 @@ void printLevels()
 	std::cout << "    critically endangered - 4" << std::endl;
 	std::cout << "    extinct in the wild - 5" << std::endl;
 	std::cout << "    extinct - 6" << std::endl;
+	std::cout << "    unknown - 7" << std::endl;
 }

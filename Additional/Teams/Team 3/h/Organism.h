@@ -1,10 +1,9 @@
-#pragma once
-
-#include <iostream>
-#include <ctime>
+﻿#pragma once
 
 #include "Vector.hpp"
 #include "StringC.h"
+
+#include <ctime>
 
 class Organism
 {

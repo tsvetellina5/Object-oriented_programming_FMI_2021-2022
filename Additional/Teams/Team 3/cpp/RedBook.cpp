@@ -81,6 +81,7 @@ bool RedBook::removeAtIndex(size_t index) {
 
 void RedBook::printAll() const {
 	for (size_t i = 0; i < size; i++) {
+		std::cout << "Index " << i << ". " << std::endl;
 		list[i]->print();
 		std::cout << std::endl;
 	}
@@ -101,6 +102,7 @@ void RedBook::printFauna() const {
 		if (tmp == nullptr)
 			continue;
 
+		std::cout << "Index " << i << ". " << std::endl;
 		tmp->print();
 	}
 }
@@ -113,6 +115,7 @@ void RedBook::printFlora() const {
 		if (tmp == nullptr)
 			continue;
 
+		std::cout << "Index " << i << ". " << std::endl;
 		tmp->print();
 	}
 }
@@ -125,6 +128,7 @@ void RedBook::printFungi() const {
 		if (tmp == nullptr)
 			continue;
 
+		std::cout << "Index " << i << ". " << std::endl;
 		tmp->print();
 	}
 }
@@ -157,13 +161,23 @@ size_t RedBook::getSize() const
 	return size;
 }
 
-Organism* RedBook::getSpeciesAt(const size_t index) const
+const Organism* RedBook::getSpeciesAt(const size_t index) const
 {
 	if (index >= size)
 	{
 		return nullptr;
 	}
-	return list[index]->clone();
+	return list[index];
+}
+
+void RedBook::addHabitatByIndex(int index, const StringC& habitat)
+{
+	list[index]->addHabitat(habitat);
+}
+
+bool RedBook::removeHabitatByIndex(int index, const StringC& habitat)
+{
+	return list[index]->removeHabitat(habitat);
 }
 
 bool RedBook::addFaunaFromUserInput()
@@ -320,4 +334,21 @@ bool RedBook::addFungiFromUserInput()
 
 	Fungi f(name, lifespan, tempVec, consLvL, isPoisonous);
 	return addOrganism(f);
+}
+
+int RedBook::getIndexFromUserInput(const StringC& input) const
+{
+	int index;
+
+	if (!isInteger(input))
+		index = getSpeciesIndex(input);
+	else
+		index = strToint(input);
+
+	return index;
+}
+
+bool RedBook::isValidIndex(int index) const
+{
+	return index >= 0 && index < size;
 }

@@ -1,5 +1,7 @@
 ﻿#include "Fauna.h"
 
+#include <iostream>
+
 Fauna::Fauna() : Organism(), isPredator(false) {}
 
 Fauna::Fauna(const StringC& name, double lifeSpan, const Vector<StringC>& habitats, const StringC& consLevel, bool isPredator)

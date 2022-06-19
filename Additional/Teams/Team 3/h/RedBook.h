@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Organism.h"
 #include "Flora.h"
 #include "Fauna.h"
@@ -30,11 +30,17 @@ public:
 
 	int getSpeciesIndex(const StringC&) const;
 	size_t getSize() const;
-	Organism* getSpeciesAt(const size_t) const;
+	const Organism* getSpeciesAt(const size_t) const;
+
+	void addHabitatByIndex(int, const StringC&);
+	bool removeHabitatByIndex(int, const StringC&);
 
 	bool addFaunaFromUserInput();
 	bool addFloraFromUserInput();
 	bool addFungiFromUserInput();
+
+	int getIndexFromUserInput(const StringC&) const;
+	bool isValidIndex(int) const;
 
 private:
 	void copy(const RedBook&);

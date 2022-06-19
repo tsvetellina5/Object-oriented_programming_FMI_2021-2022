@@ -42,3 +42,6 @@ public:
 bool operator==(const StringC&, const StringC&);
 
 int integerDigitsCnt(int);
+
+int strToint(const StringC&);
+bool isInteger(const StringC&);

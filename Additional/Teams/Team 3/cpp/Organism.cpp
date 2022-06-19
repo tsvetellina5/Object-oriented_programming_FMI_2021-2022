@@ -1,5 +1,7 @@
 ﻿#include "Organism.h"
 
+#include <iostream>
+
 const StringC Organism::LEVELS[8] = { "least concern", "near threatened", "vulnerable", "endangered", "critically endangered",
 								"extinct in the wild", "extinct", "unknown" };
 
@@ -76,7 +78,7 @@ bool Organism::removeHabitat(const StringC& remHabitat)
 {
 	for (size_t i = 0; i < habitats.getSize(); i++)
 	{
-		if (habitats.At(i) == remHabitat)
+		if (habitats[i] == remHabitat)
 		{
 			habitats.popAt(i);
 			return true;
