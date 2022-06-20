@@ -35,6 +35,7 @@ public:
 
 	friend std::ostream &operator<<(std::ostream &stream, const MyString &str);
 	friend std::istream &operator>>(std::istream &stream, MyString &str);
+	friend std::ifstream &operator>>(std::ifstream &, MyString &);
 
 	int convertToInt() const;
 	bool isOnlyNumbers() const;
@@ -44,6 +45,8 @@ public:
 	size_t findDotInDouble() const;
 	bool isDouble() const;
 	bool isChar(const char) const;
+
+	char *getText() const;
 };
 
 MyString operator+(const MyString &lhs, const MyString &rhs);

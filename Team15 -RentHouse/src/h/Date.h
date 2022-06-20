@@ -18,6 +18,8 @@ public:
     bool isBetweenDates(const Date &, const Date &);
     bool isValidDate();
 
+    void print() const;
+
     friend bool operator==(const Date &, const Date &);
     friend bool operator!=(const Date &, const Date &);
 
@@ -34,3 +36,4 @@ public:
 size_t daysIn(size_t, size_t);
 bool isLeapYear(const size_t year);
 size_t getCurrentYear();
+

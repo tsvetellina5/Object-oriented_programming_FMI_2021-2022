@@ -116,17 +116,6 @@ Container<T>::~Container()
 }
 
 template <typename T>
-bool Container<T>::setAt(size_t index, const T &elem)
-{
-    if (index >= size || index < 0)
-    {
-        return false;
-    }
-    // elements[index] = elem;
-    return true;
-}
-
-template <typename T>
 void Container<T>::addElemenet(const T &elem)
 {
     if (size == capacity)
@@ -177,20 +166,12 @@ bool Container<T>::isEmpty() const
 template <typename T>
 T *&Container<T>::operator[](size_t index)
 {
-    if (index >= size)
-    {
-        // return new T();
-    }
     return elements[index];
 }
 
 template <typename T>
 const T *Container<T>::operator[](size_t index) const
 {
-    if (index >= size)
-    {
-        // return new T();
-    }
     return elements[index];
 }
 

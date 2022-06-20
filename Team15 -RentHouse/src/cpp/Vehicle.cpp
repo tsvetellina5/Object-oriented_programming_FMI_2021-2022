@@ -10,7 +10,7 @@ Vehicle::Vehicle()
     category = Vehicle::Category::UnknownVehicleType;
 }
 
-Vehicle::Vehicle(const MyString &brand, const MyString& model, const MyString &licensePlate,
+Vehicle::Vehicle(const MyString &brand, const MyString &model, const MyString &licensePlate,
                  const size_t yearOfProduction, const size_t seatsCount, const size_t gearbox, const size_t engineType)
 {
     setBrand(brand);
@@ -105,9 +105,27 @@ bool Vehicle::isVehicleNew()
 
 void Vehicle::print() const
 {
-    std::cout << "License plate: " << licensePlate << std::endl;
-    std::cout << "Brand: " << brand
-              << ", Model: " << model
-              << ", Year of production: " << yearOfProduction
-              << ", Number of seats: " << seatsCount << "; " << std::endl;
+    std::cout << "License plate: " << licensePlate
+              << "Brand: " << brand
+              << "Model: " << model
+              << "Year of production: " << yearOfProduction << "\n"
+              << "Number of seats: " << seatsCount << "\n";
+}
+
+std::ofstream &Vehicle::save(std::ofstream &ofstr) const
+{
+    ofstr << brand << model << licensePlate;
+    ofstr << yearOfProduction << '\n'
+          << seatsCount << '\n'
+          << gearbox << '\n'
+          << engineType << '\n';
+
+    return ofstr;
+}
+
+std::ifstream &Vehicle::get(std::ifstream &ifstr)
+{
+    ifstr >> brand >> model >> licensePlate >> yearOfProduction >> seatsCount;
+
+    return ifstr;
 }

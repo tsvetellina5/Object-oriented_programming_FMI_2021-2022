@@ -9,17 +9,15 @@ private:
 
 public:
 	Bus();
-	Bus(const MyString&, const MyString&, const MyString&, const size_t, const size_t, const size_t, const size_t, const size_t, const bool);
+	Bus(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const size_t, const size_t, const size_t, const bool);
 
 	const size_t getRating() const;
 	const bool getHasAC() const;
-	
+
 	void setRating(const size_t);
 	void setHasAC(const bool);
 
 	Vehicle *clone() const override;
 	void print() const override;
-
-	friend std::ifstream &operator>>(std::ifstream &, Bus &);
-	friend std::ofstream &operator<<(std::ofstream &, const Bus &);
+	std::ofstream &save(std::ofstream &) const override;
 };

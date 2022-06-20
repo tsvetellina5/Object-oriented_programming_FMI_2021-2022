@@ -38,12 +38,12 @@ protected:
 
 public:
 	Vehicle();
-	Vehicle(const MyString&, const MyString&, const MyString&, const size_t, const size_t, const size_t, const size_t);
+	Vehicle(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const size_t, const size_t);
 
 	virtual ~Vehicle() = default;
 	virtual Vehicle *clone() const = 0;
 
-	//setters
+	// setters
 	void setBrand(const MyString &);
 	void setLicensePlate(const MyString &);
 	void setModel(const MyString &);
@@ -54,7 +54,7 @@ public:
 	void setEngineType(const size_t);
 	void setGearbox(const size_t);
 
-	//getters
+	// getters
 	const MyString &getBrand() const;
 	const MyString &getLicensePlate() const;
 	const MyString &getModel() const;
@@ -65,7 +65,9 @@ public:
 	const Gearbox &getGearbox() const;
 	const EngineType &getEngineType() const;
 
-
 	bool isVehicleNew();
 	virtual void print() const;
+
+	virtual std::ofstream &save(std::ofstream &) const;
+	virtual std::ifstream &get(std::ifstream &);
 };

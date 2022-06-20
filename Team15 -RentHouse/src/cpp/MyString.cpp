@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <iomanip>
-#pragma warning(disable:4996)
+#pragma warning(disable : 4996)
 
 void MyString::copyFrom(const MyString &other)
 {
@@ -143,7 +143,7 @@ MyString operator+(const MyString &lhs, const MyString &rhs)
 
 std::ostream &operator<<(std::ostream &stream, const MyString &str)
 {
-    stream << str.str;
+    stream << str.str << '\n';
     return stream;
 }
 
@@ -158,6 +158,20 @@ std::istream &operator>>(std::istream &stream, MyString &str)
     strcpy(str.str, buff);
 
     return stream;
+}
+
+std::ifstream &operator>>(std::ifstream &ifstr, MyString &str)
+{
+    delete[] str.str;
+
+    char buff[256];
+    ifstr.getline(buff, 256);
+
+    str.size = strlen(buff);
+    str.str = new char[str.size + 1];
+    strcpy(str.str, buff);
+
+    return ifstr;
 }
 
 bool operator==(const MyString &lhs, const MyString &rhs)
@@ -199,7 +213,7 @@ bool MyString::isInt() const
 {
     bool isNeg = (str[0] == '-');
 
-    for(size_t i = isNeg; i < size; i++)
+    for (size_t i = isNeg; i < size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
         {
@@ -330,7 +344,7 @@ double MyString::convertToDouble() const
         after *= 10;
     }
     after /= 10;
-    for(size_t i = 0; i < size - index - 1; i++)
+    for (size_t i = 0; i < size - index - 1; i++)
     {
         after /= 10;
     }
@@ -346,4 +360,9 @@ double MyString::convertToDouble() const
 bool MyString::isChar(const char symb) const
 {
     return size == 1 && str[0] == symb;
+}
+
+char *MyString::getText() const
+{
+    return str;
 }

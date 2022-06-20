@@ -33,22 +33,21 @@ Customer *Customer::clone() const
 
 void Customer::print() const
 {
-
-    std::cout << "EGN: " << EGN << std::endl;
-    std::cout << "Name: " << name << "; Email: " << email << "; City: " << city << "; Phone: " << phone << ";" << std::endl;
+    std::cout << "EGN: " << EGN;
+    std::cout << "Name: " << name << "Email: " << email << "City: " << city << "Phone: " << phone << std::endl;
 }
 
 // new
 
-std::ofstream &operator<<(std::ofstream &ofstr, const Customer &C)
+std::ofstream &operator<<(std::ofstream &ofstr, const Customer *C)
 {
-    ofstr << C.getName();
-    ofstr << C.getEmail();
-    ofstr << C.getEGN();
-    ofstr << C.getCity();
-    ofstr << C.getPhone();
-    ofstr << C.username;
-    ofstr << C.password;
+    ofstr << C->getName();
+    ofstr << C->getEmail();
+    ofstr << C->getEGN();
+    ofstr << C->getCity();
+    ofstr << C->getPhone();
+    ofstr << C->username;
+    ofstr << C->password;
 
     return ofstr;
 }
@@ -62,7 +61,6 @@ std::ifstream &operator>>(std::ifstream &ifstr, Customer &C)
     ifstr >> temp;
     C.setEmail(temp);
     ifstr >> temp;
-    ;
     C.setEGN(temp);
     ifstr >> temp;
     C.setCity(temp);

@@ -1,5 +1,12 @@
 #include "Program.h"
 
+void Program::load()
+{
+    std::ifstream file(TXT_NAME.getText());
+    file >> rentHouse;
+    file.close();
+}
+
 void Program::StartMenu()
 {
     const int size = 5;
@@ -8,13 +15,13 @@ void Program::StartMenu()
     char char_counter = '1';
 
     std::cout << "Welcome!\n";
-    Print_MyStringArray(commands, size, char_counter);
 
     bool mustEnd = false;
     int ForceBreak = 0; // can be deleted
 
     while (!mustEnd && ForceBreak++ < 50)
     {
+        Print_MyStringArray(commands, size, char_counter);
         std::cout << "> ";
 
         MyString line;
@@ -38,11 +45,8 @@ void Program::StartMenu()
         }
         else if (line.isChar(char_counter + 4))
         {
+            save();
             mustEnd = true;
-        }
-        else if (line == "h")
-        {
-            Print_MyStringArray(commands, size, char_counter);
         }
         else
         {
@@ -57,7 +61,7 @@ void Program::Print_MyStringArray(const MyString *arr, int size, char char_count
     for (int i = 0; i < size; i++)
     {
         std::cout << "   " << char_counter++ << ". ";
-        std::cout << arr[i] << "\n";
+        std::cout << arr[i];
     }
 }
 
@@ -132,7 +136,7 @@ void Program::Menu_Print()
     }
     else if (line.isChar(char_counter + 6))
     {
-        rentHouse.printAllFreeCars();
+        Print_FreeCars();
     }
     else
     {
@@ -241,20 +245,94 @@ void Program::Add_Customer()
 
 void Program::Add_Vehicle()
 {
-    // should we implement it like this ? .-.
-    /*
-        Add_Car();
-        Add_Motorcycle();
-        Add_Bus();
+    MyString category;
+    MyString brand;
+    MyString model;
+    MyString licensePlate;
+    MyString temp;
+    size_t yearOfProduction;
+    size_t seatsCount;
+    size_t gearbox;
+    size_t engineType;
 
-        Program::Add_Car(){}
-        Program::Add_Motorcycle(){}
-        Program::Add_Bus(){}
+    std::cout << "Enter the type of a vehivle ('Motorcycle', 'Car' or 'Bus'): ";
+    category.getLine(std::cin);
 
-        void Add_Car();
-        void Add_Motorcycle();
-        void Add_Bus();
-    */
+    std::cout << "Enter the brand: ";
+    brand.getLine(std::cin);
+
+    std::cout << "Enter the model: ";
+    model.getLine(std::cin);
+
+    std::cout << "Enter the license plate: ";
+    licensePlate.getLine(std::cin);
+
+    std::cout << "Enter the year of production: ";
+    temp.getLine(std::cin);
+    yearOfProduction = temp.convertToInt();
+
+    std::cout << "Enter the seats count: ";
+    temp.getLine(std::cin);
+    seatsCount = temp.convertToInt();
+
+    std::cout << "Enter the gearbox type (Manual - 0, Auto - 1): ";
+    temp.getLine(std::cin);
+    gearbox = temp.convertToInt();
+
+    std::cout << "Enter the gearbox type (Diesel - 0, Petrol - 1, Electric - 2): ";
+    temp.getLine(std::cin);
+    engineType = temp.convertToInt();
+
+    if (category == "Motorcycle")
+    {
+        bool param1, param2;
+
+        std::cout << "Enter whether the motorcycle has a side car (0/1): ";
+        temp.getLine(std::cin);
+        param1 = temp.convertToInt();
+
+        std::cout << "Enter whether the motorcycle has storage space (0/1): ";
+        temp.getLine(std::cin);
+        param2 = temp.convertToInt();
+
+        rentHouse.addMotorcycle(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
+    }
+    else if (category == "Car")
+    {
+        bool param1, param2;
+
+        std::cout << "Enter whether the car is a sports one (0/1): ";
+        temp.getLine(std::cin);
+        param1 = temp.convertToInt();
+
+        std::cout << "Enter whether the car is a convertible or not (0/1): ";
+        temp.getLine(std::cin);
+        param2 = temp.convertToInt();
+
+        rentHouse.addCar(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
+    }
+    else if (category == "Bus")
+    {
+        size_t param1;
+        bool param2;
+
+        std::cout << "Enter the rating: ";
+        temp.getLine(std::cin);
+        param1 = temp.convertToInt();
+
+        std::cout << "Enter whether the bus has an AC or not (0/1): ";
+        temp.getLine(std::cin);
+        param2 = temp.convertToInt();
+
+        rentHouse.addBus(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
+    }
+    else
+    {
+        std::cout << "No such vehicle! Enter 'Motorcycle', 'Car' or 'Bus'!" << std::endl;
+        return;
+    }
+
+    std::cout << "Vehicle successfully added!" << std::endl;
 }
 
 void Program::Print_VehiclesByBrand() const
@@ -263,13 +341,10 @@ void Program::Print_VehiclesByBrand() const
     MyString brand;
     brand.getLine(std::cin);
 
-    rentHouse.printVehiclesByBrand(brand);
-    if (rentHouse.printVehiclesByBrand(brand))
+    if (!rentHouse.printVehiclesByBrand(brand))
     {
-        // They are printed
-        return;
+        std::cout << "Brand does not exist!\n";
     }
-    std::cout << "Brand does not exist!\n";
 }
 
 void Program::Delete_Customer()
@@ -344,11 +419,15 @@ void Program::Rent_RentVehicle()
     do
     {
         std::cin >> EndDate;
-    } while (!StartDate.isValidDate());
+    } while (!EndDate.isValidDate());
+
+    MyString trash;
+    trash.getLine(std::cin);
 
     if (StartDate >= EndDate)
     {
         std::cout << "End date is before Start date!";
+        return;
     }
 
     rentHouse.addRent(EGN, plate, StartDate, EndDate);
@@ -387,7 +466,6 @@ void Program::Rent_ExtendRent()
 
     if (!daysStr.isOnlyNumbers())
     {
-        // Negative days is checked
         std::cout << "Incorrect format days!\n";
         return;
     }
@@ -426,7 +504,20 @@ void Program::Rent_ChangeOwner()
     if (rentHouse.changeOwners(EGN, plate))
     {
         std::cout << "Rent owner changed successfully!\n";
+        return;
     }
 
     std::cout << "Rent owner change failed!\n";
+}
+void Program::Print_FreeCars() {
+    if(!rentHouse.printAllFreeCars()) {
+        std::cout << "No free cars!\n";
+    }
+}
+
+void Program::save()
+{
+    std::ofstream file(TXT_NAME.getText());
+    file << rentHouse;
+    file.close();
 }

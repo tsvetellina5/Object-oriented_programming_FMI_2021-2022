@@ -1,5 +1,6 @@
 #pragma once
 #include "RentHouse.h"
+const MyString TXT_NAME = "data.txt";
 
 class Program
 {
@@ -7,6 +8,7 @@ private:
     RentHouse rentHouse;
 
 public:
+    void load();
     void StartMenu();
 
     void Menu_Add();
@@ -20,6 +22,7 @@ public:
     void Add_Vehicle();
 
     void Print_VehiclesByBrand() const;
+    void Print_FreeCars();
 
     void Delete_Customer();
     void Delete_Vehicle();
@@ -28,4 +31,6 @@ public:
     void Rent_EndRentVehicle();
     void Rent_ExtendRent();
     void Rent_ChangeOwner();
+
+    void save();
 };

@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Date.h"
+#include "MyString.h"
 #include <ctime>
 
 Date::Date()
@@ -160,14 +161,32 @@ void Date::addDays(size_t days)
     day += days;
 }
 
+void Date::print() const
+{
+    const char symb = '.';
+    std::cout << day << symb
+              << month << symb
+              << year << "\n";
+}
+
 std::ostream &operator<<(std::ostream &ostr, const Date &date)
 {
-    ostr << date.day << " " << date.month << " " << date.year;
+    ostr << date.day << '\n'
+         << date.month << '\n'
+         << date.year << '\n';
     return ostr;
 }
 
 std::istream &operator>>(std::istream &istr, Date &date)
 {
-    istr >> date.day >> date.month >> date.year;
+    MyString temp;
+
+    istr >> temp;
+    date.day = temp.convertToInt();
+    istr >> temp;
+    date.month = temp.convertToInt();
+    istr >> temp;
+    date.year = temp.convertToInt();
+
     return istr;
 }

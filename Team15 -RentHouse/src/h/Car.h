@@ -9,7 +9,7 @@ private:
 
 public:
 	Car();
-	Car(const MyString &, const MyString&, const MyString &, const size_t, const size_t, const size_t, const size_t, const bool, const bool);
+	Car(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const size_t, const size_t, const bool, const bool);
 
 	const bool getIsSportsCar() const;
 	void setIsSportsCar(const bool);
@@ -18,7 +18,5 @@ public:
 
 	Vehicle *clone() const override;
 	void print() const override;
-
-	friend std::ifstream &operator>>(std::ifstream &, Car &);
-	friend std::ofstream &operator<<(std::ofstream &, const Car &);
+	std::ofstream &save(std::ofstream &) const override;
 };

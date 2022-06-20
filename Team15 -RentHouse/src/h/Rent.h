@@ -31,4 +31,6 @@ public:
 
     Rent *clone() const;
     void print() const;
+
+    friend std::ofstream &operator<<(std::ofstream &, const Rent *);
 };

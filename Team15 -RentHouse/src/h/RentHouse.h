@@ -16,14 +16,12 @@ private:
 	ListCustomers customers;
 	ListRents rents;
 
-	void freeCars();
-
 public:
-	bool addCustomer(const MyString&, const MyString&, const MyString&, const MyString&, const MyString&, const MyString&, const MyString&);
+	bool addCustomer(const MyString &, const MyString &, const MyString &, const MyString &, const MyString &, const MyString &, const MyString &);
 
-	void addCar(const MyString&, const MyString&, const MyString&, const size_t, const size_t, const size_t, const size_t, const bool, const bool);
-	void addBus(const MyString&, const MyString&, const MyString&, const size_t, const size_t, const size_t, const size_t, const size_t, const bool);
-	void addMotorcycle(const MyString&, const MyString&, const MyString&, const size_t, const size_t, const size_t, const size_t, const bool, const bool);
+	void addCar(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const size_t, const size_t, const bool, const bool);
+	void addBus(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const size_t, const size_t, const size_t, const bool);
+	void addMotorcycle(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const size_t, const size_t, const bool, const bool);
 
 	void printAllVehicles() const;
 	void printAllCustomers() const;
@@ -40,7 +38,7 @@ public:
 
 	void printRentsByStartDate() const;
 	void printRentsByEndDate() const;
-	void printAllFreeCars() const;
+	bool printAllFreeCars() const;
 
 	friend std::ifstream &operator>>(std::ifstream &, RentHouse &);
 	friend std::ofstream &operator<<(std::ofstream &, const RentHouse &);
@@ -49,7 +47,4 @@ public:
 	bool isLicensePlateUnique(const MyString &);
 	bool doesCustomerWithEGNExist(const MyString &);
 	bool doesRentWithSameLicenseExist(const MyString &);
-
-	friend std::ifstream &operator>>(std::ifstream &, RentHouse &);
-	friend std::ofstream &operator<<(std::ofstream &, const RentHouse &);
 };

@@ -14,10 +14,10 @@ bool RentHouse::addVehicles(Vehicle &&vechile)
 	return false;
 }
 
-void RentHouse::addCar(const MyString& brand, const MyString& model,
-					   const MyString& licensePlate, const size_t yearOfProduction,
-						const size_t gearbox, const size_t engineType,
-					   const size_t seatsCount, const bool isSportsCar,
+void RentHouse::addCar(const MyString &brand, const MyString &model,
+					   const MyString &licensePlate, const size_t yearOfProduction,
+					   const size_t seatsCount, const size_t engineType,
+					   const size_t gearbox, const bool isSportsCar,
 					   const bool isConvertable)
 {
 	addVehicles(Car(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, isSportsCar, isConvertable));
@@ -25,19 +25,18 @@ void RentHouse::addCar(const MyString& brand, const MyString& model,
 
 void RentHouse::addBus(const MyString &brand, const MyString &model,
 					   const MyString &licensePlate, const size_t yearOfProduction,
-						const size_t gearbox, const size_t engineType,
-					   const size_t seatsCount, const size_t rating, const bool hasAC)
+					   const size_t seatsCount, const size_t engineType,
+					   const size_t gearbox, const size_t rating, const bool hasAC)
 {
 	addVehicles(Bus(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, rating, hasAC));
 }
 
 void RentHouse::addMotorcycle(const MyString &brand, const MyString &model,
 							  const MyString &licensePlate, const size_t yearOfProduction,
-							const size_t gearbox, const size_t engineType,
-							  const size_t seatsCount, const bool doesHaveExtraHouse,
-							  const bool hasStorageSpace)
+							  const size_t seatsCount, const size_t gearbox,
+							  const size_t engineType, const bool doesHaveExtraHouse, const bool hasStorageSpace)
 {
-	addVehicles(Motorcycle(brand, model,  licensePlate, yearOfProduction,
+	addVehicles(Motorcycle(brand, model, licensePlate, yearOfProduction,
 						   seatsCount, gearbox, engineType, doesHaveExtraHouse, hasStorageSpace));
 }
 
@@ -74,6 +73,7 @@ void RentHouse::printAllVehicles() const
 	for (size_t i = 0; i < vehicles.getCount(); i++)
 	{
 		vehicles[i]->print();
+		std::cout << "\n";
 	}
 }
 
@@ -88,34 +88,111 @@ void RentHouse::printAllCustomers() const
 
 std::ifstream &operator>>(std::ifstream &ifstr, RentHouse &RH)
 {
-	
+	MyString temp;
+	MyString brand, model, licensePlate;
+	size_t yearOfProduction, seatsCount, category, gearbox, engineType;
+	size_t inputCount;
+
+	ifstr >> temp;
+	inputCount = temp.convertToInt();
+	for (size_t i = 0; i < inputCount; i++)
+	{
+		ifstr >> brand >> model >> licensePlate;
+		ifstr >> temp;
+		yearOfProduction = temp.convertToInt();
+		ifstr >> temp;
+		seatsCount = temp.convertToInt();
+		ifstr >> temp;
+		gearbox = temp.convertToInt();
+		ifstr >> temp;
+		engineType = temp.convertToInt();
+		ifstr >> temp;
+		category = temp.convertToInt();
+
+		if (category == 0)
+		{
+			bool param1, param2;
+
+			ifstr >> temp;
+			param1 = temp.convertToInt();
+			ifstr >> temp;
+			param2 = temp.convertToInt();
+
+			RH.addMotorcycle(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
+		}
+		else if (category == 1)
+		{
+			bool param1, param2;
+
+			ifstr >> temp;
+			param1 = temp.convertToInt();
+			ifstr >> temp;
+			param2 = temp.convertToInt();
+
+			RH.addCar(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
+		}
+		else if (category == 2)
+		{
+			size_t param1;
+			bool param2;
+
+			ifstr >> temp;
+			param1 = temp.convertToInt();
+			ifstr >> temp;
+			param2 = temp.convertToInt();
+
+			RH.addBus(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
+		}
+	}
+
+	MyString name, email, EGN, city, phone, username, password;
+	ifstr >> temp;
+	inputCount = temp.convertToInt();
+	for (size_t i = 0; i < inputCount; i++)
+	{
+		ifstr >> name >> email >> EGN >> city >> phone >> username >> password;
+		RH.addCustomer(name, email, EGN, city, phone, username, password);
+	}
+
+	Date start, end;
+	ifstr >> temp;
+	inputCount = temp.convertToInt();
+	for (size_t i = 0; i < inputCount; i++)
+	{
+		if (i != 0)
+		{
+			ifstr >> temp;
+		}
+		ifstr >> EGN >> licensePlate >> start >> end;
+		RH.addRent(EGN, licensePlate, start, end);
+	}
+
 	return ifstr;
 }
 
 std::ofstream &operator<<(std::ofstream &ofstr, const RentHouse &RH)
 {
-	MyString newLine("\n");
 	size_t carsCount = RH.vehicles.getCount();
-	ofstr << carsCount << newLine;
+	ofstr << carsCount << '\n';
 	for (size_t i = 0; i < carsCount; i++)
 	{
-		ofstr << RH.vehicles[i];
+		RH.vehicles[i]->save(ofstr);
 	}
 
 	size_t customersCount = RH.customers.getCount();
-	ofstr << customersCount << newLine;
+	ofstr << customersCount << '\n';
 	for (size_t i = 0; i < customersCount; i++)
 	{
 		ofstr << RH.customers[i];
 	}
-	/*
+
 	size_t rentsCount = RH.rents.getCount();
-	ofstr << rentsCount << newLine;
+	ofstr << rentsCount << '\n';
 	for (size_t i = 0; i < rentsCount; i++)
 	{
 		ofstr << RH.rents[i];
 	}
-	*/
+
 	return ofstr;
 }
 
@@ -141,6 +218,7 @@ bool RentHouse::printVehiclesByBrand(const MyString &brand) const
 		if (vehicles[i]->getBrand() == brand)
 		{
 			vehicles[i]->print();
+			std::cout << "\n";
 		}
 	}
 	return true;
@@ -295,25 +373,30 @@ void RentHouse::printAllRents() const
 	for (size_t i = 0; i < rents.getCount(); i++)
 	{
 		rents[i]->print();
+		std::cout << "\n";
 	}
 }
 
 void RentHouse::printRentsByStartDate() const
 {
 	size_t minIndex;
-	size_t* rentsSortedByStartDate = new size_t[rents.getCount()]{0};
+	size_t *rentsSortedByStartDate = new size_t[rents.getCount()]{0};
 
-	for (size_t i = 0; i + 1 < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i ++) {
+        rentsSortedByStartDate[i] = i;
+	}
+
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
-		minIndex = i;
-		for (size_t j = i + 1; j < rents.getCount(); j++)
+		for (size_t j = 0; j < rents.getCount() - i -1; j++)
 		{
-			if (rents[j]->getDateRented() < rents[minIndex]->getDateRented())
+			if (rents[rentsSortedByStartDate[j]]->getDateRented() > rents[rentsSortedByStartDate[j+1]]->getDateRented())
 			{
-				minIndex = j;
+			    size_t temp = rentsSortedByStartDate[j];
+				rentsSortedByStartDate[j] = rentsSortedByStartDate[j+1];
+				rentsSortedByStartDate[j+1] = temp;
 			}
 		}
-		rentsSortedByStartDate[i] = minIndex;
 	}
 
 	for (size_t i = 0; i < rents.getCount(); i++)
@@ -327,19 +410,23 @@ void RentHouse::printRentsByStartDate() const
 void RentHouse::printRentsByEndDate() const
 {
 	size_t minIndex;
-	size_t* rentsSortedByEndDate = new size_t[rents.getCount()]{0};
+	size_t *rentsSortedByEndDate = new size_t[rents.getCount()]{0};
 
-	for (size_t i = 0; i + 1 < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i ++) {
+        rentsSortedByEndDate[i] = i;
+	}
+
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
-		minIndex = i;
-		for (size_t j = i + 1; j < rents.getCount(); j++)
+		for (size_t j = 0; j < rents.getCount() - i -1; j++)
 		{
-			if (rents[j]->getDateToReturn() < rents[minIndex]->getDateToReturn())
+			if (rents[rentsSortedByEndDate[j]]->getDateRented() < rents[rentsSortedByEndDate[j+1]]->getDateRented())
 			{
-				minIndex = j;
+			    size_t temp = rentsSortedByEndDate[j];
+				rentsSortedByEndDate[j] = rentsSortedByEndDate[j+1];
+				rentsSortedByEndDate[j+1] = temp;
 			}
 		}
-		rentsSortedByEndDate[i] = minIndex;
 	}
 
 	for (size_t i = 0; i < rents.getCount(); i++)
@@ -347,12 +434,14 @@ void RentHouse::printRentsByEndDate() const
 		rents[rentsSortedByEndDate[i]]->print();
 	}
 
+
 	delete[] rentsSortedByEndDate;
 }
 
-void RentHouse::printAllFreeCars() const
+bool RentHouse::printAllFreeCars() const
 {
 	bool isRented;
+	bool atLeastOneRented = false;
 	for (size_t i = 0; i < vehicles.getCount(); i++)
 	{
 		isRented = false;
@@ -364,9 +453,15 @@ void RentHouse::printAllFreeCars() const
 				break;
 			}
 		}
-		if (!isRented)
-		{
+		if (!isRented){
 			vehicles[i]->print();
+			atLeastOneRented = true;
 		}
 	}
+	if(!atLeastOneRented) {
+        return false;
+    }else {
+        return true;
+    }
+
 }
