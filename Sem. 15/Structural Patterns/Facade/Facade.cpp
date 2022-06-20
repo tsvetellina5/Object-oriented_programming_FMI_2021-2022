@@ -9,12 +9,12 @@
 class Subsystem1
 {
 public:
-  const std::string &Operation1() const
+  std::string Operation1() const
   {
     return "Subsystem1: Ready!\n";
   }
   // ...
-  const std::string &OperationN() const
+  std::string OperationN() const
   {
     return "Subsystem1: Go!\n";
   }
@@ -24,12 +24,12 @@ public:
 class Subsystem2
 {
 public:
-  const std::string &Operation1() const
+  std::string Operation1() const
   {
     return "Subsystem2: Get ready!\n";
   }
   // ...
-  const std::string &OperationZ() const
+  std::string OperationZ() const
   {
     return "Subsystem2: Fire!\n";
   }
