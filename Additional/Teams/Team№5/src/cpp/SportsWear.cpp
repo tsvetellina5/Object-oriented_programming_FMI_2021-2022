@@ -1,7 +1,6 @@
 #include "SportsWear.h"
 
-SportsWear::SportsWear(const String& name, const double price, const size_t numAvailable) :ClothingItem(name,price,numAvailable)
-{}
+SportsWear::SportsWear(const String& name, const double price, const size_t numAvailable) :ClothingItem(name,price,numAvailable) {}
 
 ClothingItem::Type SportsWear::getType() const
 {

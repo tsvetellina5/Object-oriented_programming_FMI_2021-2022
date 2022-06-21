@@ -1,7 +1,6 @@
 #include "Couture.h"
 
-Couture::Couture(const String& name, const double price, const size_t numAvailable) :ClothingItem(name, price, numAvailable)
-{}
+Couture::Couture(const String& name, const double price, const size_t numAvailable) :ClothingItem(name, price, numAvailable) {}
 
 void Couture::setDesigner(const String& designer)
 {
