@@ -1,7 +1,7 @@
 # Solid Principles
 
 SOLID е акроним за пет принципа на проектиране, предназначени да направят софтуерния дизайн по-разбираем, гъвкав и поддържащ. <br />
-Въпреки че се прилагат за всеки обектно-ориентиран дизайн, принципите SOLID могат също да формират основна философия за гъвкаво развитие.
+Въпреки че се прилагат за всеки обектно-ориентиран дизайн, принципите SOLID могат също да формират основна философия за гъвкаво развитие. < br/>
 
 - Single Responsibility principle
 - Open-Closed Principle
@@ -46,15 +46,197 @@ public:
 ```
 Software entities should be open for extension, but closed for modification
 ```
+Принципът диктува, че софтуерните модули са отворени за разширение, но затворени за модификация. < br/>
+Това позволява добавянето на нова функционалност без промяна на съществуващия изходен код. < br/>
 
-Вместо да променяме съществуващ код, трябва да го разширяваме.
-Това може да се реализира чрез използването на абстрактни класове(интерфейси).
+На практика най-добрият начин да постигнете това със C++ е полиморфизмът. < br/>
+По-специално, с използването на абстрактни класове, можем да разширим клас и да специализираме неговото поведение, без да променяме спецификацията на интерфейса. < br/>
+Този принцип позволява софтуер за многократна употреба и поддръжка. < br/>
+
+Контрапример/Лош пример за Open-Closed
+```c++
+enum class SensorModel {
+   Good,
+   Better
+};
+
+class DistanceSensor {
+public:
+   DistanceSensor(SensorModel model) : mModel{model} {}
+   int getDistance() {
+       switch (mModel) {
+           case SensorModel::Good :
+               // Business logic for "Good" model
+           case SensorModel::Better :
+               // Business logic for "Better" model
+       }
+   }
+};
+```
+
+Пример/Добър пример за Open-closed
+```c++
+class DistanceSensor {
+public:
+   virtual ~DistanceSensor() = default;
+   virtual int getDistance() = 0;
+};
+
+class GoodDistanceSensor : public DistanceSensor {
+public:
+   int getDistance() override {
+       // Business logic for "Good" model
+   }
+};
+
+class BetterDistanceSensor : public DistanceSensor {
+public:
+   int getDistance() override {
+       // Business logic for "Better" model
+   }
+};
+```
 
 ## Liskov Substitution Principle
+```
+If S is a subtype of T, then objects of type T in a program may be replaced with objects of type S
+without altering any of the desirable properties of that program (e.g. correctness)
+```
+
+Този принцип изисква подкласовете не само да задоволяват синтактичните очаквания, но и поведенческите на своите родители. < br/>
+Kато потребител на клас би трябвало да може да използваме всяко от неговите деца, които могат да ни бъдат предадени, без да се интересувам кое конкретно дете се използва. < br/>
+Това означава, че трябва да гарантираме, че аргументите, както и всички върнати стойности на децата са последователни. < br/>
+
+```c++
+/*
+The problem begins when different sensors, that is, the different children that implement the interface, return the orientation in different ranges.
+For example, we have a Gyroscope that returns an orientation that is always positive, between 0 and 360 degrees,
+while the Accelerometer provides an output that can be negative. Something between -180 and positive 180.
+*/
+
+class InertialMeasurementUnit {
+public:
+   virtual ~InertialMeasurementUnit() = default;
+   virtual int getOrientation()       = 0;
+};
+class Gyroscope : public InertialMeasurementUnit {
+public:
+   /**
+    * @return orientation in degrees [0, 360)
+    */
+   int getOrientation() override;
+};
+class Accelerometer : public InertialMeasurementUnit {
+public:
+   /**
+    * @return orientation in degrees [-180, 180)
+    */
+   int getOrientation() override;
+};
+```
+
+```c++
+class InertialMeasurementUnit {
+public:
+   virtual ~InertialMeasurementUnit() = default;
+   
+   /**
+    * Sets the orientation
+    * @throw std::out_of_range exception if orientation is invalid
+   */
+   virtual void setOrientation(double) = 0;
+   
+    /**
+    * Provides the valid range
+    * @return <minimum orientation, maximum orientation>
+    */
+   virtual pair<double, double> getFrequencyRange() const = 0;
+};
+
+class Gyroscope : public InertialMeasurementUnit {
+public:
+   /**
+    * @return orientation in degrees [0, 360)
+    */
+   int getOrientation() override;
+};
+class Accelerometer : public InertialMeasurementUnit {
+public:
+   /**
+    * @return orientation in degrees [-180, 180)
+    */
+   int getOrientation() override;
+};
+```
 
 ## Interface Segregation Principle
+```
+No client should be forced to depend on methods it does not use
+```
+Класове с точно и ясно предназначение - специфични класове/методи. < br/>
+Трябва да избягваме класове/методи, които да правят "всичко". < br/>
+По-конкретно, по-добре е да имате много интерфейси с едно предназначение, отколкото един (или няколко) многоцелеви. < br/>
+Това позволява на нашия софтуер да бъде по-преизползваем и персонализиран, тъй като не е нужно да разчитаме или да прилагаме функционалност, която не използваме. < br/>
 
-Класове с точно и ясно предназначение - специфични класове/методи.
-Трябва да избягваме класове/методи, които да правят "всичко".
+```c++
+struct IMachine {
+    virtual void print(Document &doc) = 0;
+    virtual void fax(Document &doc) = 0;
+    virtual void scan(Document &doc) = 0;
+};
+
+struct MultiFunctionPrinter : IMachine {      // OK
+    void print(Document &doc) override { //code }
+    void fax(Document &doc) override { //code }
+    void scan(Document &doc) override { //code }
+};
+
+struct Scanner : IMachine {                   // Not OK
+    void print(Document &doc) override { /* Blank */ }
+    void fax(Document &doc) override { /* Blank */ }
+    void scan(Document &doc) override {  
+        // Do scanning ...
+    }
+};
+```
+
+```c++
+/* -------------------------------- Interfaces ----------------------------- */
+struct IPrinter {
+    virtual void print(Document &doc) = 0;
+};
+struct IScanner {
+    virtual void scan(Document &doc) = 0;
+};
+/* ------------------------------------------------------------------------ */
+struct Printer : IPrinter {
+    void print(Document &doc) override;
+};
+struct Scanner : IScanner {
+    void scan(Document &doc) override;
+};
+
+struct IMachine : IPrinter, IScanner { };
+
+struct Machine : IMachine {
+	 IPrinter&   m_printer;
+    IScanner&   m_scanner;
+    
+    Machine(IPrinter &p, IScanner &s) : printer{p}, scanner{s} { }
+    
+    void print(Document &doc) override {
+		printer.print(doc);
+    }
+    
+    void scan(Document &doc) override {
+		scanner.scan(doc);
+    }
+};
+```
 
 ## Dependency Inversion Principle
+```
+High-level modules should not depend on low-level modules. Both should depend on abstractions (e.g. interfaces).
+Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
+```
+
