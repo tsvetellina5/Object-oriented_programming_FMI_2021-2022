@@ -2,7 +2,7 @@
 
 Да се напише програма, която имитира база от данни на магазин за дрехи. За целта е необходимо да се реализират класовете, показани на следната UML клас диаграма:
 
-![Uml_clothibg_shop](https://user-images.githubusercontent.com/97393225/173221235-7c51f44f-12dd-4195-8b6d-a83960c9fa43.jpg)
+![Uml_diagram](https://user-images.githubusercontent.com/97393225/174895135-2394413c-f9b2-4959-9ee5-088cbe5acf94.jpg)
 
 1. ClothingItem (abstract class) със следните член-данни:
  - Name(dress, trousers, shirt, ect.)
