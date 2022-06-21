@@ -39,7 +39,6 @@ double ClothingContainer::getPrice(size_t index) const
 
 void ClothingContainer::addClothingItem(const ClothingItem& item) const
 {
-
 	for (size_t i = 0; i < size; i++)
 	{
 		if (container[i]->getName() == item.getName() && container[i]->getSize() == item.getSize() && container[i]->getGender() == item.getGender())
