@@ -57,9 +57,7 @@ void Vector<T>::copyFrom(const Vector<T> &other) {
 
 template <typename T>
 void Vector<T>::resize() {
-    capacity = 2 * capacity;
-
-    T *newMemory = new T[capacity];
+    T *newMemory = new T[capacity *= 2];
 
     for (size_t i = 0; i < size; i++)
         newMemory[i] = std::move(data[i]);
