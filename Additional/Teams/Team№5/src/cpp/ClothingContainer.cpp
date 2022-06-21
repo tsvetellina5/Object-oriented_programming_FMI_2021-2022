@@ -1,7 +1,6 @@
 #include"ClothingContainer.h"
 #include<fstream>
 
-
 ClothingContainer::ClothingContainer()
 {
 	capacityContainer = 2;
@@ -25,7 +24,6 @@ ClothingContainer& ClothingContainer::operator=(const ClothingContainer& other)
 		free();
 		copy(other);
 	}
-
 	return *this;
 }
 
@@ -51,9 +49,7 @@ void ClothingContainer::addClothingItem(const ClothingItem& item) const
 		}
 	}
 	if (size >= capacityContainer)
-	{
 		resizeContainer();
-	}
 
 	container[size++] = item.clone();
 }
@@ -61,14 +57,11 @@ void ClothingContainer::addClothingItem(const ClothingItem& item) const
 bool ClothingContainer::deleteClothingItem(size_t index) const
 {
 	if (index >= size)
-	{
 		return false;
-	}
 
 	if (logSize >= capacity)
-	{
 		resizeLog();
-	}
+
 	log[logSize] = container[index]->getData();
 	logPrice[logSize++] = container[index]->getPrice();
 
@@ -89,42 +82,31 @@ bool ClothingContainer::deleteClothingItem(size_t index) const
 void ClothingContainer::listAvailableItems() const
 {
 	for (size_t i = 0; i < size; i++)
-	{
 		container[i]->print();
-	}
 }
 
 void ClothingContainer::listSoldItems() const
 {
 	for (size_t i = 0; i < logSize; i++)
-	{
 		std::cout << log[i] << "\nPrice: " << logPrice[i] << std::endl;
-	}
 }
 
 void ClothingContainer::exportSoldLog() const
 {
 	std::ofstream writeFile("logFile.txt", std::ios::app);
 	for (size_t i = 0; i < logSize; i++)
-	{
 		writeFile << log[i] << "\nPrice: " << logPrice[i] << std::endl;
-	}
 }
 
 void ClothingContainer::resizeContainer()
 {
 	ClothingItem** tempCont = new ClothingItem * [capacityContainer *= 2];
 	for (size_t i = 0; i < size; i++)
-	{
 		tempCont[i] = container[i];
-	}
 
 	delete[] container;
-
 	container = tempCont;
-	
 	tempCont = nullptr;
-	
 }
 void ClothingContainer::resizeLog()
 {
@@ -153,9 +135,7 @@ void ClothingContainer::copy(const ClothingContainer& other)
 	logPrice = new double[capacityLog];
 
 	for (size_t i = 0; i < size; i++)
-	{
 		container[i] = other.container[i]->clone();
-	}
 
 	for (size_t i = 0; i < logSize; i++)
 	{
@@ -167,9 +147,7 @@ void ClothingContainer::copy(const ClothingContainer& other)
 void ClothingContainer::free()
 {
 	for (size_t i = 0; i < size; i++)
-	{
 		delete container[i];
-	}
 
 	delete[] container;
 	delete[] log;
