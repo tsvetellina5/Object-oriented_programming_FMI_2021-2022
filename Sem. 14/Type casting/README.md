@@ -154,7 +154,7 @@ int main()
 ```
 
 ### Dynamic_cast - if it fails - returns a nullptr
-```
+```c++
 // If the cast fails and new_type is a pointer type,
 // it returns a null pointer of that type
 #include <iostream>
