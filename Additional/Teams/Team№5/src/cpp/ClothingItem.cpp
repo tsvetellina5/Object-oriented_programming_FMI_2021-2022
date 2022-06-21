@@ -1,15 +1,12 @@
 #include"ClothingItem.h"
 
-ClothingItem::ClothingItem() : name(), price(0), numAvailable(0)
-{}
-ClothingItem::ClothingItem(const String& name, const double price, const size_t numAvailable) : name(name), price(price), numAvailable(numAvailable)
-{}
+ClothingItem::ClothingItem() : name(), price(0), numAvailable(0) {}
+ClothingItem::ClothingItem(const String& name, const double price, const size_t numAvailable) : name(name), price(price), numAvailable(numAvailable) {}
 
 void ClothingItem::setName(const String& name)
 {
 	this->name = name;
 }
-
 void ClothingItem::setPrice(const double price)
 {
 	this->price = price;
@@ -21,62 +18,38 @@ void ClothingItem::setNumAvailable(const size_t numAvailable)
 void ClothingItem::setGender(const char& gender)
 {
 	if (gender == 'M' || gender == 'm')
-	{
 		this->gender = Gender::MAN;
-		return;
-	}
 
 	else if (gender == 'W' || gender == 'w')
-	{
 		this->gender = Gender::WOMAN;
-		return;
-	}
 
 	else if (gender == 'U' || gender == 'u')
-	{
 		this->gender = Gender::UNISEX;
-		return;
-	}
+	else
+		throw "Invalid data";
 }
 void ClothingItem::setSize(const String& size)
 {
 	if (size == "XS" || size == "xs")
-	{
 		this->size = Size::XS;
-	}
 
 	else if (size == "S" || size == "s")
-	{
 		this->size = Size::S;
-	}
 
 	else if (size == "M" || size == "m")
-	{
 		this->size = Size::M;
-	}
 
 	else if (size == "L" || size == "l")
-	{
 		this->size = Size::L;
-	}
 
 	else if (size == "XL" || size == "xl")
-	{
 		this->size = Size::XL;
-	}
 
 	else if (size == "XXL" || size == "xxl")
-	{
 		this->size = Size::XXL;
-	}
 
-	else if (size == "O" || size == "o")
-	{
+	else
 		this->size = Size::UNKNOWN;
-	}
-	else {
-		throw "Invalid size";
-	}
 }
 ClothingItem::Type ClothingItem::getType() const
 {
@@ -86,17 +59,14 @@ ClothingItem::Gender ClothingItem::getGender() const
 {
 	return gender;
 }
-
 ClothingItem::Size ClothingItem::getSize() const
 {
 	return size;
 }
-
 const String& ClothingItem::getName() const
 {
 	return name;
 }
-
 double ClothingItem::getPrice() const
 {
 	return price;
@@ -135,10 +105,12 @@ const char* ClothingItem::genderToStr() const
 {
 	if(gender == Gender::MAN)
 		return "Man";
-	if (gender == Gender::WOMAN)
+	else if (gender == Gender::WOMAN)
 		return "Woman";
-	if (gender == Gender::UNISEX)
+	else if (gender == Gender::UNISEX)
 		return "Unisex";
+	else
+		throw "Invalid data";
 }
 String ClothingItem::getData() const
 {
