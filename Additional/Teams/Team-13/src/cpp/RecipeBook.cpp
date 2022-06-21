@@ -24,7 +24,7 @@ void swap(Recipe* lhs, Recipe* rhs) {
 }
 
 void RecipeBook::addRecipe(Recipe* recipe){
-    recipes.push_back(recipe);
+    recipes.push_back(recipe->clone());
     size_t i = recipes.getSize() - 1;
     if (i <= 0)
         return;
