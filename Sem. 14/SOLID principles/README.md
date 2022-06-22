@@ -240,3 +240,23 @@ High-level modules should not depend on low-level modules. Both should depend on
 Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
 ```
 
+Принципът на инверсията на зависимостта гласи, че нашите класове трябва да зависят от интерфейси или абстрактни класове, вместо от конкретни класове и функции.
+
+```c++
+class Cloud {
+public:
+   virtual ~Cloud() = default;
+   virtual void upload(string filepath) = 0;
+};
+
+class AwsCloud : public Cloud {
+public:
+   void upload(string filepath) override { /* ... */ }
+};
+
+class FileUploader {
+public:
+   FileUploader(Cloud& cloud);
+   void scheduleUpload(string filepath);
+};
+```
