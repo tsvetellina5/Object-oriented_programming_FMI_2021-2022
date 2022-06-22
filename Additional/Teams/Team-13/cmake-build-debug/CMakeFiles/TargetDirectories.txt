@@ -1,0 +1,3 @@
+C:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/cmake-build-debug/CMakeFiles/Team_13.dir
+C:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/plami/CLionProjects/Object-oriented_programming_FMI_2021-2022/Additional/Teams/Team-13/cmake-build-debug/CMakeFiles/rebuild_cache.dir
