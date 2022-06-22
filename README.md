@@ -21,3 +21,5 @@
 - [Домашни](https://github.com/Justsvetoslavov/Object-oriented_programming_FMI_2021-2022/tree/main/Additional/Homeworks)
 - [Контролни](https://github.com/Justsvetoslavov/Object-oriented_programming_FMI_2021-2022/tree/main/Additional/Tests)
 - [Консултации](https://github.com/Justsvetoslavov/Object-oriented_programming_FMI_2021-2022/tree/main/Additional/Consultations)
+
+## [Устен изпит - Теми](https://github.com/Justsvetoslavov/Object-oriented_programming_FMI_2021-2022/blob/main/Устен%20изпит%20-%20Теми.txt)
