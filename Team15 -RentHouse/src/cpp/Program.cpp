@@ -279,7 +279,7 @@ void Program::Add_Vehicle()
     temp.getLine(std::cin);
     gearbox = temp.convertToInt();
 
-    std::cout << "Enter the gearbox type (Diesel - 0, Petrol - 1, Electric - 2): ";
+    std::cout << "Enter the engine type (Diesel - 0, Petrol - 1, Electric - 2): ";
     temp.getLine(std::cin);
     engineType = temp.convertToInt();
 

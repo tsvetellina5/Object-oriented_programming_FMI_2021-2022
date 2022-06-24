@@ -261,11 +261,7 @@ int MyString::convertToInt() const
     }
     n /= 10;
 
-    if (isNeg)
-    {
-        return -n;
-    }
-    return n;
+    return isNeg ? -n : n;
 }
 
 bool MyString::isDouble() const
@@ -349,12 +345,8 @@ double MyString::convertToDouble() const
         after /= 10;
     }
     double output = (n + after);
-    if (isNeg)
-    {
-        return -output;
-    }
 
-    return output;
+    return isNeg ? -output : output;
 }
 
 bool MyString::isChar(const char symb) const

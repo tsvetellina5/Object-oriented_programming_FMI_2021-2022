@@ -70,7 +70,7 @@ void Container<T>::copyFrom(const Container<T> &other)
 
     elements = new T *[capacity];
 
-    for (int i = 0; i < capacity; i++)
+    for (int i = 0; i < size; i++)
     {
         elements[i] = other.elements[i]->clone();
     }
