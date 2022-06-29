@@ -1,0 +1,26 @@
+#pragma once
+#include "Person.h"
+#include "MyString.h"
+
+class Customer : public Person
+{
+private:
+    MyString username;
+    MyString password;
+
+public:
+    Customer();
+    Customer(const MyString &, const MyString &, const MyString &, const MyString &, const MyString &, const MyString &, const MyString &);
+
+    const MyString &getUsername() const;
+    const MyString &getPassword() const;
+
+    void setUsername(const MyString &);
+    void setPassword(const MyString &);
+
+    Customer *clone() const;
+    void print() const;
+
+    friend std::ofstream &operator<<(std::ofstream &, const Customer *);
+    friend std::ifstream &operator>>(std::ifstream &, Customer &);
+};
