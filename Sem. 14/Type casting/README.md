@@ -387,9 +387,9 @@ char* c1 = const_cast <char*>(b1); // compiler error
 int* p = new int(65);
 char* ch = reinterpret_cast<char*>(p);
 std::cout << *p << endl; //65
-std::cout << *ch << endl; //5
+std::cout << *ch << endl; //A
 std::cout << p << endl; //0x1609c20 - address
-std::cout << ch << endl; //65
+std::cout << ch << endl; //A
 ```
 
 ### Struct/Class example:
