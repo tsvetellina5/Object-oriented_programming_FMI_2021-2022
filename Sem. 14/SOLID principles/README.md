@@ -29,7 +29,7 @@ public:
 
 class MyDatabaseManager : public DatabaseManager {
 public:
-   MyDatabaseManager(Database& database);
+   MyDatabaseManager(MyDatabaseManager& database);
    void addUser(string username) override;
    vector<string> getAllUsers() override;
 };
