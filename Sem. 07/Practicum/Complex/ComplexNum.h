@@ -14,7 +14,7 @@ public:
 	ComplexNum& operator=(const ComplexNum&) = default;
 	~ComplexNum() = default;
 	
-	Complex getConjugated() const;
+	ComplexNum getConjugated() const;
 
 	ComplexNum& operator+=(const ComplexNum&);
 	ComplexNum& operator-=(const ComplexNum&);
