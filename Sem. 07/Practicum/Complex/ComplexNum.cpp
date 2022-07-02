@@ -37,9 +37,9 @@ ComplexNum& ComplexNum::operator*=(const ComplexNum& other)
 
 ComplexNum& ComplexNum::operator/=(const ComplexNum& other)
 {
-	Complex conjugated = other.getConjugated(); //взимаме комплексно спрегнатата на другата дроб (b)
+	ComplexNum conjugated = other.getConjugated(); //взимаме комплексно спрегнатата на другата дроб (b)
 
-	Complex otherCopy(other);// копираме другата (b), за да не я промяняме.
+	ComplexNum otherCopy(other);// копираме другата (b), за да не я промяняме.
 
 	//Умножаваме двете по комплексно спрегнатата.
 	*this *= conjugated;
@@ -100,9 +100,9 @@ std::istream& operator>>(std::istream& is, ComplexNum& complexNum)
 	return is;
 }
 
-Complex Complex::getConjugated() const
+ComplexNum ComplexNum::getConjugated() const
 {
-	Complex result(*this);
+	ComplexNum result(*this);
 	result.imaginary *= -1;
 
 	return result;
