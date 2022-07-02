@@ -1,6 +1,0 @@
-money 303
-Motherboard Asus B450 100 AM4 DDR4
-GPU AMD RX6900XT 10 8
-CPU AMD R53600 10 AM4 6
-RAM Corsair Vengenance 10 DDR4 16
-End
