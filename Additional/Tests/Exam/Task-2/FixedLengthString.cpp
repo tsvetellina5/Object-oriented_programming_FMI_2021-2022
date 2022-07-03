@@ -5,6 +5,8 @@ bool isStringValid(const char*);
 
 FixedLengthString::FixedLengthString(size_t size)
 {
+	delete[] str;
+	
 	str = new char[size + 1];
 	str[size] = '\0';
 
@@ -17,6 +19,8 @@ FixedLengthString::FixedLengthString(size_t size)
 
 FixedLengthString::FixedLengthString(size_t size, const char* str)
 {
+	delete[] str;
+	
 	if (isStringLengthValid(str, size) && isStringValid(str)) {
 		setString(str);
 	} else {
