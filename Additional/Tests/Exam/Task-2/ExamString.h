@@ -20,7 +20,6 @@ public:
 	char& operator[](size_t);
 	virtual ExamString& operator+=(const ExamString&);
 
-	friend ExamString operator+(const ExamString&, const ExamString&);
 	friend std::ostream& operator<<(std::ostream&, const ExamString&);
 	friend std::istream& operator>>(std::istream&, ExamString&);
 private:
@@ -30,3 +29,5 @@ private:
 	void toDefaultData();
 	void toString(const char*);
 };
+
+ExamString operator+(const ExamString&, const ExamString&);
