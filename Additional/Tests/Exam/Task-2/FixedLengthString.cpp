@@ -18,12 +18,12 @@ FixedLengthString::FixedLengthString(size_t size)
 }
 
 FixedLengthString::FixedLengthString(size_t size, const char* str)
-{
-	delete[] str;
-	
+{	
 	if (isStringLengthValid(str, size) && isStringValid(str)) {
 		setString(str);
 	} else {
+		delete[] str;
+		
 		this->str = new char[size + 1];
 		this->str[size] = '\0';
 
