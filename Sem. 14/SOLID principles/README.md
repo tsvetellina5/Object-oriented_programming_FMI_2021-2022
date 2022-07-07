@@ -1,7 +1,7 @@
 # Solid Principles
 
 SOLID е акроним за пет принципа на проектиране, предназначени да направят софтуерния дизайн по-разбираем, гъвкав и поддържащ. <br />
-Въпреки че се прилагат за всеки обектно-ориентиран дизайн, принципите SOLID могат също да формират основна философия за гъвкаво развитие. < br/>
+Въпреки че се прилагат за всеки обектно-ориентиран дизайн, принципите SOLID могат също да формират основна философия за гъвкаво развитие. <br />
 
 - [Single Responsibility principle](https://github.com/Justsvetoslavov/Object-oriented_programming_FMI_2021-2022/tree/main/Sem.%2014/SOLID%20principles#single-responsibility-principle)
 - [Open-Closed Principle](https://github.com/Justsvetoslavov/Object-oriented_programming_FMI_2021-2022/tree/main/Sem.%2014/SOLID%20principles#open-closed-principle)
