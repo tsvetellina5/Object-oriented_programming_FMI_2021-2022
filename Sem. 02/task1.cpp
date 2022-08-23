@@ -17,7 +17,7 @@ int main()
 	{
 		char buffer[MAX_SIZE];
 		inputFile.getline(buffer, MAX_SIZE); //store line in buffer
-		std::cout << buff << std::endl; //print line by line in console/terminal
+		std::cout << buffer << std::endl; //print line by line in console/terminal
 	}
 	
 	inputFile.close(); //no further actions with the file = close file
